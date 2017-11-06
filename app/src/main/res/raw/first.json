@@ -1,0 +1,15 @@
+{
+  "workout": [{
+    "name": "vabs",
+    "nb_set": 3,
+    "nb_rep": 2,
+    "action": 10,
+    "rest": 3
+  }, {
+    "name": "pullup",
+    "nb_set": 2,
+    "nb_rep": 4,
+    "action": 10,
+    "rest": 6
+  }]
+}
