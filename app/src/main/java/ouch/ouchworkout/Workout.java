@@ -1,6 +1,7 @@
 package ouch.ouchworkout;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
@@ -41,6 +42,11 @@ public class Workout {
 
     public boolean isRunning(){
         return isRunning;
+    }
+
+    // Application Functions
+    public Context getApplicationContext() {
+        return activity.getApplicationContext();
     }
 
     public View findViewById(int pId) {

@@ -1,5 +1,6 @@
 package ouch.ouchworkout;
 
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 import org.json.JSONException;
 
 public class Set {
+    private final long LAST_BEEP_VALUE = 2000L;
     private final String name;
     private final Workout workout;
     private final int repNb;
@@ -19,11 +21,21 @@ public class Set {
         setNb = pSetNb;
         repNb = pRepNb;
         restTimer = new CountDownTimer(pRestTime * 1000, 500) {
+            private final MediaPlayer mp = MediaPlayer.create(workout.getApplicationContext(), R.raw.rest_beep);
             final TextView countdownField = (TextView) workout.findViewById(R.id.countdown);
+            private long lastBeep = LAST_BEEP_VALUE;
 
             @Override
-            public void onTick(long l) {
-                countdownField.setText(String.valueOf(Math.round(l * 0.001f)));
+            public void onTick(long millisUntilFinished) {
+                countdownField.setText(String.valueOf(Math.round(millisUntilFinished * 0.001f)));
+                if (millisUntilFinished < lastBeep) {
+                    mp.start();
+                    if(lastBeep > 1000){
+                        lastBeep -= 1000L;
+                    } else {
+                        lastBeep = LAST_BEEP_VALUE;
+                    }
+                }
             }
 
             @Override
@@ -42,12 +54,22 @@ public class Set {
             }
         };
         actionTimer = new CountDownTimer(pActionTime * 1000, 500) {
-            final TextView countdownField = (TextView) workout.findViewById(R.id.countdown);
-            final ImageView actionLight = (ImageView) workout.findViewById(R.id.action_light);
+            private final MediaPlayer mp = MediaPlayer.create(workout.getApplicationContext(), R.raw.action_beep);
+            private final TextView countdownField = (TextView) workout.findViewById(R.id.countdown);
+            private final ImageView actionLight = (ImageView) workout.findViewById(R.id.action_light);
+            private long lastBeep = LAST_BEEP_VALUE;
 
             public void onTick(long millisUntilFinished) {
                 // Set the action time
                 countdownField.setText(String.valueOf(Math.round(millisUntilFinished * 0.001f)));
+                if (millisUntilFinished < lastBeep) {
+                    mp.start();
+                    if(lastBeep > 1000){
+                        lastBeep -= 1000L;
+                    } else {
+                        lastBeep = LAST_BEEP_VALUE;
+                    }
+                }
             }
 
             public void onFinish() {
