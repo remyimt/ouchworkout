@@ -8,7 +8,7 @@
     "nb_rep": 1,
     "action": 60,
     "rest": 5,
-    "after": 60
+    "after": 10
   }, {
     "name": "Shoulder Stretch 2",
     "img": "shoulder_stretch_2",
@@ -16,7 +16,7 @@
     "nb_rep": 1,
     "action": 60,
     "rest": 5,
-    "after": 60
+    "after": 10
   }, {
     "name": "Triceps Stretch",
     "img": "triceps_stretch",
@@ -40,14 +40,15 @@
     "nb_rep": 1,
     "action": 45,
     "rest": 5,
-    "after": 60
+    "after": 10
   }, {
     "name": "Warrior",
     "img": "warrior",
     "nb_exercise": 2,
     "nb_rep": 1,
     "action": 60,
-    "rest": 5
+    "rest": 5,
+    "after": 10
   }, {
     "name": "Neck Stretch",
     "img": "neck_stretch",
@@ -55,7 +56,7 @@
     "nb_rep": 1,
     "action": 40,
     "rest": 5,
-    "after": 60
+    "after": 10
   }, {
     "name": "Bound Angle",
     "img": "bound_angle",

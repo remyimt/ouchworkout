@@ -8,7 +8,7 @@
     "nb_rep": 1,
     "action": 45,
     "rest": 5,
-    "after": 60
+    "after": 10
   }, {
     "name": "Shoulder Stretch 2",
     "img": "shoulder_stretch_2",
@@ -16,14 +16,15 @@
     "nb_rep": 1,
     "action": 60,
     "rest": 5,
-    "after": 60
+    "after": 10
   }, {
     "name": "Camel",
     "img": "camel",
     "nb_exercise": 1,
     "nb_rep": 1,
     "action": 40,
-    "rest": 5
+    "rest": 5,
+    "after": 10
   }, {
     "name": "Neck Stretch",
     "img": "neck_stretch",
@@ -46,7 +47,8 @@
     "nb_exercise": 1,
     "nb_rep": 1,
     "action": 40,
-    "rest": 5
+    "rest": 5,
+    "after": 10
   }, {
     "name": "Extended Triangle",
     "img": "extended_triangle",
@@ -61,7 +63,8 @@
     "nb_exercise": 1,
     "nb_rep": 1,
     "action": 60,
-    "rest": 5
+    "rest": 5,
+    "after": 10
   }, {
     "name": "Seated Wide Angle",
     "img": "seated_wide_angle",
