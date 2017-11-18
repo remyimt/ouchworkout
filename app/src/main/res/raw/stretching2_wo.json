@@ -1,0 +1,116 @@
+{
+  "warning": "both action and rest values must be greater than 4 to play beeps coherently",
+  "name": "Stretching 2",
+  "workout": [{
+    "name": "Chest Stretch",
+    "img": "chest_stretch",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 60
+  }, {
+    "name": "Shoulder Stretch",
+    "img": "shoulder_stretch",
+    "nb_exercise": 2,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 60
+  }, {
+    "name": "Rabbit",
+    "img": "rabbit",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "Cobra",
+    "img": "cobra",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "Warrior",
+    "img": "warrior",
+    "nb_exercise": 2,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5
+  }, {
+    "name": "Camel",
+    "img": "camel",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 45,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "Child",
+    "img": "child",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 45,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "Bound Angle",
+    "img": "bound_angle",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "Seated Wide Angle",
+    "img": "seated_wide_angle",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "Wide Legged",
+    "img": "wide_legged",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "Head To Knee",
+    "img": "head_to_knee",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "One Leg Stretch",
+    "img": "one_leg_stretch",
+    "nb_exercise": 2,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "Quadriceps Stretch",
+    "img": "quadriceps_stretch",
+    "nb_exercise": 2,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "One Legged King Pigeon",
+    "img": "one_legged_king_pigeon",
+    "nb_exercise": 2,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 10
+  }]
+}

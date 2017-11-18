@@ -2,45 +2,84 @@ package ouch.ouchworkout;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Workout {
-    private final JSONArray description;
-    private final Activity activity;
-    private int setIndex = 0;
-    private Set currentSet;
-    private boolean isRunning =  false;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Workout(Activity pAct, JSONArray pDesc) {
+import ouch.ouchworkout.ouch.workout.countdown.AfterCountdown;
+
+public class Workout {
+    private final Activity activity;
+    private List<Exercise> exercises = new ArrayList<>();
+    private int currentIndex = 0;
+    private boolean isRunning = false, exerciseIsRunning = false;
+    private AfterCountdown newStartCountdown;
+
+    public Workout(Activity pAct, JSONArray pDesc) throws JSONException {
         activity = pAct;
-        description = pDesc;
+        for(int i = 0; i < pDesc.length(); i++) {
+            JSONObject info = pDesc.getJSONObject(i);
+            exercises.add(new Exercise(this, info.getString("name"),
+                    info.getString("img"), info.getInt("nb_exercise"),
+                    info.getInt("nb_rep"), info.getInt("action"),
+                    info.getInt("rest"), info.getInt("after")));
+        }
+        newStartCountdown = new AfterCountdown(this, 10000);
+        // Display the first exercise
+        exercises.get(currentIndex).display();
     }
 
-    public void play() throws JSONException {
-        isRunning = true;
-        if (description.length() > setIndex) {
-            JSONObject info = description.getJSONObject(setIndex);
-            setIndex++;
-            currentSet = new Set(this, info.getString("name"), info.getInt("nb_set"),
-                    info.getInt("nb_rep"), info.getInt("action"),
-                    info.getInt("rest"));
-            currentSet.display();
+    public void startTheExercise() {
+        exerciseIsRunning = true;
+        if (currentIndex < exercises.size()) {
+            Exercise current = exercises.get(currentIndex);
+            if(current.getExerciseNb() == 0){
+                currentIndex++;
+                startTheExercise();
+            } else {
+                current.startExercise();
+            }
         } else {
-            // End of the workout
+            // The workout is completed
         }
     }
 
-    public void stop() {
-        isRunning = false;
-        currentSet.stop();
+    // Event fired by the play/pause button
+    public void play() throws JSONException {
+        if(isRunning) {
+            isRunning = false;
+            if(exerciseIsRunning) {
+                exerciseIsRunning = false;
+                exercises.get(currentIndex).stop();
+            } else {
+                newStartCountdown.cancel();
+            }
+        } else {
+            isRunning = true;
+            // Wait 10s before starting the exercise
+            newStartCountdown.startCountdown();
+        }
     }
 
-    public boolean isRunning(){
+    public boolean hasNext() {
+        return currentIndex + 1 < exercises.size();
+    }
+
+    public Exercise getNext() throws JSONException {
+        if (hasNext()) {
+            // Load the next exercise
+            return exercises.get(currentIndex + 1);
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
+    public boolean isRunning() {
         return isRunning;
     }
 
@@ -53,7 +92,7 @@ public class Workout {
         return activity.findViewById(pId);
     }
 
-    public int findDrawableByName(String pFilename){
+    public int findDrawableByName(String pFilename) {
         return activity.getResources().getIdentifier(pFilename, "drawable", activity.getPackageName());
     }
 }

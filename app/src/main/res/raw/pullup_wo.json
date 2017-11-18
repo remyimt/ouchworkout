@@ -1,0 +1,78 @@
+{
+  "warning": "both action and rest values must be greater than 4 to play beeps coherently",
+  "name": "Pull Up Workout",
+  "workout": [
+    {
+      "name": "Dips",
+      "img": "dips",
+      "nb_exercise": 6,
+      "nb_rep": 10,
+      "action": 14,
+      "rest": 30,
+      "after": 90
+    },
+    {
+      "name": "Archer Pull Up",
+      "img": "archer_pull_up",
+      "nb_exercise": 6,
+      "nb_rep": 8,
+      "action": 22,
+      "rest": 60,
+      "after": 120
+    },
+    {
+      "name": "Close Pull Up",
+      "img": "close_pull_up",
+      "nb_exercise": 3,
+      "nb_rep": 6,
+      "action": 16,
+      "rest": 30,
+      "after": 30
+    },
+    {
+      "name": "Chin Up",
+      "img": "chin_up",
+      "nb_exercise": 3,
+      "nb_rep": 6,
+      "action": 16,
+      "rest": 30,
+      "after": 120
+    },
+    {
+      "name": "Diamond Push Up",
+      "img": "diamond_push_up",
+      "nb_exercise": 3,
+      "nb_rep": 12,
+      "action": 26,
+      "rest": 30,
+      "after": 30
+    },
+    {
+      "name": "Wide Push Up",
+      "img": "wide_push_up",
+      "nb_exercise": 3,
+      "nb_rep": 12,
+      "action": 26,
+      "rest": 30,
+      "after": 90
+    },
+    {
+      "name": "K Triceps",
+      "img": "k_triceps",
+      "nb_exercise": 6,
+      "nb_rep": 9,
+      "action": 20,
+      "rest": 30,
+      "after": 90
+    },
+    {
+      "name": "Wide Pull Up",
+      "img": "wide_pull_up",
+      "nb_exercise": 4,
+      "nb_rep": 6,
+      "action": 18,
+      "rest": 60,
+      "after": 30
+    }
+  ]
+}

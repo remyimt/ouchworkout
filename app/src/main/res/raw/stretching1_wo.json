@@ -1,0 +1,124 @@
+{
+  "warning": "both action and rest values must be greater than 4 to play beeps coherently",
+  "name": "Stretching 1",
+  "workout": [{
+    "name": "Chest Stretch",
+    "img": "chest_stretch",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 60
+  }, {
+    "name": "Shoulder Stretch 2",
+    "img": "shoulder_stretch_2",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 60
+  }, {
+    "name": "Triceps Stretch",
+    "img": "triceps_stretch",
+    "nb_exercise": 2,
+    "nb_rep": 1,
+    "action": 40,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "Forearm Stretch",
+    "img": "forearm_stretch",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "Cobra",
+    "img": "cobra",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 45,
+    "rest": 5,
+    "after": 60
+  }, {
+    "name": "Warrior",
+    "img": "warrior",
+    "nb_exercise": 2,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5
+  }, {
+    "name": "Neck Stretch",
+    "img": "neck_stretch",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 40,
+    "rest": 5,
+    "after": 60
+  }, {
+    "name": "Bound Angle",
+    "img": "bound_angle",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "Seated Wide Angle",
+    "img": "seated_wide_angle",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 45,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "Seated Wide Angle One Leg",
+    "img": "seated_wide_angle_one_leg",
+    "nb_exercise": 2,
+    "nb_rep": 1,
+    "action": 45,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "One Leg Stretch 2",
+    "img": "one_leg_stretch_2",
+    "nb_exercise": 2,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "One Leg Stretch",
+    "img": "one_leg_stretch",
+    "nb_exercise": 2,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "Reclining Hero",
+    "img": "reclining_hero",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "Lord of Dance",
+    "img": "lord_of_dance",
+    "nb_exercise": 2,
+    "nb_rep": 1,
+    "action": 40,
+    "rest": 5,
+    "after": 10
+  }, {
+    "name": "Plow",
+    "img": "plow",
+    "nb_exercise": 1,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 5,
+    "after": 10
+  }]
+}

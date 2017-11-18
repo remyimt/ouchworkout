@@ -1,0 +1,60 @@
+{
+  "warning": "both action and rest values must be greater than 4 to play beeps coherently",
+  "name": "Static Workout",
+  "workout": [{
+    "name": "Mountain Climber",
+    "img": "mountain_climber",
+    "nb_exercise": 2,
+    "nb_rep": 1,
+    "action": 60,
+    "rest": 30,
+    "after": 60
+  }, {
+    "name": "L-Sit",
+    "img": "l_sit",
+    "nb_exercise": 4,
+    "nb_rep": 1,
+    "action": 12,
+    "rest": 90,
+    "after": 60
+  }, {
+    "name": "Handstand",
+    "img": "handstand",
+    "nb_exercise": 6,
+    "nb_rep": 1,
+    "action": 30,
+    "rest": 60,
+    "after": 60
+  }, {
+    "name": "Tuck Planche",
+    "img": "tuck_planche",
+    "nb_exercise": 3,
+    "nb_rep": 1,
+    "action": 15,
+    "rest": 90
+  }, {
+    "name": "One Arm Push Up",
+    "img": "one_arm_push_up",
+    "nb_exercise": 10,
+    "nb_rep": 6,
+    "action": 30,
+    "rest": 60,
+    "after": 120
+  }, {
+    "name": "Dragon Flag",
+    "img": "dragon_flag",
+    "nb_exercise": 6,
+    "nb_rep": 10,
+    "action": 45,
+    "rest": 60,
+    "after": 10
+  }, {
+    "name": "Wiper Push Up",
+    "img": "push_up",
+    "nb_exercise": 4,
+    "nb_rep": 20,
+    "action": 45,
+    "rest": 60,
+    "after": 10
+  }]
+}
