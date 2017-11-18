@@ -19,11 +19,13 @@ import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class OuchWorkout extends AppCompatActivity {
-    private Map<String, Integer> name2id = new HashMap<>();
+    private Map<String, Integer> name2id = new TreeMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +62,5 @@ public class OuchWorkout extends AppCompatActivity {
             LinearLayout layout = (LinearLayout) findViewById(R.id.workout_list);
             layout.addView(b);
         }
-    }
-
-    public void selectWorkout(View pView) {
     }
 }
