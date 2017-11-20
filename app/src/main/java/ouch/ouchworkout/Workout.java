@@ -3,6 +3,7 @@ package ouch.ouchworkout;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,23 +23,29 @@ public class Workout {
 
     public Workout(Activity pAct, JSONArray pDesc) throws JSONException {
         activity = pAct;
-        for(int i = 0; i < pDesc.length(); i++) {
+        int length = 0;
+        for (int i = 0; i < pDesc.length(); i++) {
             JSONObject info = pDesc.getJSONObject(i);
-            exercises.add(new Exercise(this, info.getString("name"),
+            Exercise exe = new Exercise(this, info.getString("name"),
                     info.getString("img"), info.getInt("nb_exercise"),
                     info.getInt("nb_rep"), info.getInt("action"),
-                    info.getInt("rest"), info.getInt("after")));
+                    info.getInt("rest"), info.getInt("after"));
+            exercises.add(exe);
+            length += exe.getLengthSeconds();
         }
+        // Countdown before starting (or restarting) the workout
         newStartCountdown = new AfterCountdown(this, 10000);
         // Display the first exercise
         exercises.get(currentIndex).display();
+        TextView countdownField = (TextView) activity.findViewById(R.id.countdown);
+        countdownField.setText(String.format("%dm", length/60));
     }
 
     public void startTheExercise() {
         exerciseIsRunning = true;
         if (currentIndex < exercises.size()) {
             Exercise current = exercises.get(currentIndex);
-            if(current.getExerciseNb() == 0){
+            if (current.getExerciseNb() == 0) {
                 currentIndex++;
                 startTheExercise();
             } else {
@@ -51,9 +58,9 @@ public class Workout {
 
     // Event fired by the play/pause button
     public void play() throws JSONException {
-        if(isRunning) {
+        if (isRunning) {
             isRunning = false;
-            if(exerciseIsRunning) {
+            if (exerciseIsRunning) {
                 exerciseIsRunning = false;
                 exercises.get(currentIndex).stop();
             } else {

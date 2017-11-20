@@ -1,20 +1,15 @@
 package ouch.ouchworkout;
 
-import android.media.MediaPlayer;
-import android.os.CountDownTimer;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.json.JSONException;
-
 import ouch.ouchworkout.ouch.workout.countdown.ActionCountdown;
-import ouch.ouchworkout.ouch.workout.countdown.RestCountdown;
 
 public class Exercise {
     private final long LAST_BEEP_VALUE = 2000L;
     private final String name, pictureName;
     private final Workout workout;
-    private final int repNb, length;
+    private final int repNb, lengthSeconds;
     private int exerciseNb;
     private ActionCountdown actionCountdown;
 
@@ -24,7 +19,7 @@ public class Exercise {
         name = pExerciseName;
         exerciseNb = pExerciseNb;
         repNb = pRepNb;
-        length = pExerciseNb * pActionTime + (pRepNb - 1) + pRestTime;
+        lengthSeconds = pExerciseNb * pActionTime + (pExerciseNb - 1) * pRestTime + pAfterTime;
         if (pImageName == null || pImageName.length() == 0) {
             pictureName = "";
         } else {
@@ -45,8 +40,8 @@ public class Exercise {
         return exerciseNb;
     }
 
-    public int getLength() {
-        return length;
+    public int getLengthSeconds() {
+        return lengthSeconds;
     }
 
     public void display() {

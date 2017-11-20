@@ -33,7 +33,6 @@ public class ExecutingWorkout extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
