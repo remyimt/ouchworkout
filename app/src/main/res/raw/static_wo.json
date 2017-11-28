@@ -28,33 +28,33 @@
   }, {
     "name": "Tuck Planche",
     "img": "tuck_planche",
-    "nb_exercise": 3,
+    "nb_exercise": 4,
     "nb_rep": 1,
-    "action": 15,
+    "action": 10,
     "rest": 90,
     "after": 90
   }, {
     "name": "One Arm Push Up",
     "img": "one_arm_push_up",
-    "nb_exercise": 10,
+    "nb_exercise": 12,
     "nb_rep": 6,
-    "action": 30,
+    "action": 25,
     "rest": 60,
     "after": 120
   }, {
     "name": "Dragon Flag",
     "img": "dragon_flag",
     "nb_exercise": 6,
-    "nb_rep": 10,
+    "nb_rep": 9,
     "action": 45,
     "rest": 60,
-    "after": 10
+    "after": 90
   }, {
     "name": "Wiper Push Up",
     "img": "push_up",
     "nb_exercise": 4,
     "nb_rep": 20,
-    "action": 45,
+    "action": 30,
     "rest": 60,
     "after": 10
   }]

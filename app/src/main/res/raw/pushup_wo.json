@@ -1,0 +1,61 @@
+{
+  "warning": "both action and rest values must be greater than 4 to play beeps coherently",
+  "name": "Push Up Workout",
+  "workout": [{
+    "name": "Dips",
+    "img": "dips",
+    "nb_exercise": 6,
+    "nb_rep": 10,
+    "action": 16,
+    "rest": 30,
+    "after": 60
+  }, {
+    "name": "Vertical Push Up",
+    "img": "vertical_push_up",
+    "nb_exercise": 6,
+    "nb_rep": 9,
+    "action": 16,
+    "rest": 30,
+    "after": 60
+  }, {
+    "name": "Elastic Rowing",
+    "img": "elastic_rowing",
+    "nb_exercise": 6,
+    "nb_rep": 15,
+    "action": 30,
+    "rest": 30,
+    "after": 60
+  }, {
+    "name": "Elastic Pulling",
+    "img": "elastic_pulling",
+    "nb_exercise": 6,
+    "nb_rep": 14,
+    "action": 25,
+    "rest": 30,
+    "after": 90
+  }, {
+    "name": "Push Up",
+    "img": "push_up",
+    "nb_exercise": 3,
+    "nb_rep": 12,
+    "action": 25,
+    "rest": 30,
+    "after": 60
+  }, {
+    "name": "Wide Push Up",
+    "img": "wide_push_up",
+    "nb_exercise": 3,
+    "nb_rep": 12,
+    "action": 25,
+    "rest": 30,
+    "after": 90
+  }, {
+    "name": "Triceps",
+    "img": "k_triceps",
+    "nb_exercise": 4,
+    "nb_rep": 10,
+    "action": 40,
+    "rest": 60,
+    "after": 0
+  }]
+}

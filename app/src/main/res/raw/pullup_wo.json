@@ -43,7 +43,7 @@
       "img": "diamond_push_up",
       "nb_exercise": 3,
       "nb_rep": 12,
-      "action": 26,
+      "action": 24,
       "rest": 30,
       "after": 30
     },
@@ -52,25 +52,25 @@
       "img": "wide_push_up",
       "nb_exercise": 3,
       "nb_rep": 12,
-      "action": 26,
+      "action": 24,
       "rest": 30,
-      "after": 90
+      "after": 120
     },
     {
       "name": "K Triceps",
       "img": "k_triceps",
       "nb_exercise": 6,
       "nb_rep": 9,
-      "action": 20,
+      "action": 26,
       "rest": 30,
-      "after": 90
+      "after": 120
     },
     {
       "name": "Wide Pull Up",
       "img": "wide_pull_up",
       "nb_exercise": 4,
       "nb_rep": 6,
-      "action": 18,
+      "action": 14,
       "rest": 60,
       "after": 30
     }

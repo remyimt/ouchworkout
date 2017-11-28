@@ -7,8 +7,8 @@
     "nb_exercise": 2,
     "nb_rep": 1,
     "action": 45,
-    "rest": 5,
-    "after": 10
+    "rest": 10,
+    "after": 20
   }, {
     "name": "Shoulder Stretch 2",
     "img": "shoulder_stretch_2",
@@ -16,7 +16,7 @@
     "nb_rep": 1,
     "action": 60,
     "rest": 5,
-    "after": 10
+    "after": 20
   }, {
     "name": "Camel",
     "img": "camel",
@@ -24,7 +24,7 @@
     "nb_rep": 1,
     "action": 40,
     "rest": 5,
-    "after": 10
+    "after": 20
   }, {
     "name": "Neck Stretch",
     "img": "neck_stretch",
@@ -32,7 +32,7 @@
     "nb_rep": 1,
     "action": 45,
     "rest": 5,
-    "after": 10
+    "after": 20
   }, {
     "name": "Upward Bow",
     "img": "upward_bow",
@@ -40,7 +40,7 @@
     "nb_rep": 1,
     "action": 30,
     "rest": 5,
-    "after": 10
+    "after": 20
   }, {
     "name": "Child",
     "img": "child",
@@ -48,15 +48,15 @@
     "nb_rep": 1,
     "action": 40,
     "rest": 5,
-    "after": 10
+    "after": 20
   }, {
     "name": "Extended Triangle",
     "img": "extended_triangle",
-    "nb_exercise": 2,
+    "nb_exercise": 4,
     "nb_rep": 1,
-    "action": 60,
-    "rest": 5,
-    "after": 10
+    "action": 30,
+    "rest": 10,
+    "after": 20
   }, {
     "name": "Wide Legged",
     "img": "wide_legged",
@@ -64,7 +64,7 @@
     "nb_rep": 1,
     "action": 60,
     "rest": 5,
-    "after": 10
+    "after": 20
   }, {
     "name": "Seated Wide Angle",
     "img": "seated_wide_angle",
@@ -79,8 +79,8 @@
     "nb_exercise": 2,
     "nb_rep": 1,
     "action": 40,
-    "rest": 5,
-    "after": 10
+    "rest": 10,
+    "after": 20
   }, {
     "name": "Downward Facing Frog",
     "img": "downward_facing_frog",
@@ -88,7 +88,7 @@
     "nb_rep": 1,
     "action": 60,
     "rest": 5,
-    "after": 10
+    "after": 20
   }, {
     "name": "Downward Facing Dog",
     "img": "downward_facing_dog",
@@ -96,23 +96,23 @@
     "nb_rep": 1,
     "action": 60,
     "rest": 5,
-    "after": 10
+    "after": 20
   }, {
     "name": "Head To Knee One Leg",
     "img": "head_to_knee_one_leg",
     "nb_exercise": 2,
     "nb_rep": 1,
     "action": 50,
-    "rest": 5,
-    "after": 10
+    "rest": 10,
+    "after": 20
   }, {
     "name": "Straight Leg Lunge",
     "img": "straight_leg_lunge",
     "nb_exercise": 2,
     "nb_rep": 1,
     "action": 60,
-    "rest": 5,
-    "after": 10
+    "rest": 10,
+    "after": 20
   }, {
     "name": "Reclining Hero",
     "img": "reclining_hero",
@@ -120,14 +120,14 @@
     "nb_rep": 1,
     "action": 60,
     "rest": 5,
-    "after": 10
+    "after": 20
   }, {
     "name": "One Legged King Pigeon",
     "img": "one_legged_king_pigeon",
     "nb_exercise": 2,
     "nb_rep": 1,
     "action": 45,
-    "rest": 5,
-    "after": 10
+    "rest": 10,
+    "after": 20
   }]
 }

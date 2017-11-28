@@ -8,7 +8,7 @@
     "nb_rep": 1,
     "action": 60,
     "rest": 5,
-    "after": 10
+    "after": 20
   }, {
     "name": "Shoulder Stretch 2",
     "img": "shoulder_stretch_2",
@@ -16,15 +16,15 @@
     "nb_rep": 1,
     "action": 60,
     "rest": 5,
-    "after": 10
+    "after": 20
   }, {
     "name": "Triceps Stretch",
     "img": "triceps_stretch",
     "nb_exercise": 2,
     "nb_rep": 1,
     "action": 40,
-    "rest": 5,
-    "after": 10
+    "rest": 10,
+    "after": 20
   }, {
     "name": "Forearm Stretch",
     "img": "forearm_stretch",
@@ -32,7 +32,7 @@
     "nb_rep": 1,
     "action": 60,
     "rest": 5,
-    "after": 10
+    "after": 20
   }, {
     "name": "Cobra",
     "img": "cobra",
@@ -40,15 +40,15 @@
     "nb_rep": 1,
     "action": 45,
     "rest": 5,
-    "after": 10
+    "after": 20
   }, {
     "name": "Warrior",
     "img": "warrior",
     "nb_exercise": 2,
     "nb_rep": 1,
     "action": 60,
-    "rest": 5,
-    "after": 10
+    "rest": 10,
+    "after": 20
   }, {
     "name": "Neck Stretch",
     "img": "neck_stretch",
@@ -56,7 +56,7 @@
     "nb_rep": 1,
     "action": 40,
     "rest": 5,
-    "after": 10
+    "after": 20
   }, {
     "name": "Bound Angle",
     "img": "bound_angle",
@@ -64,7 +64,7 @@
     "nb_rep": 1,
     "action": 60,
     "rest": 5,
-    "after": 10
+    "after": 20
   }, {
     "name": "Seated Wide Angle",
     "img": "seated_wide_angle",
@@ -72,31 +72,31 @@
     "nb_rep": 1,
     "action": 45,
     "rest": 5,
-    "after": 10
+    "after": 20
   }, {
     "name": "Seated Wide Angle One Leg",
     "img": "seated_wide_angle_one_leg",
     "nb_exercise": 2,
     "nb_rep": 1,
     "action": 45,
-    "rest": 5,
-    "after": 10
+    "rest": 10,
+    "after": 20
   }, {
     "name": "One Leg Stretch 2",
     "img": "one_leg_stretch_2",
     "nb_exercise": 2,
     "nb_rep": 1,
     "action": 60,
-    "rest": 5,
-    "after": 10
+    "rest": 10,
+    "after": 20
   }, {
     "name": "One Leg Stretch",
     "img": "one_leg_stretch",
     "nb_exercise": 2,
     "nb_rep": 1,
     "action": 60,
-    "rest": 5,
-    "after": 10
+    "rest": 10,
+    "after": 20
   }, {
     "name": "Reclining Hero",
     "img": "reclining_hero",
@@ -104,15 +104,15 @@
     "nb_rep": 1,
     "action": 60,
     "rest": 5,
-    "after": 10
+    "after": 20
   }, {
     "name": "Lord of Dance",
     "img": "lord_of_dance",
     "nb_exercise": 2,
     "nb_rep": 1,
     "action": 40,
-    "rest": 5,
-    "after": 10
+    "rest": 10,
+    "after": 20
   }, {
     "name": "Plow",
     "img": "plow",
@@ -120,6 +120,6 @@
     "nb_rep": 1,
     "action": 60,
     "rest": 5,
-    "after": 10
+    "after": 20
   }]
 }

@@ -1,0 +1,24 @@
+{
+  "warning": "both action and rest values must be greater than 4 to play beeps coherently",
+  "name": "Test Workout",
+  "workout": [
+    {
+      "name": "First Exercise",
+      "img": "chest_stretch",
+      "nb_exercise": 3,
+      "nb_rep": 5,
+      "action": 6,
+      "rest": 4,
+      "after": 15
+    },
+    {
+      "name": "Second Exercise",
+      "img": "shoulder_stretch",
+      "nb_exercise": 1,
+      "nb_rep": 10,
+      "action": 10,
+      "rest": 5,
+      "after": 21
+    }
+  ]
+}

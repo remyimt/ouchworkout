@@ -1,0 +1,53 @@
+{
+  "warning": "both action and rest values must be greater than 4 to play beeps coherently",
+  "name": "Leg Workout",
+  "workout": [{
+    "name": "Squat",
+    "img": "squat",
+    "nb_exercise": 4,
+    "nb_rep": 12,
+    "action": 40,
+    "rest": 30,
+    "after": 90
+  }, {
+    "name": "One Leg Squat",
+    "img": "one_leg_squat",
+    "nb_exercise": 6,
+    "nb_rep": 14,
+    "action": 60,
+    "rest": 30,
+    "after": 90
+  }, {
+    "name": "Side Squat",
+    "img": "side_squat",
+    "nb_exercise": 4,
+    "nb_rep": 14,
+    "action": 40,
+    "rest": 30,
+    "after": 90
+  }, {
+    "name": "Wall Sit",
+    "img": "wall_sit",
+    "nb_exercise": 3,
+    "nb_rep": 1,
+    "action": 40,
+    "rest": 30,
+    "after": 90
+  }, {
+    "name": "Jump Squat",
+    "img": "jump_squat",
+    "nb_exercise": 3,
+    "nb_rep": 10,
+    "action": 60,
+    "rest": 30,
+    "after": 90
+  }, {
+    "name": "Burpee",
+    "img": "burpee",
+    "nb_exercise": 2,
+    "nb_rep": 8,
+    "action": 40,
+    "rest": 30,
+    "after": 90
+  }]
+}
