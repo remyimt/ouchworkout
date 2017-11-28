@@ -32,11 +32,7 @@ public class ExecutingWorkout extends AppCompatActivity {
             } else {
                 item.setIcon(android.R.drawable.ic_media_pause);
             }
-            try {
-                w.playPause();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            w.playPause();
             return true;
         } else {
             return super.onOptionsItemSelected(item);

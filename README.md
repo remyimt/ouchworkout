@@ -13,7 +13,7 @@ or tablet after the start of the selected workout.
 ![Keep Hydrated](/screenshots/completed_workout.jpg "Keep Hydrated")
 
 ## Workout Definition
-Workouts are defined from JSON files in the application (ouchworkout/app/src/main/res/raw/). When the application starts,
+Workouts are defined from JSON files in the application ([Workout Directory](app/src/main/res/raw)). When the application starts,
 every JSON files ending with '_wo.json' are parsed. A simple menu allows to select the workout to execute and then,
 you follow the instructions. One workout is described in one JSON file as follows:
 ```json
@@ -51,3 +51,15 @@ Android Studio and install it: https://developer.android.com/studio/index.html
 * Download the OuchWorkout project and open it in Android studio
 * Then, connect your Android device and 'Run the app' to install the application on the device:
 https://developer.android.com/training/basics/firstapp/running-app.html
+
+## Create your own workout
+NOTE: Existing JSON files to define workouts are in the [Workout Directory](app/src/main/res/raw)
+
+* Open the OuchWorkout project in Android Studio (or another editor)
+* Create images for every exercise (or use existing images)
+* Put your images in the directory [Image Directory](app/src/main/res/drawable)
+* Create a new JSON file to describe your workout. The path to your images is the filename without the extension
+(for example, ''l_sit.png'' can be used with the field ''"img": "l_sit"''). Do NOT use filenames with spaces!
+* Put the JSON files in the [Workout Directory](app/src/main/res/raw). The filename of the JSON file must be ended with '_wo.json'.
+* 'Run the App' (the green arrow) to install the application on your Android device
+
