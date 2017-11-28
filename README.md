@@ -9,7 +9,7 @@ or tablet after the start of the selected workout.
 ## Screenshots
 ![Select Your Workout](/screenshots/workout_menu.jpg "Select Your Workout")
 ![Execute The Exercise](/screenshots/action_period.jpg "Execute The Exercise")
-![Get Rest](/screenshots/action_period.jpg "Get Rest")
+![Get Rest](/screenshots/rest_period.jpg "Get Rest")
 ![Keep Hydrated](/screenshots/completed_workout.jpg "Keep Hydrated")
 
 ## Workout Definition
