@@ -6,17 +6,19 @@ import android.widget.TextView;
 import ouch.ouchworkout.ouch.workout.countdown.ActionCountdown;
 
 public class Exercise {
-    private final long LAST_BEEP_VALUE = 2000L;
     private final String name, pictureName;
     private final Workout workout;
+    private final int actionTime, restTime, afterTime;
     private final int repNb, lengthSeconds;
     private int exerciseNb;
-    private ActionCountdown actionCountdown;
 
     public Exercise(Workout pWorkout, String pExerciseName, String pImageName, int pExerciseNb,
                     int pRepNb, int pActionTime, int pRestTime, int pAfterTime) {
         workout = pWorkout;
         name = pExerciseName;
+        actionTime = pActionTime;
+        restTime = pRestTime;
+        afterTime = pAfterTime;
         exerciseNb = pExerciseNb;
         repNb = pRepNb;
         lengthSeconds = pExerciseNb * pActionTime + (pExerciseNb - 1) * pRestTime + pAfterTime;
@@ -25,10 +27,18 @@ public class Exercise {
         } else {
             pictureName = pImageName;
         }
-        // Configure the countdowns
-        actionCountdown = new ActionCountdown(pWorkout, this,
-                pActionTime * 1000, pRestTime * 1000,
-                pAfterTime * 1000);
+    }
+
+    public int getActionTime() {
+        return actionTime;
+    }
+
+    public int getRestTime() {
+        return restTime;
+    }
+
+    public int getAfterTime() {
+        return afterTime;
     }
 
     public int getExerciseNb() {
@@ -59,14 +69,5 @@ public class Exercise {
         // Exercise the countdown
         ImageView actionLight = (ImageView) workout.findViewById(R.id.action_light);
         actionLight.setImageResource(R.drawable.rest);
-    }
-
-    public void startExercise() {
-        // Start the action period
-        actionCountdown.startCountdown();
-    }
-
-    public void stop() {
-        actionCountdown.stop();
     }
 }

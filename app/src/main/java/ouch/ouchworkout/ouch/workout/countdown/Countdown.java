@@ -15,12 +15,15 @@ public abstract class Countdown extends CountDownTimer {
     private final TextView countdownField;
     private final ImageView actionLight;
     private final int imageId;
-    private boolean beepDone= false;
+    private final boolean isActionCountdown;
+    private boolean beepDone = false;
 
-    public Countdown(Workout pWorkout, int pImageId, int pBeepId, long millisInFuture) {
+    public Countdown(Workout pWorkout, boolean pIsActionCountdown, int pImageId, int pBeepId,
+                     long millisInFuture) {
         super(millisInFuture, 500);
         workout = pWorkout;
         imageId = pImageId;
+        isActionCountdown = pIsActionCountdown;
         mp = MediaPlayer.create(workout.getApplicationContext(), pBeepId);
         countdownField = (TextView) workout.findViewById(R.id.countdown);
         actionLight = (ImageView) workout.findViewById(R.id.action_light);
@@ -44,15 +47,23 @@ public abstract class Countdown extends CountDownTimer {
 
     @Override
     public void onFinish() {
-        countdownField.setText("0");
-        afterFinished();
+        countdownField.setText("000");
+        if (isActionCountdown) {
+            // Decrease the number of remaining exercises
+            int exerciseNb = workout.getCurrentExercise().decreaseExerciseNb();
+            if (exerciseNb == 0 && workout.hasNextExercise()) {
+                workout.getNextExercise().display();
+            } else {
+                final TextView setNbField = (TextView) workout.findViewById(R.id.exercise_nb);
+                setNbField.setText(String.valueOf(exerciseNb));
+            }
+        }
+        workout.nextCountdown();
     }
 
-    public void startCountdown(){
+    public void startCountdown() {
         beepDone = false;
         actionLight.setImageResource(imageId);
         start();
     }
-
-    public abstract void afterFinished();
 }

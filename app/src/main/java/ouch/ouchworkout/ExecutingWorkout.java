@@ -50,7 +50,7 @@ public class ExecutingWorkout extends AppCompatActivity {
                 item.setIcon(android.R.drawable.ic_media_pause);
             }
             try {
-                workout.play();
+                workout.playPause();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
