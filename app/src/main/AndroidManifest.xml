@@ -12,10 +12,19 @@
         <activity android:name=".OuchWorkout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ExecutingWorkout" android:parentActivityName=".OuchWorkout">
+        <activity
+            android:name=".ExecutingWorkout"
+            android:parentActivityName=".OuchWorkout">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".OuchWorkout" />
+        </activity>
+        <activity android:name=".OuchSettings"
+            android:parentActivityName=".OuchWorkout">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".OuchWorkout" />

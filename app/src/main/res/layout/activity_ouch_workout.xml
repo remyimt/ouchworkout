@@ -10,9 +10,9 @@
         android:id="@+id/workout_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
         android:foregroundGravity="center"
         android:gravity="center"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="8dp"></LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 </android.support.constraint.ConstraintLayout>

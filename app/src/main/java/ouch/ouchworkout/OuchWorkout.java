@@ -63,4 +63,21 @@ public class OuchWorkout extends AppCompatActivity {
             layout.addView(b);
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.settings_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.settings_button) {
+            Intent intent = new Intent(getApplicationContext(), OuchSettings.class);
+            startActivity(intent);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
 }
