@@ -10,7 +10,6 @@ import ouch.ouchworkout.R;
 import ouch.ouchworkout.Workout;
 
 public abstract class Countdown extends CountDownTimer {
-    private final Workout workout;
     private final MediaPlayer mp;
     private final TextView countdownField;
     private final ImageView actionLight;
@@ -18,15 +17,15 @@ public abstract class Countdown extends CountDownTimer {
     private final boolean isActionCountdown;
     private boolean beepDone = false;
 
-    public Countdown(Workout pWorkout, boolean pIsActionCountdown, int pImageId, int pBeepId,
+    public Countdown(boolean pIsActionCountdown, int pImageId, int pBeepId,
                      long millisInFuture) {
         super(millisInFuture, 500);
-        workout = pWorkout;
         imageId = pImageId;
         isActionCountdown = pIsActionCountdown;
-        mp = MediaPlayer.create(workout.getApplicationContext(), pBeepId);
-        countdownField = (TextView) workout.findViewById(R.id.countdown);
-        actionLight = (ImageView) workout.findViewById(R.id.action_light);
+        Workout w = Workout.getWorkout();
+        mp = MediaPlayer.create(w.getApplicationContext(), pBeepId);
+        countdownField = (TextView) w.findViewById(R.id.countdown);
+        actionLight = (ImageView) w.findViewById(R.id.action_light);
     }
 
     @Override
@@ -48,17 +47,18 @@ public abstract class Countdown extends CountDownTimer {
     @Override
     public void onFinish() {
         countdownField.setText("000");
+        Workout w = Workout.getWorkout();
         if (isActionCountdown) {
             // Decrease the number of remaining exercises
-            int exerciseNb = workout.getCurrentExercise().decreaseExerciseNb();
-            if (exerciseNb == 0 && workout.hasNextExercise()) {
-                workout.getNextExercise().display();
+            int exerciseNb = w.getCurrentExercise().decreaseExerciseNb();
+            if (exerciseNb == 0 && w.hasNextExercise()) {
+                w.getNextExercise().display();
             } else {
-                final TextView setNbField = (TextView) workout.findViewById(R.id.exercise_nb);
+                final TextView setNbField = (TextView) w.findViewById(R.id.exercise_nb);
                 setNbField.setText(String.valueOf(exerciseNb));
             }
         }
-        workout.nextCountdown();
+        w.nextCountdown();
     }
 
     public void startCountdown() {

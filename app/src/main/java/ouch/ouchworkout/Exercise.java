@@ -3,8 +3,6 @@ package ouch.ouchworkout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import ouch.ouchworkout.ouch.workout.countdown.ActionCountdown;
-
 public class Exercise {
     private final String name, pictureName;
     private final Workout workout;

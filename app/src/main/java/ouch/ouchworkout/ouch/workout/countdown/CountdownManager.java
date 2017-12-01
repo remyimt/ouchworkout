@@ -4,7 +4,6 @@ import ouch.ouchworkout.Exercise;
 import ouch.ouchworkout.Workout;
 
 public class CountdownManager {
-    private final Workout workout;
     private final AfterCountdown newStartCountdown;
     private final ActionCountdown actionCd;
     private final RestCountdown restCd;
@@ -14,13 +13,12 @@ public class CountdownManager {
     private boolean isRunning = false;
     private boolean actionPhase = false;
 
-    public CountdownManager(Workout pWorkout, ActionCountdown pAction, RestCountdown pRest,
+    public CountdownManager(ActionCountdown pAction, RestCountdown pRest,
                             AfterCountdown pAfter, Exercise pExercise) {
-        workout = pWorkout;
         actionCd = pAction;
         restCd = pRest;
         afterCd = pAfter;
-        newStartCountdown = new AfterCountdown(pWorkout, 10000);
+        newStartCountdown = new AfterCountdown(10000);
         exercise = pExercise;
     }
 
@@ -39,7 +37,8 @@ public class CountdownManager {
                 isRunning = true;
                 restCd.startCountdown();
                 return true;
-            } else if (workout.hasNextExercise()) {
+            } else if (Workout.getWorkout().hasNextExercise()) {
+                Workout.getWorkout().selectNextExercise();
                 inProgress = afterCd;
                 isRunning = true;
                 afterCd.startCountdown();

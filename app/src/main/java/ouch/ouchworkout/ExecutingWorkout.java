@@ -1,38 +1,20 @@
 package ouch.ouchworkout;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.InputStream;
 
 public class ExecutingWorkout extends AppCompatActivity {
-    private Workout workout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_executing_workout);
-        Intent intent = getIntent();
-        int resourceId = intent.getIntExtra("workout.id", R.raw.stretching1_wo);
-        try {
-            InputStream is = getResources().openRawResource(resourceId);
-            byte[] buffer = new byte[is.available()];
-            is.read(buffer);
-            is.close();
-            JSONObject myWorkout = new JSONObject(new String(buffer));
-            TextView workoutName = (TextView) findViewById(R.id.exercise_name);
-            workoutName.setText(myWorkout.getString("name"));
-            workout = new Workout(this, myWorkout.getJSONArray("workout"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Workout.getWorkout().initializeWorkout(this);
     }
 
     @Override
@@ -43,14 +25,15 @@ public class ExecutingWorkout extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Workout w = Workout.getWorkout();
         if (item.getItemId() == R.id.play_pause) {
-            if (workout.isRunning()) {
+            if (w.isRunning()) {
                 item.setIcon(android.R.drawable.ic_media_play);
             } else {
                 item.setIcon(android.R.drawable.ic_media_pause);
             }
             try {
-                workout.playPause();
+                w.playPause();
             } catch (JSONException e) {
                 e.printStackTrace();
             }

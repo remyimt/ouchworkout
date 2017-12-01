@@ -1,37 +1,39 @@
 package ouch.ouchworkout;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.TreeSet;
-
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class OuchWorkout extends AppCompatActivity {
-    private Map<String, Integer> name2id = new TreeMap<>();
+    private Map<String, JSONArray> name2Description = new TreeMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ouch_workout);
 
+        // Pause the current workout
+        if(Workout.hasWorkout()){
+            Workout w = Workout.getWorkout();
+            if(w.isRunning()){
+                w.playPause();
+            }
+        }
+        // List of existing workouts
         Field[] fields = R.raw.class.getFields();
         for (Field f : fields) {
             try {
@@ -41,24 +43,49 @@ public class OuchWorkout extends AppCompatActivity {
                     is.read(buffer);
                     is.close();
                     JSONObject myWorkout = new JSONObject(new String(buffer));
-                    name2id.put(myWorkout.getString("name"), f.getInt(f));
+                    name2Description.put(myWorkout.getString("name"),
+                            myWorkout.getJSONArray("workout"));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        for (final String s : name2id.keySet()) {
-            Button b = new Button(this);
-            b.setText(s);
-            b.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), ExecutingWorkout.class);
-                    intent.putExtra("workout.id", name2id.get(s));
-                    intent.putExtra("workout.name", s);
-                    startActivity(intent);
-                }
-            });
+        String workoutName = "";
+        if (Workout.hasWorkout()) {
+            workoutName = Workout.getWorkout().getName();
+        }
+        for (final String s : name2Description.keySet()) {
+            final Button b = new Button(this);
+            if (s.equals(workoutName) &&
+                    Workout.getWorkout().getCurrentExercise().getExerciseNb() > 0) {
+                // This workout is already loaded
+                b.setText("** " + s + " **");
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Display the workout
+                        Intent intent = new Intent(view.getContext(), ExecutingWorkout.class);
+                        startActivity(intent);
+                    }
+                });
+            } else {
+                b.setText(s);
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Load the workout
+                        try {
+                            Workout.createWorkout(s, name2Description.get(s));
+                            // Display the workout
+                            Intent intent = new Intent(view.getContext(), ExecutingWorkout.class);
+                            startActivity(intent);
+                        } catch (JSONException e) {
+                            b.setText("FAILED!");
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
             LinearLayout layout = (LinearLayout) findViewById(R.id.workout_list);
             layout.addView(b);
         }
