@@ -1,4 +1,4 @@
-package ouch.ouchworkout.ouch.workout.countdown;
+package ouch.ouchworkout.countdown;
 
 
 import ouch.ouchworkout.R;

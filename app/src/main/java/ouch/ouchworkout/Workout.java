@@ -13,10 +13,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import ouch.ouchworkout.ouch.workout.countdown.ActionCountdown;
-import ouch.ouchworkout.ouch.workout.countdown.AfterCountdown;
-import ouch.ouchworkout.ouch.workout.countdown.CountdownManager;
-import ouch.ouchworkout.ouch.workout.countdown.RestCountdown;
+import ouch.ouchworkout.countdown.ActionCountdown;
+import ouch.ouchworkout.countdown.AfterCountdown;
+import ouch.ouchworkout.countdown.CountdownManager;
+import ouch.ouchworkout.countdown.RestCountdown;
 
 public class Workout {
     private static Workout workout = null;
