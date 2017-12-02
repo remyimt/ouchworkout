@@ -30,3 +30,4 @@ local.properties
 
 # My local files
 todo.md
+app/release/output.json

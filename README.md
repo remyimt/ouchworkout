@@ -44,6 +44,7 @@ After, you do 10 push ups again. You are executed the 2 exercises required to co
 Before starting the L-sit exercise, you get to rest for 60 seconds (the 'after' field).
 
 ## Install the application with Android Studio
+### From Android Studio
 NOTE: The application does not exist on the Playstore :'(
 
 * To install the application and add or customize workouts, you can download 
@@ -51,6 +52,14 @@ Android Studio and install it: https://developer.android.com/studio/index.html
 * Download the OuchWorkout project and open it in Android studio
 * Then, connect your Android device and 'Run the app' to install the application on the device:
 https://developer.android.com/training/basics/firstapp/running-app.html
+
+### From the .apk file
+* Allow the installation of packages from unknown sources (Settings > Security > Unknwown sources). Read the
+  code of the application to check it does not corrupt your system :P
+* Download the .apk package: [OuchWorkout package](app/release/app-release.apk)
+* Put the package on your android device
+* Click on the package and install it
+* Disable "Unknwon sources" installation
 
 ## Create your own workout
 NOTE: Existing JSON files to define workouts are in the [Workout Directory](app/src/main/res/raw)
