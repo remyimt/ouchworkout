@@ -59,16 +59,24 @@ public class Workout {
                 new RestCountdown(myExercise.getRestTime() * 1000),
                 new AfterCountdown(myExercise.getAfterTime() * 1000), myExercise);
         // Display the workout name
-        TextView workoutNameField = (TextView) findViewById(R.id.exercise_name);
-        workoutNameField.setText(name);
+        TextView nameField = (TextView) findViewById(R.id.exercise_name);
+        nameField.setText(name);
+        // Display the number of exercises
+        TextView exerciseNbField = (TextView) findViewById(R.id.exercise_counter);
+        int exerciseNb = getRemainingExerciseNumber();
+        if (exerciseNb < 10) {
+            exerciseNbField.setText("0" + exerciseNb);
+        } else {
+            exerciseNbField.setText(String.valueOf(exerciseNb));
+        }
         // Display the first exercise
         myExercise.display();
         // Display the length of the workout (the sum of exercise lengths) in minutes
+        TextView countdownField = (TextView) findViewById(R.id.countdown);
         int length = 0;
         for (int i = currentIndex; i < exercises.size(); i++) {
             length += exercises.get(i).getLengthSeconds();
         }
-        TextView countdownField = (TextView) activity.findViewById(R.id.countdown);
         int length_minutes = length / 60;
         if (length_minutes < 10) {
             countdownField.setText(String.format("00%d", length / 60));
@@ -90,10 +98,12 @@ public class Workout {
                 countdownManager.next();
             } else {
                 // The workout is completed
-                final TextView nameField = (TextView) findViewById(R.id.exercise_name);
+                TextView nameField = (TextView) findViewById(R.id.exercise_name);
                 nameField.setText("Workout Completed!");
-                ImageView setImage = (ImageView) findViewById(R.id.exercise_img);
-                setImage.setImageResource(R.drawable.completed);
+                ImageView exerciseImage = (ImageView) findViewById(R.id.exercise_img);
+                exerciseImage.setImageResource(R.drawable.completed);
+                TextView exerciseNbField = (TextView) findViewById(R.id.exercise_counter);
+                exerciseNbField.setText("00");
             }
         }
     }
@@ -138,6 +148,10 @@ public class Workout {
         } else {
             return false;
         }
+    }
+
+    public int getRemainingExerciseNumber() {
+        return exercises.size() - currentIndex;
     }
 
     // Application Functions

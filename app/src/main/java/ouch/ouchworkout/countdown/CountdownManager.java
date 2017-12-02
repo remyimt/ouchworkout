@@ -1,6 +1,9 @@
 package ouch.ouchworkout.countdown;
 
+import android.widget.TextView;
+
 import ouch.ouchworkout.Exercise;
+import ouch.ouchworkout.R;
 import ouch.ouchworkout.Workout;
 
 public class CountdownManager {
@@ -9,6 +12,7 @@ public class CountdownManager {
     private final RestCountdown restCd;
     private final AfterCountdown afterCd;
     private final Exercise exercise;
+    private final TextView exerciseCounter;
     private Countdown inProgress;
     private boolean isRunning = false;
     private boolean actionPhase = false;
@@ -20,6 +24,7 @@ public class CountdownManager {
         afterCd = pAfter;
         newStartCountdown = new AfterCountdown(10000);
         exercise = pExercise;
+        exerciseCounter = (TextView) Workout.getWorkout().findViewById(R.id.exercise_counter);
     }
 
     public void startNewStartCountdown() {
@@ -38,7 +43,14 @@ public class CountdownManager {
                 restCd.startCountdown();
                 return true;
             } else if (Workout.getWorkout().hasNextExercise()) {
-                Workout.getWorkout().selectNextExercise();
+                Workout w = Workout.getWorkout();
+                w.selectNextExercise();
+                int exerciseNb = w.getRemainingExerciseNumber();
+                if (exerciseNb < 10) {
+                    exerciseCounter.setText("0" + String.valueOf(exerciseNb));
+                } else {
+                    exerciseCounter.setText(String.valueOf(exerciseNb));
+                }
                 inProgress = afterCd;
                 isRunning = true;
                 afterCd.startCountdown();

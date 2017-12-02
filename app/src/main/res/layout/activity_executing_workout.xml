@@ -105,4 +105,20 @@
         app:layout_constraintStart_toEndOf="@+id/exercise_title"
         app:layout_constraintTop_toBottomOf="@+id/exercise_img" />
 
+    <TextView
+        android:id="@+id/exercise_counter"
+        android:layout_width="59dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/background_counter"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="25"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
