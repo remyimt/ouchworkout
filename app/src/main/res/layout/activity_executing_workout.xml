@@ -37,11 +37,9 @@
 
     <ImageView
         android:id="@+id/exercise_img"
-        android:layout_width="263dp"
+        android:layout_width="match_parent"
         android:layout_height="197dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exercise_name"
         app:srcCompat="@mipmap/my_logo" />
 
@@ -53,57 +51,6 @@
         app:layout_constraintLeft_toRightOf="@+id/countdown"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/action" />
-
-    <TextView
-        android:id="@+id/rep_title"
-        android:layout_width="58dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginTop="8dp"
-        android:text="Rep#"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/exercise_nb"
-        app:layout_constraintTop_toBottomOf="@+id/exercise_img"
-        app:layout_constraintVertical_bias="0.408" />
-
-    <TextView
-        android:id="@+id/rep_nb"
-        android:layout_width="32dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="28dp"
-        android:text="00"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        app:layout_constraintStart_toEndOf="@+id/rep_title"
-        app:layout_constraintTop_toBottomOf="@+id/exercise_img" />
-
-    <TextView
-        android:id="@+id/exercise_title"
-        android:layout_width="58dp"
-        android:layout_height="38dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="8dp"
-        android:text="Set#"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exercise_img"
-        app:layout_constraintVertical_bias="0.405" />
-
-    <TextView
-        android:id="@+id/exercise_nb"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="28dp"
-        android:text="00"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        app:layout_constraintStart_toEndOf="@+id/exercise_title"
-        app:layout_constraintTop_toBottomOf="@+id/exercise_img" />
 
     <TextView
         android:id="@+id/exercise_counter"
@@ -120,5 +67,75 @@
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/weigh"
+        android:layout_width="253dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exercise_img">
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteY="374dp">
+
+            <TextView
+                android:id="@+id/exercise_title"
+                android:layout_width="110dp"
+                android:layout_height="39dp"
+                android:layout_weight="1"
+                android:text="Exercise#"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="386dp" />
+
+            <TextView
+                android:id="@+id/exercise_nb"
+                android:layout_width="39dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:text="00"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                app:layout_constraintStart_toEndOf="@+id/exercise_title"
+                tools:layout_editor_absoluteY="386dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="183dp"
+            tools:layout_editor_absoluteY="374dp">
+
+            <TextView
+                android:id="@+id/rep_title"
+                android:layout_width="60dp"
+                android:layout_height="39dp"
+                android:text="Rep#"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                app:layout_constraintEnd_toStartOf="@+id/rep_nb"
+                tools:layout_editor_absoluteY="386dp" />
+
+            <TextView
+                android:id="@+id/rep_nb"
+                android:layout_width="40dp"
+                android:layout_height="36dp"
+                android:text="00"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                tools:layout_editor_absoluteX="237dp"
+                tools:layout_editor_absoluteY="386dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
