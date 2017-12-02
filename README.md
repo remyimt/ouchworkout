@@ -43,7 +43,8 @@ the 'nb_exercise' field. In the above example, you do 10 push ups during 20 seco
 After, you do 10 push ups again. You are executed the 2 exercises required to continue to the next exercise (L-sit).
 Before starting the L-sit exercise, you get to rest for 60 seconds (the 'after' field).
 
-## Install the application with Android Studio
+## Install the application
+
 ### From Android Studio
 NOTE: The application does not exist on the Playstore :'(
 
