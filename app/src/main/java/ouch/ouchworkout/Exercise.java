@@ -27,6 +27,10 @@ public class Exercise {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getActionTime() {
         return actionTime;
     }

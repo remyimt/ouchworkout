@@ -23,12 +23,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".OuchWorkout" />
         </activity>
-        <activity android:name=".OuchSettings"
+        <activity
+            android:name=".OuchSettings"
             android:parentActivityName=".OuchWorkout">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".OuchWorkout" />
         </activity>
+        <activity android:name=".ExerciseSelection"></activity>
     </application>
 
 </manifest>

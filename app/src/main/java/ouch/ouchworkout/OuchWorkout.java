@@ -50,10 +50,16 @@ public class OuchWorkout extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    protected void onResume() {
         String workoutName = "";
         if (Workout.hasWorkout()) {
             workoutName = Workout.getWorkout().getName();
         }
+        LinearLayout layout = (LinearLayout) findViewById(R.id.workout_list);
+        layout.removeAllViews();
         for (final String s : name2Description.keySet()) {
             final Button b = new Button(this);
             if (s.equals(workoutName) &&
@@ -73,11 +79,11 @@ public class OuchWorkout extends AppCompatActivity {
                 b.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        // Load the workout
                         try {
+                            // Load the workout
                             Workout.createWorkout(s, name2Description.get(s));
-                            // Display the workout
-                            Intent intent = new Intent(view.getContext(), ExecutingWorkout.class);
+                            // Display the exercise selection
+                            Intent intent = new Intent(view.getContext(), ExerciseSelection.class);
                             startActivity(intent);
                         } catch (JSONException e) {
                             b.setText("FAILED!");
@@ -86,9 +92,9 @@ public class OuchWorkout extends AppCompatActivity {
                     }
                 });
             }
-            LinearLayout layout = (LinearLayout) findViewById(R.id.workout_list);
             layout.addView(b);
         }
+        super.onResume();
     }
 
     @Override

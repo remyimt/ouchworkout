@@ -11,6 +11,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import ouch.ouchworkout.countdown.ActionCountdown;
@@ -122,6 +124,24 @@ public class Workout {
             countdownManager.stop();
         } else {
             countdownManager.startNewStartCountdown();
+        }
+    }
+
+    public List<String> getExerciseNames() {
+        List<String> names = new LinkedList<>();
+        for(Exercise ex : exercises){
+            names.add(ex.getName());
+        }
+        return names;
+    }
+
+    public void removeExerciseFromNames(List<String> pNames){
+        Iterator<Exercise> it = exercises.iterator();
+        while(it.hasNext()){
+            Exercise ex = it.next();
+            if(pNames.contains(ex.getName())){
+                it.remove();
+            }
         }
     }
 
