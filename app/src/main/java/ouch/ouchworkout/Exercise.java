@@ -6,9 +6,11 @@ import android.widget.TextView;
 public class Exercise {
     private final String name, pictureName;
     private final Workout workout;
+    private TextView setNbField;
+
     private final int actionTime, restTime, afterTime;
     private final int repNb, lengthSeconds;
-    private int exerciseNb;
+    private int actionNb;
 
     public Exercise(Workout pWorkout, String pExerciseName, String pImageName, int pExerciseNb,
                     int pRepNb, int pActionTime, int pRestTime, int pAfterTime) {
@@ -17,7 +19,7 @@ public class Exercise {
         actionTime = pActionTime;
         restTime = pRestTime;
         afterTime = pAfterTime;
-        exerciseNb = pExerciseNb;
+        actionNb = pExerciseNb;
         repNb = pRepNb;
         lengthSeconds = pExerciseNb * pActionTime + (pExerciseNb - 1) * pRestTime + pAfterTime;
         if (pImageName == null || pImageName.length() == 0) {
@@ -29,6 +31,14 @@ public class Exercise {
 
     public String getName() {
         return name;
+    }
+
+    public int getActionNb() {
+        return actionNb;
+    }
+
+    public int getLengthSeconds() {
+        return lengthSeconds;
     }
 
     public int getActionTime() {
@@ -43,17 +53,11 @@ public class Exercise {
         return afterTime;
     }
 
-    public int getExerciseNb() {
-        return exerciseNb;
-    }
-
-    public int decreaseExerciseNb() {
-        exerciseNb--;
-        return exerciseNb;
-    }
-
-    public int getLengthSeconds() {
-        return lengthSeconds;
+    public void decreaseActionNb() {
+        actionNb--;
+        // Display the number of sets
+        setNbField = (TextView) workout.findViewById(R.id.exercise_nb);
+        setNbField.setText(String.valueOf(actionNb));
     }
 
     public void display() {
@@ -63,12 +67,12 @@ public class Exercise {
         ImageView setImage = (ImageView) workout.findViewById(R.id.exercise_img);
         setImage.setImageResource(workout.findDrawableByName(pictureName));
         // Display the number of sets
-        final TextView setNbField = (TextView) workout.findViewById(R.id.exercise_nb);
-        setNbField.setText(String.valueOf(exerciseNb));
-        // Exercise the number of reps
+        setNbField = (TextView) workout.findViewById(R.id.exercise_nb);
+        setNbField.setText(String.valueOf(actionNb));
+        // Display the number of reps
         final TextView repNbField = (TextView) workout.findViewById(R.id.rep_nb);
         repNbField.setText(String.valueOf(repNb));
-        // Exercise the countdown
+        // Display the countdown light
         ImageView actionLight = (ImageView) workout.findViewById(R.id.action_light);
         actionLight.setImageResource(R.drawable.rest);
     }

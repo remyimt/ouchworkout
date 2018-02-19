@@ -5,8 +5,8 @@
     "name": "Squat",
     "img": "squat",
     "nb_exercise": 4,
-    "nb_rep": 12,
-    "action": 40,
+    "nb_rep": 20,
+    "action": 30,
     "rest": 30,
     "after": 90
   }, {
@@ -15,7 +15,7 @@
     "nb_exercise": 6,
     "nb_rep": 14,
     "action": 60,
-    "rest": 30,
+    "rest": 45,
     "after": 90
   }, {
     "name": "Side Squat",
@@ -37,8 +37,8 @@
     "name": "Jump Squat",
     "img": "jump_squat",
     "nb_exercise": 3,
-    "nb_rep": 10,
-    "action": 60,
+    "nb_rep": 12,
+    "action": 20,
     "rest": 30,
     "after": 90
   }, {
@@ -46,7 +46,7 @@
     "img": "burpee",
     "nb_exercise": 2,
     "nb_rep": 8,
-    "action": 40,
+    "action": 35,
     "rest": 30,
     "after": 90
   }]

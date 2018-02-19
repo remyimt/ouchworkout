@@ -9,22 +9,20 @@ import ouch.ouchworkout.OuchSettings;
 import ouch.ouchworkout.R;
 import ouch.ouchworkout.Workout;
 
-public abstract class Countdown extends CountDownTimer {
+public abstract class AbstractCountdown extends CountDownTimer {
+    protected final TextView countdownField;
     private final MediaPlayer mp;
-    private final TextView countdownField;
     private final ImageView actionLight;
     private final int imageId;
-    private final boolean isActionCountdown;
     private boolean beepDone = false;
 
-    public Countdown(boolean pIsActionCountdown, int pImageId, int pBeepId,
-                     long millisInFuture) {
-        super(millisInFuture, 500);
-        imageId = pImageId;
-        isActionCountdown = pIsActionCountdown;
+
+    public AbstractCountdown(long pTime, int pImageId, int pBeepId){
+        super(pTime * 1000, 500);
         Workout w = Workout.getWorkout();
-        mp = MediaPlayer.create(w.getApplicationContext(), pBeepId);
         countdownField = (TextView) w.findViewById(R.id.countdown);
+        mp = MediaPlayer.create(w.getApplicationContext(), pBeepId);
+        imageId = pImageId;
         actionLight = (ImageView) w.findViewById(R.id.action_light);
     }
 
@@ -42,23 +40,6 @@ public abstract class Countdown extends CountDownTimer {
             beepDone = true;
             mp.start();
         }
-    }
-
-    @Override
-    public void onFinish() {
-        countdownField.setText("000");
-        Workout w = Workout.getWorkout();
-        if (isActionCountdown) {
-            // Decrease the number of remaining exercises
-            int exerciseNb = w.getCurrentExercise().decreaseExerciseNb();
-            if (exerciseNb == 0 && w.hasNextExercise()) {
-                w.getNextExercise().display();
-            } else {
-                final TextView setNbField = (TextView) w.findViewById(R.id.exercise_nb);
-                setNbField.setText(String.valueOf(exerciseNb));
-            }
-        }
-        w.nextCountdown();
     }
 
     public void startCountdown() {

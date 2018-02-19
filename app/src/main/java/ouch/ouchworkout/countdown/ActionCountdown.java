@@ -1,13 +1,19 @@
 package ouch.ouchworkout.countdown;
 
-
-import ouch.ouchworkout.Exercise;
 import ouch.ouchworkout.R;
+import ouch.ouchworkout.Workout;
 
-public class ActionCountdown extends Countdown {
+public class ActionCountdown extends AbstractCountdown {
 
-    public ActionCountdown( Exercise pExercise) {
-        super(true, R.drawable.action, R.raw.action_beep,
-                pExercise.getActionTime() * 1000);
+    public ActionCountdown(long pTime) {
+        super(pTime, R.drawable.action, R.raw.action_beep);
+    }
+
+    @Override
+    public void onFinish() {
+        Workout w = Workout.getWorkout();
+        w.decreaseActionNb();
+        countdownField.setText("000");
+        Workout.getWorkout().next();
     }
 }

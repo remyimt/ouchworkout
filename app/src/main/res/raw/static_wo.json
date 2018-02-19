@@ -36,9 +36,9 @@
   }, {
     "name": "One Arm Push Up",
     "img": "one_arm_push_up",
-    "nb_exercise": 12,
-    "nb_rep": 6,
-    "action": 25,
+    "nb_exercise": 6,
+    "nb_rep": 12,
+    "action": 50,
     "rest": 60,
     "after": 120
   }, {

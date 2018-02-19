@@ -12,11 +12,11 @@
       "after": 90
     },
     {
-      "name": "Archer Pull Up",
+      "name": "C/W Switch Pull Up",
       "img": "archer_pull_up",
       "nb_exercise": 6,
       "nb_rep": 8,
-      "action": 22,
+      "action": 18,
       "rest": 60,
       "after": 120
     },

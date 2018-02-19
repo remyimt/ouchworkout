@@ -15,21 +15,26 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import ouch.ouchworkout.countdown.AbstractCountdown;
 import ouch.ouchworkout.countdown.ActionCountdown;
 import ouch.ouchworkout.countdown.AfterCountdown;
-import ouch.ouchworkout.countdown.CountdownManager;
 import ouch.ouchworkout.countdown.RestCountdown;
 
 public class Workout {
     private static Workout workout = null;
     private final String name;
+    private TextView exerciseNbField;
     private Activity activity;
     private List<Exercise> exercises = new ArrayList<>();
-    private int currentIndex = 0;
-    private CountdownManager countdownManager;
+    private int currentIndex;
+    private boolean actionPhase, isRunning;
+    private AbstractCountdown resumeCd, restCd, actionCd, afterCd, oldAfterCd;
 
     private Workout(String pName, JSONArray pDesc) throws JSONException {
         name = pName;
+        currentIndex = 0;
+        actionPhase = false;
+        isRunning = false;
         for (int i = 0; i < pDesc.length(); i++) {
             JSONObject info = pDesc.getJSONObject(i);
             Exercise exe = new Exercise(this, info.getString("name"),
@@ -53,26 +58,19 @@ public class Workout {
         return workout != null;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public boolean isRunning() {
+        return isRunning;
+    }
+
     public void initializeWorkout(Activity pAct) {
         activity = pAct;
-        // Configure the countdown manager with the first exercise
-        Exercise myExercise = exercises.get(currentIndex);
-        countdownManager = new CountdownManager(new ActionCountdown(myExercise),
-                new RestCountdown(myExercise.getRestTime() * 1000),
-                new AfterCountdown(myExercise.getAfterTime() * 1000), myExercise);
         // Display the workout name
         TextView nameField = (TextView) findViewById(R.id.exercise_name);
         nameField.setText(name);
-        // Display the number of exercises
-        TextView exerciseNbField = (TextView) findViewById(R.id.exercise_counter);
-        int exerciseNb = getRemainingExerciseNumber();
-        if (exerciseNb < 10) {
-            exerciseNbField.setText("0" + exerciseNb);
-        } else {
-            exerciseNbField.setText(String.valueOf(exerciseNb));
-        }
-        // Display the first exercise
-        myExercise.display();
         // Display the length of the workout (the sum of exercise lengths) in minutes
         TextView countdownField = (TextView) findViewById(R.id.countdown);
         int length = 0;
@@ -87,59 +85,91 @@ public class Workout {
         } else {
             countdownField.setText(String.format("%d", length / 60));
         }
+        // Fix bug: pause the workout during the afterCd
+        oldAfterCd = new AfterCountdown(5);
+        // Load the first exercise
+        loadCurrentExercise();
     }
 
-    public void nextCountdown() {
-        if (!countdownManager.next()) {
-            Exercise myExercise = getCurrentExercise();
-            if (myExercise.getExerciseNb() > 0) {
-                countdownManager = new CountdownManager(new ActionCountdown(myExercise),
-                        new RestCountdown(myExercise.getRestTime() * 1000),
-                        new AfterCountdown(myExercise.getAfterTime() * 1000),
-                        myExercise);
-                countdownManager.next();
-            } else {
-                // The workout is completed
-                TextView nameField = (TextView) findViewById(R.id.exercise_name);
-                nameField.setText("Workout Completed!");
-                ImageView exerciseImage = (ImageView) findViewById(R.id.exercise_img);
-                exerciseImage.setImageResource(R.drawable.completed);
-                TextView exerciseNbField = (TextView) findViewById(R.id.exercise_counter);
-                exerciseNbField.setText("00");
-            }
+    public void loadCurrentExercise() {
+        // Display the exercise
+        Exercise ex = getCurrentExercise();
+        ex.display();
+        // Display the number of remaining exercises in the workout
+        exerciseNbField = (TextView) findViewById(R.id.exercise_counter);
+        int exerciseNb = exercises.size() - currentIndex;
+        if (exerciseNb < 10) {
+            exerciseNbField.setText("0" + exerciseNb);
+        } else {
+            exerciseNbField.setText(String.valueOf(exerciseNb));
         }
+        // Configure countdowns for the exercise
+        actionCd = new ActionCountdown(ex.getActionTime());
+        restCd = new RestCountdown(ex.getRestTime());
+        afterCd = new AfterCountdown(ex.getAfterTime());
+        resumeCd = new AfterCountdown(10);
     }
 
-    public String getName() {
-        return name;
+    public void decreaseActionNb() {
+        getCurrentExercise().decreaseActionNb();
     }
 
-    public boolean isRunning() {
-        return countdownManager.isRunning();
+    public void next() {
+        Exercise exe = getCurrentExercise();
+        if (actionPhase) {
+            actionPhase = false;
+            if (exe.getActionNb() > 0) {
+                restCd.startCountdown();
+            } else {
+                if (selectNextExercise()) {
+                    oldAfterCd = afterCd;
+                    oldAfterCd.startCountdown();
+                    loadCurrentExercise();
+                } else {
+                    // The workout is completed
+                    TextView nameField = (TextView) findViewById(R.id.exercise_name);
+                    nameField.setText("Workout Completed!");
+                    ImageView exerciseImage = (ImageView) findViewById(R.id.exercise_img);
+                    exerciseImage.setImageResource(R.drawable.completed);
+                    TextView exerciseNbField = (TextView) findViewById(R.id.exercise_counter);
+                    exerciseNbField.setText("00");
+                }
+            }
+        } else {
+            actionPhase = true;
+            actionCd.startCountdown();
+        }
     }
 
     // Event fired by the playPause/pause button
     public void playPause() {
-        if (countdownManager.isRunning()) {
-            countdownManager.stop();
+        if (isRunning) {
+            actionPhase = false;
+            isRunning = false;
+            actionCd.cancel();
+            restCd.cancel();
+            oldAfterCd.cancel();
+            afterCd.cancel();
+            resumeCd.cancel();
         } else {
-            countdownManager.startNewStartCountdown();
+            isRunning = true;
+            resumeCd.startCountdown();
         }
     }
 
     public List<String> getExerciseNames() {
         List<String> names = new LinkedList<>();
-        for(Exercise ex : exercises){
+        for (Exercise ex : exercises) {
             names.add(ex.getName());
         }
         return names;
     }
 
-    public void removeExerciseFromNames(List<String> pNames){
+    public void removeExerciseFromNames(List<String> pNames) {
         Iterator<Exercise> it = exercises.iterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             Exercise ex = it.next();
-            if(pNames.contains(ex.getName())){
+            if (pNames.contains(ex.getName())) {
                 it.remove();
             }
         }
@@ -153,14 +183,6 @@ public class Workout {
         return currentIndex + 1 < exercises.size();
     }
 
-    public Exercise getNextExercise() {
-        if (hasNextExercise()) {
-            return exercises.get(currentIndex + 1);
-        } else {
-            throw new IndexOutOfBoundsException("No more exercise");
-        }
-    }
-
     public boolean selectNextExercise() {
         if (hasNextExercise()) {
             currentIndex++;
@@ -168,10 +190,6 @@ public class Workout {
         } else {
             return false;
         }
-    }
-
-    public int getRemainingExerciseNumber() {
-        return exercises.size() - currentIndex;
     }
 
     // Application Functions
