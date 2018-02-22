@@ -11,7 +11,7 @@ public class Exercise {
     private final Workout workout;
     private final int actionTime, restTime, afterTime;
     private final int repNb, loadKg, lengthSeconds;
-    private final boolean nextButtonRequired, doneButtonRequired;
+    private final boolean doneButtonRequired;
     private int setNb;
 
     public Exercise(Workout pWorkout, String pExerciseName, String pImageName, int pSetNb,
@@ -23,9 +23,7 @@ public class Exercise {
         doneButtonRequired = actionTime == 0;
         restTime = pRestTime;
         afterTime = pAfterTime;
-        // If setNb = 0 then add the 'next' button to finish the exercise
         setNb = pSetNb;
-        nextButtonRequired = setNb == 0;
         repNb = pRepNb;
         loadKg = pLoad;
         lengthSeconds = pSetNb * pActionTime + (pSetNb - 1) * pRestTime + pAfterTime;
@@ -38,10 +36,6 @@ public class Exercise {
 
     public String getName() {
         return name;
-    }
-
-    public boolean isNextButtonRequired() {
-        return nextButtonRequired;
     }
 
     public boolean isDoneButtonRequired() {

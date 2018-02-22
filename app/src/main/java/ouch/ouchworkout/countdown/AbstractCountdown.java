@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import ouch.ouchworkout.OuchSettings;
 import ouch.ouchworkout.R;
+import ouch.ouchworkout.Settings;
 import ouch.ouchworkout.Workout;
 
 public abstract class AbstractCountdown extends CountDownTimer {
@@ -36,7 +37,8 @@ public abstract class AbstractCountdown extends CountDownTimer {
         } else {
             countdownField.setText(String.valueOf(seconds));
         }
-        if (seconds == OuchSettings.BEEP_TIME_SECONDS && !beepDone && OuchSettings.WITH_SOUND) {
+        if (seconds == Settings.getSettings().getBeepTimeSeconds() && !beepDone
+                && Settings.getSettings().isWithSound()) {
             beepDone = true;
             mp.start();
         }

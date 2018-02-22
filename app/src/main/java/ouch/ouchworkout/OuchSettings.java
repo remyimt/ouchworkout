@@ -5,26 +5,35 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.Switch;
 
+import java.io.FileNotFoundException;
+
 public class OuchSettings extends AppCompatActivity {
-    public static boolean WITH_SOUND = false;
-    public static int BEEP_TIME_SECONDS = 1;
+    public static final String SETTINGS_FILE = "settings.json";
+    private Settings settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ouch_settings);
+        // Get the settings
+        settings = Settings.getSettings();
         // Set the current values for setting parameters
         Switch enableSound = (Switch) findViewById(R.id.enable_sound_button);
-        enableSound.setChecked(WITH_SOUND);
+        enableSound.setChecked(settings.isWithSound());
         EditText beepAt = (EditText) findViewById(R.id.beep_at_seconds);
-        beepAt.setText(String.valueOf(BEEP_TIME_SECONDS));
+        beepAt.setText(String.valueOf(settings.getBeepTimeSeconds()));
     }
 
-    private void saveSettings(){
+    private void saveSettings() {
         Switch enableSound = (Switch) findViewById(R.id.enable_sound_button);
-        WITH_SOUND = enableSound.isChecked();
+        settings.setWithSound(enableSound.isChecked());
         EditText beepAt = (EditText) findViewById(R.id.beep_at_seconds);
-        BEEP_TIME_SECONDS = Integer.valueOf(beepAt.getText().toString());
+        settings.setBeepTimeSeconds(Integer.valueOf(beepAt.getText().toString()));
+        try {
+            settings.saveSettings(openFileOutput(SETTINGS_FILE, MODE_PRIVATE));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
