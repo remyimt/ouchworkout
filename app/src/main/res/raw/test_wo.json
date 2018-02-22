@@ -5,7 +5,7 @@
     {
       "name": "First Exercise",
       "img": "chest_stretch",
-      "set_nb": 3,
+      "set_nb": 1,
       "rep_nb": 5,
       "load_kg": 20,
       "action_sec": 0,
@@ -14,7 +14,17 @@
     },
     {
       "name": "Second Exercise",
-      "img": "shoulder_stretch",
+      "img": "l_sit",
+      "set_nb": 2,
+      "rep_nb": 15,
+      "load_kg": 20,
+      "action_sec": 4,
+      "rest_sec": 4,
+      "after_sec": 6
+    },
+    {
+      "name": "Third Exercise",
+      "img": "push_up",
       "set_nb": 1,
       "rep_nb": 10,
       "load_kg": 40,

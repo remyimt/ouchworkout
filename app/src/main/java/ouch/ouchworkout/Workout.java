@@ -2,11 +2,15 @@ package ouch.ouchworkout;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -26,8 +30,8 @@ import ouch.ouchworkout.countdown.RestCountdown;
 public class Workout {
     private static Workout workout = null;
     private final String name;
-    private TextView exerciseNbField;
     private Activity activity;
+    private SeekBar bar;
     private List<Exercise> exercises = new ArrayList<>();
     private int currentIndex;
     private boolean actionPhase, isRunning;
@@ -95,6 +99,10 @@ public class Workout {
         }
         // Fix bug: pause the workout during the afterCd
         oldAfterCd = new AfterCountdown(5);
+        // Set the length of the progress bar
+        bar = (SeekBar) findViewById(R.id.workout_bar);
+        bar.setMax(exercises.size());
+        bar.setProgress(currentIndex);
         // Load the first exercise
         loadCurrentExercise();
     }
@@ -103,14 +111,6 @@ public class Workout {
         // Display the exercise
         Exercise ex = getCurrentExercise();
         ex.display();
-        // Display the number of remaining exercises in the workout
-        exerciseNbField = (TextView) findViewById(R.id.exercise_counter);
-        int exerciseNb = exercises.size() - currentIndex;
-        if (exerciseNb < 10) {
-            exerciseNbField.setText("0" + exerciseNb);
-        } else {
-            exerciseNbField.setText(String.valueOf(exerciseNb));
-        }
         // Configure countdowns for the exercise
         actionCd = new ActionCountdown(ex.getActionTime());
         restCd = new RestCountdown(ex.getRestTime());
@@ -139,8 +139,7 @@ public class Workout {
                     nameField.setText("Workout Completed!");
                     ImageView exerciseImage = (ImageView) findViewById(R.id.exercise_img);
                     exerciseImage.setImageResource(R.drawable.completed);
-                    TextView exerciseNbField = (TextView) findViewById(R.id.exercise_counter);
-                    exerciseNbField.setText("00");
+                    bar.incrementProgressBy(1);
                 }
             }
         } else {
@@ -199,6 +198,7 @@ public class Workout {
 
     public boolean selectNextExercise() {
         if (hasNextExercise()) {
+            bar.incrementProgressBy(1);
             currentIndex++;
             return true;
         } else {
