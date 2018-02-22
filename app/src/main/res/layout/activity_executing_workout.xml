@@ -7,10 +7,11 @@
     android:layout_height="match_parent"
     tools:context="ouch.ouchworkout.ExecutingWorkout">
 
-    <SeekBar
+    <ProgressBar
         android:id="@+id/workout_bar"
-        android:layout_width="276dp"
-        android:layout_height="wrap_content"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+        android:layout_width="292dp"
+        android:layout_height="21dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,6 +21,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="160dp"
         android:layout_height="98dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,12 +88,12 @@
 
     <ImageView
         android:id="@+id/exercise_img"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="185dp"
-        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exercise_name"
-        app:srcCompat="@mipmap/my_logo"
-        tools:layout_editor_absoluteX="0dp" />
+        app:srcCompat="@mipmap/my_logo" />
 
     <LinearLayout
         android:id="@+id/weigh"

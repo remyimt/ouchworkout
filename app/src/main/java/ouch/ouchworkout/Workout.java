@@ -31,7 +31,7 @@ public class Workout {
     private static Workout workout = null;
     private final String name;
     private Activity activity;
-    private SeekBar bar;
+    private ProgressBar bar;
     private List<Exercise> exercises = new ArrayList<>();
     private int currentIndex;
     private boolean actionPhase, isRunning;
@@ -100,7 +100,7 @@ public class Workout {
         // Fix bug: pause the workout during the afterCd
         oldAfterCd = new AfterCountdown(5);
         // Set the length of the progress bar
-        bar = (SeekBar) findViewById(R.id.workout_bar);
+        bar = (ProgressBar) findViewById(R.id.workout_bar);
         bar.setMax(exercises.size());
         bar.setProgress(currentIndex);
         // Load the first exercise
