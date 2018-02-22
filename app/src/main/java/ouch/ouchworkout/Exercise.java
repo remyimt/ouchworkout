@@ -3,6 +3,7 @@ package ouch.ouchworkout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class Exercise {
@@ -12,7 +13,6 @@ public class Exercise {
     private final int repNb, loadKg, lengthSeconds;
     private final boolean nextButtonRequired, doneButtonRequired;
     private int setNb;
-    private TextView setNbField;
 
     public Exercise(Workout pWorkout, String pExerciseName, String pImageName, int pSetNb,
                     int pRepNb, int pLoad, int pActionTime, int pRestTime, int pAfterTime) {
@@ -71,7 +71,7 @@ public class Exercise {
     public void decreaseSetNb() {
         setNb--;
         // Display the number of sets
-        setNbField = (TextView) workout.findViewById(R.id.set_nb);
+        TextView setNbField = (TextView) workout.findViewById(R.id.set_nb);
         setNbField.setText(String.valueOf(setNb));
     }
 
@@ -84,20 +84,27 @@ public class Exercise {
         setImage.setImageResource(workout.findDrawableByName(pictureName));
         // Hide/show the done button
         Button doneButton = (Button) workout.findViewById(R.id.done_button);
-        if(doneButtonRequired){
+        if (doneButtonRequired) {
             doneButton.setVisibility(View.VISIBLE);
         } else {
             doneButton.setVisibility(View.INVISIBLE);
         }
         // Display the number of sets
-        setNbField = (TextView) workout.findViewById(R.id.set_nb);
+        TextView setNbField = (TextView) workout.findViewById(R.id.set_nb);
         setNbField.setText(String.valueOf(setNb));
         // Display the number of reps
         TextView repNbField = (TextView) workout.findViewById(R.id.rep_nb);
         repNbField.setText(String.valueOf(repNb));
         // Display the load of the exercise
-        TextView loadField = (TextView) workout.findViewById(R.id.load_kg);
-        loadField.setText(String.valueOf(loadKg));
+        if (loadKg > 0) {
+            LinearLayout loadContainer = (LinearLayout) workout.findViewById(R.id.load_container);
+            loadContainer.setVisibility(View.VISIBLE);
+            TextView loadField = (TextView) workout.findViewById(R.id.load_kg);
+            loadField.setText(String.valueOf(loadKg));
+        } else {
+            LinearLayout loadContainer = (LinearLayout) workout.findViewById(R.id.load_container);
+            loadContainer.setVisibility(View.INVISIBLE);
+        }
         // Display the countdown light
         ImageView actionLight = (ImageView) workout.findViewById(R.id.action_light);
         actionLight.setImageResource(R.drawable.rest);
