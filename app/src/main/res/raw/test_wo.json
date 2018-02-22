@@ -8,7 +8,7 @@
       "set_nb": 3,
       "rep_nb": 5,
       "load_kg": 20,
-      "action_sec": 6,
+      "action_sec": 0,
       "rest_sec": 4,
       "after_sec": 15
     },

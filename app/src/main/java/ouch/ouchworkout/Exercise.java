@@ -1,5 +1,7 @@
 package ouch.ouchworkout;
 
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -74,11 +76,19 @@ public class Exercise {
     }
 
     public void display() {
-        // Display the name of the set
+        // Display the name of the exercise
         final TextView nameField = (TextView) workout.findViewById(R.id.exercise_name);
         nameField.setText(name);
+        // Display the image of the exercise
         ImageView setImage = (ImageView) workout.findViewById(R.id.exercise_img);
         setImage.setImageResource(workout.findDrawableByName(pictureName));
+        // Hide/show the done button
+        Button doneButton = (Button) workout.findViewById(R.id.done_button);
+        if(doneButtonRequired){
+            doneButton.setVisibility(View.VISIBLE);
+        } else {
+            doneButton.setVisibility(View.INVISIBLE);
+        }
         // Display the number of sets
         setNbField = (TextView) workout.findViewById(R.id.set_nb);
         setNbField.setText(String.valueOf(setNb));

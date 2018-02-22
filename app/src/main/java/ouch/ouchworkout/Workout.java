@@ -2,8 +2,11 @@ package ouch.ouchworkout;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -65,6 +68,10 @@ public class Workout {
 
     public boolean isRunning() {
         return isRunning;
+    }
+
+    public boolean isActionPhase() {
+        return actionPhase;
     }
 
     public void initializeWorkout(Activity pAct) {
@@ -138,7 +145,13 @@ public class Workout {
             }
         } else {
             actionPhase = true;
-            actionCd.startCountdown();
+            if (exe.isDoneButtonRequired()) {
+                // Display the action light
+                ImageView actionLight = (ImageView) findViewById(R.id.action_light);
+                actionLight.setImageResource(R.drawable.action);
+            } else {
+                actionCd.startCountdown();
+            }
         }
     }
 
