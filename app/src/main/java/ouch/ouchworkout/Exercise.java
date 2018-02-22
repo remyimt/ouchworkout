@@ -6,22 +6,27 @@ import android.widget.TextView;
 public class Exercise {
     private final String name, pictureName;
     private final Workout workout;
+    private final int actionTime, restTime, afterTime;
+    private final int repNb, loadKg, lengthSeconds;
+    private final boolean nextButtonRequired, doneButtonRequired;
+    private int setNb;
     private TextView setNbField;
 
-    private final int actionTime, restTime, afterTime;
-    private final int repNb, lengthSeconds;
-    private int actionNb;
-
-    public Exercise(Workout pWorkout, String pExerciseName, String pImageName, int pExerciseNb,
-                    int pRepNb, int pActionTime, int pRestTime, int pAfterTime) {
+    public Exercise(Workout pWorkout, String pExerciseName, String pImageName, int pSetNb,
+                    int pRepNb, int pLoad, int pActionTime, int pRestTime, int pAfterTime) {
         workout = pWorkout;
         name = pExerciseName;
+        // If actionTime = 0 then add 'done' button to finish the set
         actionTime = pActionTime;
+        doneButtonRequired = actionTime == 0;
         restTime = pRestTime;
         afterTime = pAfterTime;
-        actionNb = pExerciseNb;
+        // If setNb = 0 then add the 'next' button to finish the exercise
+        setNb = pSetNb;
+        nextButtonRequired = setNb == 0;
         repNb = pRepNb;
-        lengthSeconds = pExerciseNb * pActionTime + (pExerciseNb - 1) * pRestTime + pAfterTime;
+        loadKg = pLoad;
+        lengthSeconds = pSetNb * pActionTime + (pSetNb - 1) * pRestTime + pAfterTime;
         if (pImageName == null || pImageName.length() == 0) {
             pictureName = "";
         } else {
@@ -33,8 +38,16 @@ public class Exercise {
         return name;
     }
 
-    public int getActionNb() {
-        return actionNb;
+    public boolean isNextButtonRequired() {
+        return nextButtonRequired;
+    }
+
+    public boolean isDoneButtonRequired() {
+        return doneButtonRequired;
+    }
+
+    public int getSetNb() {
+        return setNb;
     }
 
     public int getLengthSeconds() {
@@ -53,11 +66,11 @@ public class Exercise {
         return afterTime;
     }
 
-    public void decreaseActionNb() {
-        actionNb--;
+    public void decreaseSetNb() {
+        setNb--;
         // Display the number of sets
-        setNbField = (TextView) workout.findViewById(R.id.exercise_nb);
-        setNbField.setText(String.valueOf(actionNb));
+        setNbField = (TextView) workout.findViewById(R.id.set_nb);
+        setNbField.setText(String.valueOf(setNb));
     }
 
     public void display() {
@@ -67,11 +80,14 @@ public class Exercise {
         ImageView setImage = (ImageView) workout.findViewById(R.id.exercise_img);
         setImage.setImageResource(workout.findDrawableByName(pictureName));
         // Display the number of sets
-        setNbField = (TextView) workout.findViewById(R.id.exercise_nb);
-        setNbField.setText(String.valueOf(actionNb));
+        setNbField = (TextView) workout.findViewById(R.id.set_nb);
+        setNbField.setText(String.valueOf(setNb));
         // Display the number of reps
-        final TextView repNbField = (TextView) workout.findViewById(R.id.rep_nb);
+        TextView repNbField = (TextView) workout.findViewById(R.id.rep_nb);
         repNbField.setText(String.valueOf(repNb));
+        // Display the load of the exercise
+        TextView loadField = (TextView) workout.findViewById(R.id.load_kg);
+        loadField.setText(String.valueOf(loadKg));
         // Display the countdown light
         ImageView actionLight = (ImageView) workout.findViewById(R.id.action_light);
         actionLight.setImageResource(R.drawable.rest);

@@ -5,20 +5,22 @@
     {
       "name": "First Exercise",
       "img": "chest_stretch",
-      "nb_exercise": 3,
-      "nb_rep": 5,
-      "action": 6,
-      "rest": 4,
-      "after": 15
+      "set_nb": 3,
+      "rep_nb": 5,
+      "load_kg": 20,
+      "action_sec": 6,
+      "rest_sec": 4,
+      "after_sec": 15
     },
     {
       "name": "Second Exercise",
       "img": "shoulder_stretch",
-      "nb_exercise": 1,
-      "nb_rep": 10,
-      "action": 10,
-      "rest": 5,
-      "after": 21
+      "set_nb": 1,
+      "rep_nb": 10,
+      "load_kg": 40,
+      "action_sec": 10,
+      "rest_sec": 5,
+      "after_sec": 21
     }
   ]
 }

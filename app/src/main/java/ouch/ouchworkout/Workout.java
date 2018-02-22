@@ -38,9 +38,10 @@ public class Workout {
         for (int i = 0; i < pDesc.length(); i++) {
             JSONObject info = pDesc.getJSONObject(i);
             Exercise exe = new Exercise(this, info.getString("name"),
-                    info.getString("img"), info.getInt("nb_exercise"),
-                    info.getInt("nb_rep"), info.getInt("action"),
-                    info.getInt("rest"), info.getInt("after"));
+                    info.getString("img"), info.getInt("set_nb"),
+                    info.getInt("rep_nb"), info.getInt("load_kg"),
+                    info.getInt("action_sec"), info.getInt("rest_sec"),
+                    info.getInt("after_sec"));
             exercises.add(exe);
         }
     }
@@ -111,14 +112,14 @@ public class Workout {
     }
 
     public void decreaseActionNb() {
-        getCurrentExercise().decreaseActionNb();
+        getCurrentExercise().decreaseSetNb();
     }
 
     public void next() {
         Exercise exe = getCurrentExercise();
         if (actionPhase) {
             actionPhase = false;
-            if (exe.getActionNb() > 0) {
+            if (exe.getSetNb() > 0) {
                 restCd.startCountdown();
             } else {
                 if (selectNextExercise()) {
