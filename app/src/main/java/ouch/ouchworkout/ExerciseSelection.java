@@ -27,7 +27,7 @@ public class ExerciseSelection extends AppCompatActivity {
                 Workout w = Workout.getWorkout();
                 LinearLayout exerciseList = (LinearLayout) findViewById(R.id.exercise_list);
                 int count;
-                if(removeExercises.isEmpty()) {
+                if (removeExercises.isEmpty()) {
                     count = exerciseList.getChildCount();
                 } else {
                     // Do not get the last child (TextView with removed exercises)
@@ -40,9 +40,15 @@ public class ExerciseSelection extends AppCompatActivity {
                     }
                 }
                 w.removeExerciseFromNames(removeExercises);
-                // Display the workout
-                Intent intent = new Intent(v.getContext(), ExecutingWorkout.class);
-                startActivity(intent);
+                if(w.getExerciseNames().isEmpty()){
+                    // Back to the workout selection
+                    Intent intent = new Intent(v.getContext(), OuchWorkout.class);
+                    startActivity(intent);
+                } else {
+                    // Display the workout
+                    Intent intent = new Intent(v.getContext(), ExecutingWorkout.class);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -62,8 +68,8 @@ public class ExerciseSelection extends AppCompatActivity {
         if (!removeExercises.isEmpty()) {
             TextView notAvailable = new TextView(this);
             StringBuilder toDisplay = new StringBuilder();
-            for(String s : removeExercises){
-                toDisplay.append(s + ", " );
+            for (String s : removeExercises) {
+                toDisplay.append(s + ", ");
             }
             toDisplay.setLength(toDisplay.length() - 2);
             notAvailable.setText("Previously removed:\n" + toDisplay);

@@ -95,8 +95,7 @@ public class OuchWorkout extends AppCompatActivity {
         layout.removeAllViews();
         for (final String s : name2Description.keySet()) {
             final Button b = new Button(this);
-            if (s.equals(workoutName) &&
-                    Workout.getWorkout().getCurrentExercise().getSetNb() > 0) {
+            if (s.equals(workoutName) && Workout.getWorkout().isInProgress()) {
                 // This workout is already loaded
                 b.setText("** " + s + " **");
                 b.setOnClickListener(new View.OnClickListener() {

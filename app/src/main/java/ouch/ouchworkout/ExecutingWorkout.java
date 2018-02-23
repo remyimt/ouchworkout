@@ -19,7 +19,7 @@ public class ExecutingWorkout extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Workout w = Workout.getWorkout();
-                if(w.isActionPhase()) {
+                if (w.isActionPhase()) {
                     w.decreaseActionNb();
                     Workout.getWorkout().next();
                 }
@@ -39,7 +39,7 @@ public class ExecutingWorkout extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         Workout w = Workout.getWorkout();
         if (item.getItemId() == R.id.play_pause) {
-            if (w.isActionPhase() && w.getCurrentExercise().isDoneButtonRequired()) {
+            if (w.isActionPhase() && w.isDoneButtonRequired()) {
                 // Nothing to do, no countdown
             } else {
                 if (w.isRunning()) {
