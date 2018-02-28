@@ -84,15 +84,16 @@ public class WorkoutAct extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        Workout workout = Workout.getWorkout();
         String workoutName = "";
         if (Workout.hasWorkout()) {
-            workoutName = Workout.getWorkout().getName();
+            workoutName = workout.getName();
         }
         LinearLayout layout = (LinearLayout) findViewById(R.id.workout_list);
         layout.removeAllViews();
         for (final String s : name2Description.keySet()) {
             final Button b = new Button(this);
-            if (s.equals(workoutName) && Workout.getWorkout().isInProgress()) {
+            if (s.equals(workoutName) && workout.isInProgress() && workout.isWorkoutStarted()) {
                 // This workout is already loaded
                 b.setText("** " + s + " **");
                 b.setOnClickListener(new View.OnClickListener() {

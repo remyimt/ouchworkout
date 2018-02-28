@@ -10,9 +10,9 @@ public class Exercise {
     private final String name, pictureName;
     private final Workout workout;
     private final int actionTime, restTime, afterTime;
-    private final int repNb, loadKg, lengthSeconds;
+    private final int setNb, repNb, loadKg, lengthSeconds;
     private final boolean doneButtonRequired;
-    private int setNb;
+    private int currentSetNb;
 
     public Exercise(Workout pWorkout, String pExerciseName, String pImageName, int pSetNb,
                     int pRepNb, int pLoad, int pActionTime, int pRestTime, int pAfterTime) {
@@ -23,6 +23,7 @@ public class Exercise {
         doneButtonRequired = actionTime == 0;
         restTime = pRestTime;
         afterTime = pAfterTime;
+        currentSetNb = pSetNb;
         setNb = pSetNb;
         repNb = pRepNb;
         loadKg = pLoad;
@@ -42,8 +43,12 @@ public class Exercise {
         return doneButtonRequired;
     }
 
-    public int getSetNb() {
-        return setNb;
+    public boolean isStarted() {
+        return setNb != currentSetNb;
+    }
+
+    public int getCurrentSetNb() {
+        return currentSetNb;
     }
 
     public int getLengthSeconds() {
@@ -63,10 +68,10 @@ public class Exercise {
     }
 
     public void decreaseSetNb() {
-        setNb--;
+        currentSetNb--;
         // Display the number of sets
         TextView setNbField = (TextView) workout.findViewById(R.id.set_nb);
-        setNbField.setText(String.valueOf(setNb));
+        setNbField.setText(String.valueOf(currentSetNb));
     }
 
     public void display() {
@@ -85,7 +90,7 @@ public class Exercise {
         }
         // Display the number of sets
         TextView setNbField = (TextView) workout.findViewById(R.id.set_nb);
-        setNbField.setText(String.valueOf(setNb));
+        setNbField.setText(String.valueOf(currentSetNb));
         // Display the number of reps
         TextView repNbField = (TextView) workout.findViewById(R.id.rep_nb);
         repNbField.setText(String.valueOf(repNb));

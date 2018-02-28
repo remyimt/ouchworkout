@@ -73,16 +73,20 @@ public class Workout {
     }
 
     public boolean isInProgress() {
-        return selector.getCurrentExercise() != null &&
-                selector.getCurrentExercise().getSetNb() > 0;
+        Exercise exe = selector.getCurrentExercise();
+        return exe != null && exe.getCurrentSetNb() > 0;
     }
 
     public boolean isDoneButtonRequired() {
         return selector.getCurrentExercise().isDoneButtonRequired();
     }
 
-    public boolean isFirstExercise(){
+    public boolean isFirstExercise() {
         return selector.completedExerciseNb() == 0;
+    }
+
+    public boolean isWorkoutStarted() {
+        return selector.completedExerciseNb() != 0 || selector.getCurrentExercise().isStarted();
     }
 
     public boolean selectNextExercise() {
@@ -141,7 +145,7 @@ public class Workout {
         Exercise exe = selector.getCurrentExercise();
         if (actionPhase) {
             actionPhase = false;
-            if (exe.getSetNb() > 0) {
+            if (exe.getCurrentSetNb() > 0) {
                 restCd.startCountdown();
             } else {
                 // The exercise is completed
