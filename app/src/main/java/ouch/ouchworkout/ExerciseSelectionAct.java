@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ExerciseSelection extends AppCompatActivity {
+public class ExerciseSelectionAct extends AppCompatActivity {
     private List<String> removeExercises = new LinkedList<>();
 
     @Override
@@ -40,13 +40,13 @@ public class ExerciseSelection extends AppCompatActivity {
                     }
                 }
                 w.removeExerciseFromNames(removeExercises);
-                if(w.getExerciseNames().isEmpty()){
+                if (w.getExerciseNames().isEmpty()) {
                     // Back to the workout selection
-                    Intent intent = new Intent(v.getContext(), OuchWorkout.class);
+                    Intent intent = new Intent(v.getContext(), WorkoutAct.class);
                     startActivity(intent);
                 } else {
                     // Display the workout
-                    Intent intent = new Intent(v.getContext(), ExecutingWorkout.class);
+                    Intent intent = new Intent(v.getContext(), ExecutingNextExerciseAct.class);
                     startActivity(intent);
                 }
             }

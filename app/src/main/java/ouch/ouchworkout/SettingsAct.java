@@ -7,7 +7,7 @@ import android.widget.Switch;
 
 import java.io.FileNotFoundException;
 
-public class OuchSettings extends AppCompatActivity {
+public class SettingsAct extends AppCompatActivity {
     public static final String SETTINGS_FILE = "settings.json";
     private Settings settings;
 

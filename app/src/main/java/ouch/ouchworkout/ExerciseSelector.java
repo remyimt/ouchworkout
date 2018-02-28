@@ -9,9 +9,13 @@ public class ExerciseSelector {
     private final List<Exercise> exercises = new ArrayList<>();
     private final List<Exercise> completed = new ArrayList<>();
     private Exercise current = null;
-    private int workoutLengthSeconds = 0;
+    private int workoutLengthSeconds = 0, workoutExerciseNb = 0;
 
     public ExerciseSelector() {
+    }
+
+    public int getWorkoutExerciseNb() {
+        return workoutExerciseNb;
     }
 
     public int getWorkoutLengthSeconds() {
@@ -22,10 +26,6 @@ public class ExerciseSelector {
         return current;
     }
 
-    public int workoutExerciseNb() {
-        return exercises.size();
-    }
-
     public int completedExerciseNb() {
         return completed.size();
     }
@@ -33,6 +33,27 @@ public class ExerciseSelector {
     public void addExercise(Exercise pEx) {
         exercises.add(pEx);
         workoutLengthSeconds += pEx.getLengthSeconds();
+        workoutExerciseNb++;
+    }
+
+    public void removeExerciseFromNames(List<String> pNames) {
+        Iterator<Exercise> it = exercises.iterator();
+        while (it.hasNext()) {
+            Exercise ex = it.next();
+            if (pNames.contains(ex.getName())) {
+                it.remove();
+                workoutExerciseNb--;
+                workoutLengthSeconds -= ex.getLengthSeconds();
+            }
+        }
+    }
+
+    public List<String> getExerciseNames() {
+        List<String> names = new LinkedList<>();
+        for (Exercise ex : exercises) {
+            names.add(ex.getName());
+        }
+        return names;
     }
 
     public boolean completeExercise(Exercise pEx) {
@@ -49,25 +70,6 @@ public class ExerciseSelector {
         } else {
             current = exercises.get(0);
             return true;
-        }
-    }
-
-    public List<String> getExerciseNames() {
-        List<String> names = new LinkedList<>();
-        for (Exercise ex : exercises) {
-            names.add(ex.getName());
-        }
-        return names;
-    }
-
-    public void removeExerciseFromNames(List<String> pNames) {
-        Iterator<Exercise> it = exercises.iterator();
-        while (it.hasNext()) {
-            Exercise ex = it.next();
-            if (pNames.contains(ex.getName())) {
-                it.remove();
-                workoutLengthSeconds -= ex.getLengthSeconds();
-            }
         }
     }
 }

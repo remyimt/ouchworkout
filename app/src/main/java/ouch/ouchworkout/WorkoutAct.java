@@ -3,7 +3,6 @@ package ouch.ouchworkout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,9 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -24,7 +21,7 @@ import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class OuchWorkout extends AppCompatActivity {
+public class WorkoutAct extends AppCompatActivity {
     private Map<String, JSONArray> name2Description = new TreeMap<>();
 
     @Override
@@ -36,21 +33,21 @@ public class OuchWorkout extends AppCompatActivity {
         String[] myfiles = getFilesDir().list();
         boolean existSettings = false;
         for (String s : myfiles) {
-            if (s.equals(OuchSettings.SETTINGS_FILE)) {
+            if (s.equals(SettingsAct.SETTINGS_FILE)) {
                 existSettings = true;
             }
         }
         if (existSettings) {
             // Load the settings properties
             try {
-                Settings.loadSettings(openFileInput(OuchSettings.SETTINGS_FILE));
+                Settings.loadSettings(openFileInput(SettingsAct.SETTINGS_FILE));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
         } else {
             // Create the settings file
             try {
-                OutputStream os = openFileOutput(OuchSettings.SETTINGS_FILE, MODE_PRIVATE);
+                OutputStream os = openFileOutput(SettingsAct.SETTINGS_FILE, MODE_PRIVATE);
                 Settings.getSettings().saveSettings(os);
                 os.close();
             } catch (FileNotFoundException e) {
@@ -102,7 +99,7 @@ public class OuchWorkout extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         // Display the workout
-                        Intent intent = new Intent(view.getContext(), ExecutingWorkout.class);
+                        Intent intent = new Intent(view.getContext(), ExecutingNextExerciseAct.class);
                         startActivity(intent);
                     }
                 });
@@ -115,7 +112,7 @@ public class OuchWorkout extends AppCompatActivity {
                             // Load the workout
                             Workout.createWorkout(s, name2Description.get(s));
                             // Display the exercise selection
-                            Intent intent = new Intent(view.getContext(), ExerciseSelection.class);
+                            Intent intent = new Intent(view.getContext(), ExerciseSelectionAct.class);
                             startActivity(intent);
                         } catch (JSONException e) {
                             b.setText("FAILED!");
@@ -138,7 +135,7 @@ public class OuchWorkout extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.settings_button) {
-            Intent intent = new Intent(getApplicationContext(), OuchSettings.class);
+            Intent intent = new Intent(getApplicationContext(), SettingsAct.class);
             startActivity(intent);
             return true;
         } else {

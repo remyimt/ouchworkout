@@ -5,7 +5,6 @@ import android.os.CountDownTimer;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import ouch.ouchworkout.OuchSettings;
 import ouch.ouchworkout.R;
 import ouch.ouchworkout.Settings;
 import ouch.ouchworkout.Workout;

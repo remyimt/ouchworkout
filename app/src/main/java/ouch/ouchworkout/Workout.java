@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,15 +25,17 @@ public class Workout {
     private final String name;
     private final ExerciseSelector selector;
     private Activity activity;
-    private ProgressBar bar;
     private boolean actionPhase, isRunning;
-    private AbstractCountdown resumeCd, restCd, actionCd, afterCd, oldAfterCd;
+    private int afterCdTime;
+    private AbstractCountdown resumeCd, restCd, actionCd, oldAfterCd;
 
     private Workout(String pName, JSONArray pDesc) throws JSONException {
         name = pName;
         selector = new ExerciseSelector();
         actionPhase = false;
         isRunning = false;
+        // Default value to create the oldAfterCd of the first exercise
+        afterCdTime = 5;
         for (int i = 0; i < pDesc.length(); i++) {
             JSONObject info = pDesc.getJSONObject(i);
             Exercise exe = new Exercise(this, info.getString("name"),
@@ -78,46 +81,56 @@ public class Workout {
         return selector.getCurrentExercise().isDoneButtonRequired();
     }
 
-    public void initializeWorkout(Activity pAct) {
-        activity = pAct;
-        // Display the workout name
-        TextView nameField = (TextView) findViewById(R.id.exercise_name);
-        nameField.setText(name);
-        // Display the length of the workout (the sum of exercise lengths) in minutes
-        TextView countdownField = (TextView) findViewById(R.id.countdown);
-        int length_minutes = selector.getWorkoutLengthSeconds() / 60;
-        if (length_minutes < 10) {
-            countdownField.setText(String.format("00%d", length_minutes));
-        } else if (length_minutes < 100) {
-            countdownField.setText(String.format("0%d", length_minutes));
-        } else {
-            countdownField.setText(String.format("%d", length_minutes));
-        }
-        // Fix bug: pause the workout during the afterCd
-        oldAfterCd = new AfterCountdown(5);
-        // Set the length of the progress bar
-        bar = (ProgressBar) findViewById(R.id.workout_bar);
-        bar.setMax(selector.workoutExerciseNb());
-        bar.setProgress(selector.completedExerciseNb());
-        // Load the first exercise
-        if (selector.selectNextExercise()) {
-            loadCurrentExercise();
-        } else {
-            // There is a bug, back to the workout selection
-            Intent intent = new Intent(pAct, ExecutingWorkout.class);
-            pAct.startActivity(intent);
-        }
+    public boolean isFirstExercise(){
+        return selector.completedExerciseNb() == 0;
     }
 
-    public void loadCurrentExercise() {
-        // Display the exercise
+    public boolean selectNextExercise() {
+        return selector.selectNextExercise();
+    }
+
+    public void startCurrentExercise(Activity pAct, boolean pStartCountdown) {
+        activity = pAct;
+        // Set the position of the progress bar
+        ProgressBar bar = (ProgressBar) findViewById(R.id.workout_bar);
+        bar.setMax(selector.getWorkoutExerciseNb());
+        bar.setProgress(selector.completedExerciseNb());
+        // Configure the done button (used if actionTime == 0)
+        Button done = (Button) findViewById(R.id.done_button);
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isActionPhase()) {
+                    decreaseActionNb();
+                    next();
+                }
+            }
+        });
+        // Configure the exercise
         Exercise ex = selector.getCurrentExercise();
-        ex.display();
         // Configure countdowns for the exercise
         actionCd = new ActionCountdown(ex.getActionTime());
         restCd = new RestCountdown(ex.getRestTime());
-        afterCd = new AfterCountdown(ex.getAfterTime());
+        oldAfterCd = new AfterCountdown(afterCdTime);
+        afterCdTime = ex.getAfterTime();
         resumeCd = new AfterCountdown(10);
+        // Display the exercise
+        ex.display();
+        if (pStartCountdown) {
+            // Start the afterCd of the previous exercise
+            oldAfterCd.startCountdown();
+        } else {
+            // Display the length of the workout (the sum of exercise lengths) in minutes
+            TextView countdownField = (TextView) findViewById(R.id.countdown);
+            int length_minutes = selector.getWorkoutLengthSeconds() / 60;
+            if (length_minutes < 10) {
+                countdownField.setText(String.format("00%d", length_minutes));
+            } else if (length_minutes < 100) {
+                countdownField.setText(String.format("0%d", length_minutes));
+            } else {
+                countdownField.setText(String.format("%d", length_minutes));
+            }
+        }
     }
 
     public void decreaseActionNb() {
@@ -131,21 +144,11 @@ public class Workout {
             if (exe.getSetNb() > 0) {
                 restCd.startCountdown();
             } else {
-                if(selector.completeExercise(exe)){
-                    bar.incrementProgressBy(1);
-                }
-                if (selector.selectNextExercise()) {
-                    oldAfterCd = afterCd;
-                    oldAfterCd.startCountdown();
-                    loadCurrentExercise();
-                } else {
-                    // The workout is completed
-                    TextView nameField = (TextView) findViewById(R.id.exercise_name);
-                    nameField.setText("Workout Completed!");
-                    ImageView exerciseImage = (ImageView) findViewById(R.id.exercise_img);
-                    exerciseImage.setImageResource(R.drawable.completed);
-                    bar.incrementProgressBy(1);
-                }
+                // The exercise is completed
+                selector.completeExercise(exe);
+                // Display the exercise selection
+                Intent intent = new Intent(activity.getApplicationContext(), ExecutingNextExerciseAct.class);
+                activity.startActivity(intent);
             }
         } else {
             actionPhase = true;
@@ -159,6 +162,22 @@ public class Workout {
         }
     }
 
+    public void complete(Activity pAct) {
+        activity = pAct;
+        // The workout is completed
+        TextView nameField = (TextView) findViewById(R.id.exercise_name);
+        nameField.setText("Workout Completed!");
+        ImageView exerciseImage = (ImageView) findViewById(R.id.exercise_img);
+        exerciseImage.setImageResource(R.drawable.completed);
+        ProgressBar bar = (ProgressBar) findViewById(R.id.workout_bar);
+        bar.setMax(selector.getWorkoutExerciseNb());
+        bar.setProgress(selector.completedExerciseNb());
+        Button done = (Button) findViewById(R.id.done_button);
+        done.setVisibility(View.INVISIBLE);
+        ImageView actionLight = (ImageView) findViewById(R.id.action_light);
+        actionLight.setImageResource(R.drawable.rest);
+    }
+
     // Event fired by the playPause/pause button
     public void playPause() {
         if (isRunning) {
@@ -167,7 +186,6 @@ public class Workout {
             actionCd.cancel();
             restCd.cancel();
             oldAfterCd.cancel();
-            afterCd.cancel();
             resumeCd.cancel();
         } else {
             isRunning = true;

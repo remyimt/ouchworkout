@@ -9,28 +9,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OuchWorkout">
+        <activity android:name=".WorkoutAct">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".ExecutingWorkout"
-            android:parentActivityName=".OuchWorkout">
+            android:name=".ExecutingNextExerciseAct"
+            android:noHistory="true"
+            android:parentActivityName=".WorkoutAct">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".OuchWorkout" />
+                android:value=".WorkoutAct" />
         </activity>
         <activity
-            android:name=".OuchSettings"
-            android:parentActivityName=".OuchWorkout">
+            android:name=".SettingsAct"
+            android:parentActivityName=".WorkoutAct">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".OuchWorkout" />
+                android:value=".WorkoutAct" />
         </activity>
-        <activity android:name=".ExerciseSelection"></activity>
+        <activity
+            android:name=".ExerciseSelectionAct"
+            android:noHistory="true" />
+        <activity
+            android:name=".ReviewerAct"
+            android:noHistory="true" />
     </application>
-
 </manifest>
