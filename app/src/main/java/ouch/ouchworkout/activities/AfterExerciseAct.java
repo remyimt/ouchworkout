@@ -61,4 +61,10 @@ public class AfterExerciseAct extends AppCompatActivity {
             return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    protected void onPause() {
+        afterCd.cancel();
+        super.onPause();
+    }
 }

@@ -86,4 +86,13 @@ public class ExecutingExerciseAct extends AppCompatActivity {
         }
         return super.onSupportNavigateUp();
     }
+
+    @Override
+    protected void onPause() {
+        Workout w = Workout.getWorkout();
+        if (w.isRunning()) {
+            w.playPause();
+        }
+        super.onPause();
+    }
 }
