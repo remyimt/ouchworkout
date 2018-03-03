@@ -1,4 +1,4 @@
-package ouch.ouchworkout;
+package ouch.ouchworkout.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,8 +21,13 @@ import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.TreeMap;
 
+import ouch.ouchworkout.R;
+import ouch.ouchworkout.Settings;
+import ouch.ouchworkout.Workout;
+
 public class WorkoutAct extends AppCompatActivity {
     private Map<String, JSONArray> name2Description = new TreeMap<>();
+    private Map<String, String> name2File = new TreeMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +73,21 @@ public class WorkoutAct extends AppCompatActivity {
         for (Field f : fields) {
             try {
                 if (f.getName().endsWith("_wo")) {
-                    InputStream is = getResources().openRawResource(f.getInt(f));
+                    InputStream is;
+                    if (getFileStreamPath(f.getName()).exists()) {
+                        // Load the modified workout
+                        is = openFileInput(f.getName());
+                    } else {
+                        // Load the original workout
+                        is = getResources().openRawResource(f.getInt(f));
+                    }
                     byte[] buffer = new byte[is.available()];
                     is.read(buffer);
                     is.close();
                     JSONObject myWorkout = new JSONObject(new String(buffer));
                     name2Description.put(myWorkout.getString("name"),
                             myWorkout.getJSONArray("workout"));
+                    name2File.put(myWorkout.getString("name"), f.getName());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -100,7 +113,7 @@ public class WorkoutAct extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         // Display the workout
-                        Intent intent = new Intent(view.getContext(), ExecutingNextExerciseAct.class);
+                        Intent intent = new Intent(view.getContext(), ExecutingExerciseAct.class);
                         startActivity(intent);
                     }
                 });
@@ -111,7 +124,7 @@ public class WorkoutAct extends AppCompatActivity {
                     public void onClick(View view) {
                         try {
                             // Load the workout
-                            Workout.createWorkout(s, name2Description.get(s));
+                            Workout.createWorkout(name2File.get(s), s, name2Description.get(s));
                             // Display the exercise selection
                             Intent intent = new Intent(view.getContext(), ExerciseSelectionAct.class);
                             startActivity(intent);

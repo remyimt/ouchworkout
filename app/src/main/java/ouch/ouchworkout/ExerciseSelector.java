@@ -26,6 +26,10 @@ public class ExerciseSelector {
         return current;
     }
 
+    public Exercise getLastCompletedExercise() {
+        return completed.get(completed.size() - 1);
+    }
+
     public int completedExerciseNb() {
         return completed.size();
     }
@@ -71,5 +75,16 @@ public class ExerciseSelector {
             current = exercises.get(0);
             return true;
         }
+    }
+
+    public String dumpExercises() {
+        StringBuilder json = new StringBuilder();
+        json.append("  \"workout\": [\n");
+        for (Exercise exe : completed) {
+            json.append(exe.toJSON() + ",\n");
+        }
+        json.setLength(json.length() - 2);
+        json.append("\n  ]");
+        return json.toString();
     }
 }

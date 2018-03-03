@@ -1,4 +1,4 @@
-package ouch.ouchworkout;
+package ouch.ouchworkout.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,9 @@ import android.widget.EditText;
 import android.widget.Switch;
 
 import java.io.FileNotFoundException;
+
+import ouch.ouchworkout.R;
+import ouch.ouchworkout.Settings;
 
 public class SettingsAct extends AppCompatActivity {
     public static final String SETTINGS_FILE = "settings.json";

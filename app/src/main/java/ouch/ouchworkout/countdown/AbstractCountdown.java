@@ -1,5 +1,6 @@
 package ouch.ouchworkout.countdown;
 
+import android.app.Activity;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.widget.ImageView;
@@ -17,18 +18,18 @@ public abstract class AbstractCountdown extends CountDownTimer {
     private boolean beepDone = false;
 
 
-    public AbstractCountdown(long pTime, int pImageId, int pBeepId){
+    public AbstractCountdown(Activity pAct, long pTime, int pImageId, int pBeepId) {
         super(pTime * 1000, 500);
-        Workout w = Workout.getWorkout();
-        countdownField = (TextView) w.findViewById(R.id.countdown);
-        mp = MediaPlayer.create(w.getApplicationContext(), pBeepId);
+        countdownField = (TextView) pAct.findViewById(R.id.countdown);
+        mp = MediaPlayer.create(pAct.getApplicationContext(), pBeepId);
         imageId = pImageId;
-        actionLight = (ImageView) w.findViewById(R.id.action_light);
+        actionLight = (ImageView) pAct.findViewById(R.id.action_light);
     }
 
     @Override
     public void onTick(long millisUntilFinished) {
         int seconds = Math.round(millisUntilFinished * 0.001f);
+        countdownField.setText(formatCountdown(seconds));
         if (seconds < 10) {
             countdownField.setText("00" + String.valueOf(seconds));
         } else if (seconds < 100) {
@@ -47,5 +48,15 @@ public abstract class AbstractCountdown extends CountDownTimer {
         beepDone = false;
         actionLight.setImageResource(imageId);
         start();
+    }
+
+    public static String formatCountdown(int pSeconds) {
+        if (pSeconds < 10) {
+            return "00" + String.valueOf(pSeconds);
+        } else if (pSeconds < 100) {
+            return "0" + String.valueOf(pSeconds);
+        } else {
+            return String.valueOf(pSeconds);
+        }
     }
 }

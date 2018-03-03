@@ -6,54 +6,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:parentActivityName="ouch.ouchworkout.WorkoutAct"
-    tools:context="ouch.ouchworkout.ExecutingNextExerciseAct">
+    tools:context="ouch.ouchworkout.activities.ExecutingExerciseAct">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/action_light"
-            android:layout_width="70dp"
+            android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="0dp"
             android:layout_weight="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/action" />
+            app:srcCompat="@drawable/rest"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="7dp" />
 
         <Button
             android:id="@+id/done_button"
-            android:layout_width="50dp"
-            android:layout_height="34dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_weight="0.25"
-            android:background="?attr/colorButtonNormal"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="120dp"
+            android:layout_weight="1"
             android:text="done"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/action_light" />
-
+            tools:layout_editor_absoluteY="6dp" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/countdown"
-        android:layout_width="100dp"
+        android:layout_width="92dp"
         android:layout_height="60dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
         android:layout_weight="1"
         android:text="000"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="50sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -62,7 +55,8 @@
     <ImageView
         android:id="@+id/exercise_img"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_height="213dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exercise_name"
@@ -71,9 +65,9 @@
     <TextView
         android:id="@+id/exercise_name"
         android:layout_width="wrap_content"
-        android:layout_height="38dp"
+        android:layout_height="31dp"
         android:text="Ouch Workout"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -144,7 +138,7 @@
                     android:layout_height="39dp"
                     android:text="Rep#"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                    app:layout_constraintEnd_toStartOf="@+id/rep_nb"
+                    app:layout_constraintEnd_toStartOf="@+id/after_rep_nb"
                     tools:layout_editor_absoluteY="386dp" />
 
                 <TextView
@@ -190,7 +184,7 @@
         style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
         android:layout_width="292dp"
         android:layout_height="21dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

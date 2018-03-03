@@ -1,5 +1,6 @@
-package ouch.ouchworkout;
+package ouch.ouchworkout.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,12 +13,17 @@ import android.widget.TextView;
 import java.util.LinkedList;
 import java.util.List;
 
+import ouch.ouchworkout.R;
+import ouch.ouchworkout.Workout;
+
 public class ExerciseSelectionAct extends AppCompatActivity {
     private List<String> removeExercises = new LinkedList<>();
+    private Activity me;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        me = this;
         setContentView(R.layout.activity_exercise_selection);
         // Configure the button
         Button doneButton = (Button) findViewById(R.id.select_exercise_button);
@@ -45,9 +51,9 @@ public class ExerciseSelectionAct extends AppCompatActivity {
                     Intent intent = new Intent(v.getContext(), WorkoutAct.class);
                     startActivity(intent);
                 } else {
-                    // Display the workout
-                    Intent intent = new Intent(v.getContext(), ExecutingNextExerciseAct.class);
-                    startActivity(intent);
+                    // Start the workout
+                    w.selectNextExercise();
+                    w.resumeWorkout(me);
                 }
             }
         });

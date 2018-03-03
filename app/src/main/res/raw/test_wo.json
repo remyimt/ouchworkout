@@ -1,11 +1,10 @@
 {
-  "warning": "both action and rest values must be greater than 4 to play beeps coherently",
   "name": "Test Workout",
   "workout": [
     {
       "name": "First Exercise",
       "img": "chest_stretch",
-      "set_nb": 1,
+      "set_nb": 2,
       "rep_nb": 5,
       "load_kg": 20,
       "action_sec": 0,

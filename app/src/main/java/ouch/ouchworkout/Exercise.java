@@ -1,26 +1,25 @@
 package ouch.ouchworkout;
 
+import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import ouch.ouchworkout.countdown.AbstractCountdown;
+
 public class Exercise {
-    private final String name, pictureName;
-    private final Workout workout;
-    private final int actionTime, restTime, afterTime;
-    private final int setNb, repNb, loadKg, lengthSeconds;
-    private final boolean doneButtonRequired;
-    private int currentSetNb;
+    private final String name;
+    private final String pictureName;
+    private final int restTime, afterTime, lengthSeconds;
+    private int actionTime, setNb, repNb, loadKg, currentSetNb;
 
     public Exercise(Workout pWorkout, String pExerciseName, String pImageName, int pSetNb,
                     int pRepNb, int pLoad, int pActionTime, int pRestTime, int pAfterTime) {
-        workout = pWorkout;
         name = pExerciseName;
         // If actionTime = 0 then add 'done' button to finish the set
         actionTime = pActionTime;
-        doneButtonRequired = actionTime == 0;
         restTime = pRestTime;
         afterTime = pAfterTime;
         currentSetNb = pSetNb;
@@ -39,12 +38,16 @@ public class Exercise {
         return name;
     }
 
-    public boolean isDoneButtonRequired() {
-        return doneButtonRequired;
+    public int getSetNb() {
+        return setNb;
     }
 
-    public boolean isStarted() {
-        return setNb != currentSetNb;
+    public int getRepNb() {
+        return repNb;
+    }
+
+    public int getLoadKg() {
+        return loadKg;
     }
 
     public int getCurrentSetNb() {
@@ -67,45 +70,86 @@ public class Exercise {
         return afterTime;
     }
 
-    public void decreaseSetNb() {
+    public boolean isDoneButtonRequired() {
+        return actionTime == 0;
+    }
+
+    public boolean isStarted() {
+        return setNb != currentSetNb;
+    }
+
+    public void display(Activity pAct, int pNameId, int pSetNbId, int pRepNbId,
+                        int pImageId, int pLoadContainerId) {
+        // Display the name of the exercise
+        TextView nameField = (TextView) pAct.findViewById(pNameId);
+        nameField.setText(name);
+        // Display the image of the exercise
+        ImageView setImage = (ImageView) pAct.findViewById(pImageId);
+        setImage.setImageResource(pAct.getResources().getIdentifier(
+                pictureName, "drawable", pAct.getPackageName()));
+        // Display the number of sets
+        TextView setNbField = (TextView) pAct.findViewById(pSetNbId);
+        setNbField.setText(String.valueOf(currentSetNb));
+        // Display the number of reps
+        TextView repNbField = (TextView) pAct.findViewById(pRepNbId);
+        repNbField.setText(String.valueOf(repNb));
+        // Display the load of the exercise
+        LinearLayout loadContainer = (LinearLayout) pAct.findViewById(pLoadContainerId);
+        if (loadKg > 0) {
+            loadContainer.setVisibility(View.VISIBLE);
+            ((TextView) loadContainer.getChildAt(1)).setText(String.valueOf(loadKg));
+        } else {
+            loadContainer.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void shortDisplay(Activity pAct, int pNameId, int pSetNbId, int pRepNbId,
+                             int pLoadId, int pActionTimeId) {
+        // Display the name of the exercise
+        TextView nameField = (TextView) pAct.findViewById(pNameId);
+        nameField.setText(name);
+        // Display the number of sets
+        TextView setNbField = (TextView) pAct.findViewById(pSetNbId);
+        setNbField.setText(String.valueOf(setNb));
+        // Display the number of reps
+        TextView repNbField = (TextView) pAct.findViewById(pRepNbId);
+        repNbField.setText(String.valueOf(repNb));
+        // Display the load
+        TextView loadField = (TextView) pAct.findViewById(pLoadId);
+        loadField.setText(String.valueOf(loadKg));
+        // Display the action time
+        TextView timeField = (TextView) pAct.findViewById(pActionTimeId);
+        timeField.setText(String.valueOf(actionTime));
+    }
+
+    public void decreaseSetNb(Activity pAct) {
         currentSetNb--;
         // Display the number of sets
-        TextView setNbField = (TextView) workout.findViewById(R.id.set_nb);
+        TextView setNbField = (TextView) pAct.findViewById(R.id.set_nb);
         setNbField.setText(String.valueOf(currentSetNb));
     }
 
-    public void display() {
-        // Display the name of the exercise
-        final TextView nameField = (TextView) workout.findViewById(R.id.exercise_name);
-        nameField.setText(name);
-        // Display the image of the exercise
-        ImageView setImage = (ImageView) workout.findViewById(R.id.exercise_img);
-        setImage.setImageResource(workout.findDrawableByName(pictureName));
-        // Hide/show the done button
-        Button doneButton = (Button) workout.findViewById(R.id.done_button);
-        if (doneButtonRequired) {
-            doneButton.setVisibility(View.VISIBLE);
-        } else {
-            doneButton.setVisibility(View.INVISIBLE);
-        }
-        // Display the number of sets
-        TextView setNbField = (TextView) workout.findViewById(R.id.set_nb);
-        setNbField.setText(String.valueOf(currentSetNb));
-        // Display the number of reps
-        TextView repNbField = (TextView) workout.findViewById(R.id.rep_nb);
-        repNbField.setText(String.valueOf(repNb));
-        // Display the load of the exercise
-        if (loadKg > 0) {
-            LinearLayout loadContainer = (LinearLayout) workout.findViewById(R.id.load_container);
-            loadContainer.setVisibility(View.VISIBLE);
-            TextView loadField = (TextView) workout.findViewById(R.id.load_kg);
-            loadField.setText(String.valueOf(loadKg));
-        } else {
-            LinearLayout loadContainer = (LinearLayout) workout.findViewById(R.id.load_container);
-            loadContainer.setVisibility(View.INVISIBLE);
-        }
-        // Display the countdown light
-        ImageView actionLight = (ImageView) workout.findViewById(R.id.action_light);
-        actionLight.setImageResource(R.drawable.rest);
+    public void reviewModification(int pSetNb, int pRepNb, int pLoad, int pActionTime) {
+        setNb = pSetNb;
+        repNb = pRepNb;
+        loadKg = pLoad;
+        actionTime = pActionTime;
+        Workout.getWorkout().modified();
+    }
+
+    public String toJSON() {
+        StringBuilder json = new StringBuilder();
+        String spaces = "    ";
+        json.append(spaces + "{\n");
+        json.append(spaces + "  \"name\": \"" + name + "\",\n");
+        json.append(spaces + "  \"img\": \"" + pictureName + "\",\n");
+        json.append(spaces + "  \"set_nb\":" + setNb + ",\n");
+        json.append(spaces + "  \"rep_nb\":" + repNb + ",\n");
+        json.append(spaces + "  \"load_kg\":" + loadKg + ",\n");
+        json.append(spaces + "  \"action_sec\":" + actionTime + ",\n");
+        json.append(spaces + "  \"rest_sec\":" + restTime + ",\n");
+        json.append(spaces + "  \"after_sec\":" + actionTime + "\n");
+        json.append(spaces + "}");
+        return json.toString();
     }
 }
