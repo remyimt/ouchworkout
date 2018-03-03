@@ -20,7 +20,7 @@
         android:id="@+id/completed_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="36dp"
         android:text="Ouch Workout"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,5 +60,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/completed_name"
         app:srcCompat="@drawable/completed" />
+
+    <TextView
+        android:id="@+id/incomplete_text"
+        android:layout_width="174dp"
+        android:layout_height="wrap_content"
+        android:text="WARNING: Some exercises have been removed from the original workout!"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/save_workout" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,7 @@
 package ouch.ouchworkout.activities;
 
 import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +11,10 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import ouch.ouchworkout.R;
@@ -25,11 +28,11 @@ public class CompletedWorkoutAct extends AppCompatActivity {
         setContentView(R.layout.activity_completed_workout);
         // Display workout information
         final Workout workout = Workout.getWorkout();
-        TextView nameField = (TextView)findViewById(R.id.completed_name);
+        TextView nameField = (TextView) findViewById(R.id.completed_name);
         nameField.setText(workout.getName());
-        workout.updateProgressBar((ProgressBar)findViewById(R.id.completed_bar));
+        workout.updateProgressBar((ProgressBar) findViewById(R.id.completed_bar));
         // Configure the review button
-        Button review = (Button)findViewById(R.id.completed_review);
+        Button review = (Button) findViewById(R.id.completed_review);
         review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,16 +41,22 @@ public class CompletedWorkoutAct extends AppCompatActivity {
             }
         });
         // Configure the save workout button
-        Button save = (Button)findViewById(R.id.save_workout);
-        if(workout.isModified()) {
+        Button save = (Button) findViewById(R.id.save_workout);
+        TextView incomplete = (TextView)findViewById(R.id.incomplete_text);
+        if (workout.isModified()) {
+            if(!workout.isIncomplete()){
+                incomplete.setVisibility(View.INVISIBLE);
+            }
             save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     try {
-                        FileOutputStream file = openFileOutput(workout.getFilename(), MODE_PRIVATE);
-                        file.write(workout.toJSON().getBytes());
-                        file.flush();
-                        file.close();
+                        File external = new File(getExternalFilesDir(null),
+                                workout.getFilename() + ".json");
+                        FileOutputStream output = new FileOutputStream(external);
+                        output.write(workout.toJSON().getBytes());
+                        output.flush();
+                        output.close();
                         Intent intent = new Intent(view.getContext(), WorkoutAct.class);
                         startActivity(intent);
                     } catch (FileNotFoundException e) {
@@ -58,6 +67,7 @@ public class CompletedWorkoutAct extends AppCompatActivity {
                 }
             });
         } else {
+            incomplete.setVisibility(View.INVISIBLE);
             save.setVisibility(View.INVISIBLE);
         }
     }

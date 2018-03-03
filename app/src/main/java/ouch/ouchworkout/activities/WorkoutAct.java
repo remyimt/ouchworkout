@@ -13,6 +13,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -74,9 +76,11 @@ public class WorkoutAct extends AppCompatActivity {
             try {
                 if (f.getName().endsWith("_wo")) {
                     InputStream is;
-                    if (getFileStreamPath(f.getName()).exists()) {
+                    File external = new File(getExternalFilesDir(null),
+                            f.getName() + ".json");
+                    if (external.exists()) {
                         // Load the modified workout
-                        is = openFileInput(f.getName());
+                        is = new FileInputStream(external);
                     } else {
                         // Load the original workout
                         is = getResources().openRawResource(f.getInt(f));

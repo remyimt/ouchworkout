@@ -28,7 +28,7 @@ public class Workout {
     private final ExerciseSelector selector;
     private final int resumeTime = 10;
     private Activity activity;
-    private boolean actionPhase, running, modified;
+    private boolean actionPhase, running, modified, incomplete;
     private AbstractCountdown resumeCd, restCd, actionCd;
 
     private Workout(String pFile, String pName, JSONArray pDesc) throws JSONException {
@@ -38,6 +38,7 @@ public class Workout {
         actionPhase = false;
         running = false;
         modified = false;
+        incomplete = false;
         for (int i = 0; i < pDesc.length(); i++) {
             JSONObject info = pDesc.getJSONObject(i);
             Exercise exe = new Exercise(this, info.getString("name"),
@@ -80,6 +81,10 @@ public class Workout {
 
     public boolean isActionPhase() {
         return actionPhase;
+    }
+
+    public boolean isIncomplete() {
+        return incomplete;
     }
 
     public boolean isModified() {
@@ -208,7 +213,10 @@ public class Workout {
     }
 
     public void removeExerciseFromNames(List<String> pNames) {
-        selector.removeExerciseFromNames(pNames);
+        if (!pNames.isEmpty()) {
+            incomplete = true;
+            selector.removeExerciseFromNames(pNames);
+        }
     }
 
     public Exercise getLastCompletedExercise() {
