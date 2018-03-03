@@ -63,8 +63,8 @@ public class Settings {
     public void saveSettings(OutputStream pFile) {
         StringBuilder buffer = new StringBuilder();
         buffer.append("{\n");
-        buffer.append("  \"" + WITH_SOUND_KEY + "\": " + withSound+",\n");
-        buffer.append("  \"" + BEEP_TIME_SECONDS_KEY + "\": " + beepTimeSeconds+"\n");
+        buffer.append("  \"" + WITH_SOUND_KEY + "\": " + withSound + ",\n");
+        buffer.append("  \"" + BEEP_TIME_SECONDS_KEY + "\": " + beepTimeSeconds + "\n");
         buffer.append("}\n");
         try {
             pFile.write(buffer.toString().getBytes());

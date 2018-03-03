@@ -2,12 +2,9 @@ package ouch.ouchworkout;
 
 import android.app.Activity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import ouch.ouchworkout.countdown.AbstractCountdown;
 
 public class Exercise {
     private final String name;

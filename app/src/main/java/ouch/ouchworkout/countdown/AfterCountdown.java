@@ -9,7 +9,7 @@ import ouch.ouchworkout.R;
 import ouch.ouchworkout.Settings;
 import ouch.ouchworkout.Workout;
 
-public class AfterCountdown extends CountDownTimer{
+public class AfterCountdown extends CountDownTimer {
     private final Activity activity;
     private final TextView countdownField;
     private final MediaPlayer mp;

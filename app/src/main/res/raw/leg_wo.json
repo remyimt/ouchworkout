@@ -1,59 +1,66 @@
 {
   "warning": "both action and rest values must be greater than 4 to play beeps coherently",
   "name": "Leg Workout",
-  "workout": [{
-    "name": "Squat",
-    "img": "squat",
-    "set_nb": 4,
-    "rep_nb": 20,
-    "load_kg": 0,
-    "action_sec": 30,
-    "rest_sec": 30,
-    "after_sec": 90
-  }, {
-    "name": "One Leg Squat",
-    "img": "one_leg_squat",
-    "set_nb": 6,
-    "rep_nb": 14,
-    "load_kg": 0,
-    "action_sec": 60,
-    "rest_sec": 45,
-    "after_sec": 90
-  }, {
-    "name": "Side Squat",
-    "img": "side_squat",
-    "set_nb": 4,
-    "rep_nb": 14,
-    "load_kg": 0,
-    "action_sec": 40,
-    "rest_sec": 30,
-    "after_sec": 90
-  }, {
-    "name": "Wall Sit",
-    "img": "wall_sit",
-    "set_nb": 3,
-    "rep_nb": 1,
-    "load_kg": 0,
-    "action_sec": 40,
-    "rest_sec": 30,
-    "after_sec": 90
-  }, {
-    "name": "Jump Squat",
-    "img": "jump_squat",
-    "set_nb": 3,
-    "rep_nb": 12,
-    "load_kg": 0,
-    "action_sec": 20,
-    "rest_sec": 30,
-    "after_sec": 90
-  }, {
-    "name": "Burpee",
-    "img": "burpee",
-    "set_nb": 2,
-    "rep_nb": 8,
-    "load_kg": 0,
-    "action_sec": 35,
-    "rest_sec": 30,
-    "after_sec": 90
-  }]
+  "workout": [
+    {
+      "name": "Squat",
+      "img": "squat",
+      "set_nb": 4,
+      "rep_nb": 20,
+      "load_kg": 0,
+      "action_sec": 30,
+      "rest_sec": 30,
+      "after_sec": 90
+    },
+    {
+      "name": "One Leg Squat",
+      "img": "one_leg_squat",
+      "set_nb": 6,
+      "rep_nb": 14,
+      "load_kg": 0,
+      "action_sec": 60,
+      "rest_sec": 45,
+      "after_sec": 90
+    },
+    {
+      "name": "Side Squat",
+      "img": "side_squat",
+      "set_nb": 4,
+      "rep_nb": 14,
+      "load_kg": 0,
+      "action_sec": 40,
+      "rest_sec": 30,
+      "after_sec": 90
+    },
+    {
+      "name": "Wall Sit",
+      "img": "wall_sit",
+      "set_nb": 3,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 40,
+      "rest_sec": 30,
+      "after_sec": 90
+    },
+    {
+      "name": "Jump Squat",
+      "img": "jump_squat",
+      "set_nb": 3,
+      "rep_nb": 12,
+      "load_kg": 0,
+      "action_sec": 20,
+      "rest_sec": 30,
+      "after_sec": 90
+    },
+    {
+      "name": "Burpee",
+      "img": "burpee",
+      "set_nb": 2,
+      "rep_nb": 8,
+      "load_kg": 0,
+      "action_sec": 35,
+      "rest_sec": 30,
+      "after_sec": 90
+    }
+  ]
 }

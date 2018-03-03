@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import ouch.ouchworkout.R;
 import ouch.ouchworkout.Settings;
-import ouch.ouchworkout.Workout;
 
 public abstract class AbstractCountdown extends CountDownTimer {
     protected final TextView countdownField;

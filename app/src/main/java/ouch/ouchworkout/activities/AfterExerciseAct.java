@@ -1,16 +1,13 @@
 package ouch.ouchworkout.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import ouch.ouchworkout.Exercise;
 import ouch.ouchworkout.R;
@@ -31,7 +28,7 @@ public class AfterExerciseAct extends AppCompatActivity {
                 R.id.after_img, R.id.after_load_container);
         workout.updateProgressBar((ProgressBar) findViewById(R.id.after_workout_bar));
         // Configure the review button
-        Button reviewButton = (Button)findViewById(R.id.review_button);
+        Button reviewButton = (Button) findViewById(R.id.review_button);
         reviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

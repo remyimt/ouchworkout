@@ -1,20 +1,16 @@
 package ouch.ouchworkout.activities;
 
 import android.content.Intent;
-import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import ouch.ouchworkout.R;
@@ -42,9 +38,9 @@ public class CompletedWorkoutAct extends AppCompatActivity {
         });
         // Configure the save workout button
         Button save = (Button) findViewById(R.id.save_workout);
-        TextView incomplete = (TextView)findViewById(R.id.incomplete_text);
+        TextView incomplete = (TextView) findViewById(R.id.incomplete_text);
         if (workout.isModified()) {
-            if(!workout.isIncomplete()){
+            if (!workout.isIncomplete()) {
                 incomplete.setVisibility(View.INVISIBLE);
             }
             save.setOnClickListener(new View.OnClickListener() {

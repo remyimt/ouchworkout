@@ -1,140 +1,156 @@
 {
   "warning": "both action and rest values must be greater than 4 to play beeps coherently",
   "name": "Stretching 1",
-  "workout": [{
-    "name": "Chest Stretch",
-    "img": "chest_stretch",
-    "set_nb": 1,
-    "rep_nb": 1,
-    "load_kg": 0,
-    "action_sec": 60,
-    "rest_sec": 5,
-    "after_sec": 20
-  }, {
-    "name": "Shoulder Stretch 2",
-    "img": "shoulder_stretch_2",
-    "set_nb": 1,
-    "rep_nb": 1,
-    "load_kg": 0,
-    "action_sec": 60,
-    "rest_sec": 5,
-    "after_sec": 20
-  }, {
-    "name": "Triceps Stretch",
-    "img": "triceps_stretch",
-    "set_nb": 2,
-    "rep_nb": 1,
-    "load_kg": 0,
-    "action_sec": 40,
-    "rest_sec": 10,
-    "after_sec": 20
-  }, {
-    "name": "Forearm Stretch",
-    "img": "forearm_stretch",
-    "set_nb": 1,
-    "rep_nb": 1,
-    "load_kg": 0,
-    "action_sec": 60,
-    "rest_sec": 5,
-    "after_sec": 20
-  }, {
-    "name": "Cobra",
-    "img": "cobra",
-    "set_nb": 1,
-    "rep_nb": 1,
-    "load_kg": 0,
-    "action_sec": 45,
-    "rest_sec": 5,
-    "after_sec": 20
-  }, {
-    "name": "Warrior",
-    "img": "warrior",
-    "set_nb": 2,
-    "rep_nb": 1,
-    "load_kg": 0,
-    "action_sec": 60,
-    "rest_sec": 10,
-    "after_sec": 20
-  }, {
-    "name": "Neck Stretch",
-    "img": "neck_stretch",
-    "set_nb": 1,
-    "rep_nb": 1,
-    "load_kg": 0,
-    "action_sec": 40,
-    "rest_sec": 5,
-    "after_sec": 20
-  }, {
-    "name": "Bound Angle",
-    "img": "bound_angle",
-    "set_nb": 1,
-    "rep_nb": 1,
-    "load_kg": 0,
-    "action_sec": 60,
-    "rest_sec": 5,
-    "after_sec": 20
-  }, {
-    "name": "Seated Wide Angle",
-    "img": "seated_wide_angle",
-    "set_nb": 1,
-    "rep_nb": 1,
-    "load_kg": 0,
-    "action_sec": 45,
-    "rest_sec": 5,
-    "after_sec": 20
-  }, {
-    "name": "Seated Wide Angle One Leg",
-    "img": "seated_wide_angle_one_leg",
-    "set_nb": 2,
-    "rep_nb": 1,
-    "load_kg": 0,
-    "action_sec": 45,
-    "rest_sec": 10,
-    "after_sec": 20
-  }, {
-    "name": "One Leg Stretch 2",
-    "img": "one_leg_stretch_2",
-    "set_nb": 2,
-    "rep_nb": 1,
-    "load_kg": 0,
-    "action_sec": 60,
-    "rest_sec": 10,
-    "after_sec": 20
-  }, {
-    "name": "One Leg Stretch",
-    "img": "one_leg_stretch",
-    "set_nb": 2,
-    "rep_nb": 1,
-    "load_kg": 0,
-    "action_sec": 60,
-    "rest_sec": 10,
-    "after_sec": 20
-  }, {
-    "name": "Reclining Hero",
-    "img": "reclining_hero",
-    "set_nb": 1,
-    "rep_nb": 1,
-    "load_kg": 0,
-    "action_sec": 60,
-    "rest_sec": 5,
-    "after_sec": 20
-  }, {
-    "name": "Lord of Dance",
-    "img": "lord_of_dance",
-    "set_nb": 2,
-    "rep_nb": 1,
-    "load_kg": 0,
-    "action_sec": 40,
-    "rest_sec": 10,
-    "after_sec": 20
-  }, {
-    "name": "Plow",
-    "img": "plow",
-    "set_nb": 1,
-    "rep_nb": 1,
-    "load_kg": 0,
-    "action_sec": 60,
-    "rest_sec": 5,
-    "after_sec": 20
-  }]
+  "workout": [
+    {
+      "name": "Chest Stretch",
+      "img": "chest_stretch",
+      "set_nb": 1,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 60,
+      "rest_sec": 5,
+      "after_sec": 20
+    },
+    {
+      "name": "Shoulder Stretch 2",
+      "img": "shoulder_stretch_2",
+      "set_nb": 1,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 60,
+      "rest_sec": 5,
+      "after_sec": 20
+    },
+    {
+      "name": "Triceps Stretch",
+      "img": "triceps_stretch",
+      "set_nb": 2,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 40,
+      "rest_sec": 10,
+      "after_sec": 20
+    },
+    {
+      "name": "Forearm Stretch",
+      "img": "forearm_stretch",
+      "set_nb": 1,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 60,
+      "rest_sec": 5,
+      "after_sec": 20
+    },
+    {
+      "name": "Cobra",
+      "img": "cobra",
+      "set_nb": 1,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 45,
+      "rest_sec": 5,
+      "after_sec": 20
+    },
+    {
+      "name": "Warrior",
+      "img": "warrior",
+      "set_nb": 2,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 60,
+      "rest_sec": 10,
+      "after_sec": 20
+    },
+    {
+      "name": "Neck Stretch",
+      "img": "neck_stretch",
+      "set_nb": 1,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 40,
+      "rest_sec": 5,
+      "after_sec": 20
+    },
+    {
+      "name": "Bound Angle",
+      "img": "bound_angle",
+      "set_nb": 1,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 60,
+      "rest_sec": 5,
+      "after_sec": 20
+    },
+    {
+      "name": "Seated Wide Angle",
+      "img": "seated_wide_angle",
+      "set_nb": 1,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 45,
+      "rest_sec": 5,
+      "after_sec": 20
+    },
+    {
+      "name": "Seated Wide Angle One Leg",
+      "img": "seated_wide_angle_one_leg",
+      "set_nb": 2,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 45,
+      "rest_sec": 10,
+      "after_sec": 20
+    },
+    {
+      "name": "One Leg Stretch 2",
+      "img": "one_leg_stretch_2",
+      "set_nb": 2,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 60,
+      "rest_sec": 10,
+      "after_sec": 20
+    },
+    {
+      "name": "One Leg Stretch",
+      "img": "one_leg_stretch",
+      "set_nb": 2,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 60,
+      "rest_sec": 10,
+      "after_sec": 20
+    },
+    {
+      "name": "Reclining Hero",
+      "img": "reclining_hero",
+      "set_nb": 1,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 60,
+      "rest_sec": 5,
+      "after_sec": 20
+    },
+    {
+      "name": "Lord of Dance",
+      "img": "lord_of_dance",
+      "set_nb": 2,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 40,
+      "rest_sec": 10,
+      "after_sec": 20
+    },
+    {
+      "name": "Plow",
+      "img": "plow",
+      "set_nb": 1,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 60,
+      "rest_sec": 5,
+      "after_sec": 20
+    }
+  ]
 }

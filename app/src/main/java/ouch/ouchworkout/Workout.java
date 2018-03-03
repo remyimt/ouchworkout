@@ -19,8 +19,8 @@ import ouch.ouchworkout.activities.CompletedWorkoutAct;
 import ouch.ouchworkout.activities.ExecutingExerciseAct;
 import ouch.ouchworkout.countdown.AbstractCountdown;
 import ouch.ouchworkout.countdown.ActionCountdown;
-import ouch.ouchworkout.countdown.ResumeCountdown;
 import ouch.ouchworkout.countdown.RestCountdown;
+import ouch.ouchworkout.countdown.ResumeCountdown;
 
 public class Workout {
     private static Workout workout = null;
