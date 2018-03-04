@@ -62,7 +62,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.WorkoutAct" />
         </activity>
-        <activity android:name=".activities.ExercisePickerAct"></activity>
+        <activity
+            android:name=".activities.ExercisePickerAct"
+            android:noHistory="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.WorkoutAct" />
+        </activity>
+        <activity
+            android:name=".activities.WorkoutStartupAct"
+            android:noHistory="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.WorkoutAct" />
+        </activity>
     </application>
-
 </manifest>

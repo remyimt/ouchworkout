@@ -51,8 +51,9 @@ public class ExerciseSelectionAct extends AppCompatActivity {
                     Intent intent = new Intent(v.getContext(), WorkoutAct.class);
                     startActivity(intent);
                 } else {
-                    // Start the workout
-                    w.selectNextExercise(me);
+                    // Display workout information
+                    Intent intent = new Intent(v.getContext(), WorkoutStartupAct.class);
+                    startActivity(intent);
                 }
             }
         });

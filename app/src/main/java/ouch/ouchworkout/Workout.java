@@ -249,4 +249,12 @@ public class Workout {
     public Exercise getCurrentExercise() {
         return selector.getCurrentExercise();
     }
+
+    public int getLengthMinutes() {
+        return selector.getWorkoutLengthSeconds() / 60;
+    }
+
+    public int getLengthSeconds() {
+        return selector.getWorkoutLengthSeconds() % 60;
+    }
 }
