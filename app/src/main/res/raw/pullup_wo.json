@@ -13,12 +13,12 @@
       "after_sec": 90
     },
     {
-      "name": "C/W Switch Pull Up",
-      "img": "archer_pull_up",
+      "name": "Wide Pull Up",
+      "img": "wide_pull_up",
       "set_nb": 6,
-      "rep_nb": 8,
+      "rep_nb": 6,
       "load_kg": 0,
-      "action_sec": 18,
+      "action_sec": 16,
       "rest_sec": 60,
       "after_sec": 120
     },

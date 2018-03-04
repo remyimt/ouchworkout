@@ -1,0 +1,105 @@
+{
+  "name": "With Machines",
+  "workout": [
+    {
+      "name": "Shoulder Press",
+      "img": "shoulder_press",
+      "set_nb": 6,
+      "rep_nb": 10,
+      "load_kg": 40,
+      "action_sec": 40,
+      "rest_sec": 60,
+      "after_sec": 90
+    },
+    {
+      "name": "Pull Up",
+      "img": "pull_up",
+      "set_nb": 5,
+      "rep_nb": 6,
+      "load_kg": 0,
+      "action_sec": 20,
+      "rest_sec": 60,
+      "after_sec": 90
+    },
+    {
+      "name": "Upper Back",
+      "img": "upper_back",
+      "set_nb": 6,
+      "rep_nb": 10,
+      "load_kg": 40,
+      "action_sec": 40,
+      "rest_sec": 60,
+      "after_sec": 90
+    },
+    {
+      "name": "Chest Press",
+      "img": "chest_press",
+      "set_nb": 6,
+      "rep_nb": 10,
+      "load_kg": 40,
+      "action_sec": 40,
+      "rest_sec": 60,
+      "after_sec": 120
+    },
+    {
+      "name": "Chin Up",
+      "img": "chin_up",
+      "set_nb": 5,
+      "rep_nb": 8,
+      "load_kg": 0,
+      "action_sec": 20,
+      "rest_sec": 60,
+      "after_sec": 90
+    },
+    {
+      "name": "Leg Press",
+      "img": "Leg Pres",
+      "set_nb": 4,
+      "rep_nb": 10,
+      "load_kg": 90,
+      "action_sec": 40,
+      "rest_sec": 45,
+      "after_sec": 90
+    },
+    {
+      "name": "Tirage Haut",
+      "img": "tirage_haut",
+      "set_nb": 6,
+      "rep_nb": 10,
+      "load_kg": 45,
+      "action_sec": 40,
+      "rest_sec": 60,
+      "after_sec": 90
+    },
+    {
+      "name": "Upper Back",
+      "img": "upper_back",
+      "set_nb": 6,
+      "rep_nb": 10,
+      "load_kg": 40,
+      "action_sec": 40,
+      "rest_sec": 60,
+      "after_sec": 120
+    },
+    {
+      "name": "Close Pull Up",
+      "img": "close_pull_up",
+      "set_nb": 5,
+      "rep_nb": 6,
+      "load_kg": 0,
+      "action_sec": 20,
+      "rest_sec": 60,
+      "after_sec": 90
+    },
+    {
+      "name": "Triceps",
+      "img": "k_triceps",
+      "set_nb": 6,
+      "rep_nb": 10,
+      "load_kg": 0,
+      "action_sec": 40,
+      "rest_sec": 30,
+      "after_sec": 120
+    }
+  ]
+}
