@@ -17,6 +17,7 @@ import java.util.List;
 import ouch.ouchworkout.activities.AfterExerciseAct;
 import ouch.ouchworkout.activities.CompletedWorkoutAct;
 import ouch.ouchworkout.activities.ExecutingExerciseAct;
+import ouch.ouchworkout.activities.ExercisePickerAct;
 import ouch.ouchworkout.countdown.AbstractCountdown;
 import ouch.ouchworkout.countdown.ActionCountdown;
 import ouch.ouchworkout.countdown.RestCountdown;
@@ -169,10 +170,12 @@ public class Workout {
         } else {
             // The exercise is completed
             selector.completeExercise(exe);
-            if (selector.selectNextExercise()) {
-                Intent intent = new Intent(activity.getApplicationContext(), AfterExerciseAct.class);
-                activity.startActivity(intent);
+            // Start the next exercise
+            if (selector.getExerciseNames().size() > 0) {
+                // There are other exercises
+                selectNextExercise();
             } else {
+                // No more exercise
                 Intent intent = new Intent(activity.getApplicationContext(), CompletedWorkoutAct.class);
                 activity.startActivity(intent);
             }
@@ -199,12 +202,32 @@ public class Workout {
         return exe != null && exe.getCurrentSetNb() > 0;
     }
 
-    public boolean selectNextExercise() {
-        return selector.selectNextExercise();
+    public void selectNextExercise(Activity pAct) {
+        if (Settings.getSettings().isManualSelection() && getExerciseNames().size() > 1) {
+            Intent intent = new Intent(pAct.getApplicationContext(), ExercisePickerAct.class);
+            pAct.startActivity(intent);
+        } else {
+            selector.selectNextExercise();
+            if (running) {
+                Intent intent = new Intent(pAct.getApplicationContext(), AfterExerciseAct.class);
+                pAct.startActivity(intent);
+            } else {
+                resumeWorkout(pAct);
+            }
+        }
+    }
+
+    public void selectNextExercise() {
+        selectNextExercise(activity);
+    }
+
+    public void setCurrentExerciseFromName(String pName) {
+        selector.setCurrentExerciseFromName(pName);
     }
 
     public boolean isWorkoutStarted() {
-        return selector.completedExerciseNb() != 0 || selector.getCurrentExercise().isStarted();
+        return selector.completedExerciseNb() != 0 ||
+                (selector.getCurrentExercise() != null && selector.getCurrentExercise().isStarted());
     }
 
 

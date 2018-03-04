@@ -52,8 +52,7 @@ public class ExerciseSelectionAct extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     // Start the workout
-                    w.selectNextExercise();
-                    w.resumeWorkout(me);
+                    w.selectNextExercise(me);
                 }
             }
         });

@@ -6,13 +6,23 @@
     android:layout_height="match_parent"
     tools:context="ouch.ouchworkout.activities.WorkoutAct">
 
-    <LinearLayout
-        android:id="@+id/workout_list"
+    <ScrollView
+        android:id="@+id/ScrollView10"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:foregroundGravity="center"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/workout_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foregroundGravity="center"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteY="4dp"></LinearLayout>
+
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>

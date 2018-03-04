@@ -11,7 +11,9 @@ public class Settings {
     private static Settings instance = null;
     private final String WITH_SOUND_KEY = "with_sound";
     private final String BEEP_TIME_SECONDS_KEY = "beep_time_seconds";
+    private final String MANUAL_EXERCISE_SELECTION = "manual_exercise_selection";
     private boolean withSound = false;
+    private boolean manualSelection = false;
     private int beepTimeSeconds = 1;
 
     private Settings() {
@@ -24,6 +26,10 @@ public class Settings {
 
     public boolean isWithSound() {
         return withSound;
+    }
+
+    public boolean isManualSelection() {
+        return manualSelection;
     }
 
     public int getBeepTimeSeconds() {
@@ -43,6 +49,10 @@ public class Settings {
 
     public void setWithSound(boolean pSound) {
         withSound = pSound;
+    }
+
+    public void setManualSelection(boolean pManualSelection) {
+        manualSelection = pManualSelection;
     }
 
     public static void loadSettings(InputStream pFile) {
@@ -65,6 +75,7 @@ public class Settings {
         buffer.append("{\n");
         buffer.append("  \"" + WITH_SOUND_KEY + "\": " + withSound + ",\n");
         buffer.append("  \"" + BEEP_TIME_SECONDS_KEY + "\": " + beepTimeSeconds + "\n");
+        buffer.append("  \"" + MANUAL_EXERCISE_SELECTION + "\": " + manualSelection + "\n");
         buffer.append("}\n");
         try {
             pFile.write(buffer.toString().getBytes());

@@ -40,6 +40,15 @@ public class ExerciseSelector {
         workoutExerciseNb++;
     }
 
+    public void setCurrentExerciseFromName(String pName){
+        current = null;
+        for(Exercise exe: exercises){
+            if(exe.getName().equals(pName)){
+                current = exe;
+            }
+        }
+    }
+
     public void removeExerciseFromNames(List<String> pNames) {
         Iterator<Exercise> it = exercises.iterator();
         while (it.hasNext()) {
@@ -68,12 +77,10 @@ public class ExerciseSelector {
         return isRemoved;
     }
 
-    public boolean selectNextExercise() {
-        if (exercises.isEmpty()) {
-            return false;
-        } else {
+    public void selectNextExercise() {
+        current = null;
+        if (!exercises.isEmpty()) {
             current = exercises.get(0);
-            return true;
         }
     }
 
