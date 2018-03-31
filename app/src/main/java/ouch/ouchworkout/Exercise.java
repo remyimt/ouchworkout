@@ -145,7 +145,7 @@ public class Exercise {
         json.append(spaces + "  \"load_kg\":" + loadKg + ",\n");
         json.append(spaces + "  \"action_sec\":" + actionTime + ",\n");
         json.append(spaces + "  \"rest_sec\":" + restTime + ",\n");
-        json.append(spaces + "  \"after_sec\":" + actionTime + "\n");
+        json.append(spaces + "  \"after_sec\":" + afterTime + "\n");
         json.append(spaces + "}");
         return json.toString();
     }
