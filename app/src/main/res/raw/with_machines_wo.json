@@ -6,30 +6,30 @@
       "img": "shoulder_press",
       "set_nb": 6,
       "rep_nb": 10,
-      "load_kg": 40,
-      "action_sec": 40,
+      "load_kg": 25,
+      "action_sec": 20,
       "rest_sec": 60,
-      "after_sec": 90
+      "after_sec": 60
     },
     {
       "name": "Pull Up",
       "img": "pull_up",
-      "set_nb": 5,
+      "set_nb": 6,
       "rep_nb": 6,
       "load_kg": 0,
-      "action_sec": 20,
+      "action_sec": 12,
       "rest_sec": 60,
-      "after_sec": 90
+      "after_sec": 60
     },
     {
       "name": "Upper Back",
       "img": "upper_back",
       "set_nb": 6,
       "rep_nb": 10,
-      "load_kg": 40,
-      "action_sec": 40,
+      "load_kg": 35,
+      "action_sec": 20,
       "rest_sec": 60,
-      "after_sec": 90
+      "after_sec": 60
     },
     {
       "name": "Chest Press",
@@ -37,59 +37,39 @@
       "set_nb": 6,
       "rep_nb": 10,
       "load_kg": 40,
-      "action_sec": 40,
-      "rest_sec": 60,
-      "after_sec": 120
-    },
-    {
-      "name": "Chin Up",
-      "img": "chin_up",
-      "set_nb": 5,
-      "rep_nb": 8,
-      "load_kg": 0,
       "action_sec": 20,
       "rest_sec": 60,
-      "after_sec": 90
+      "after_sec": 60
     },
     {
       "name": "Leg Press",
-      "img": "Leg Pres",
-      "set_nb": 4,
-      "rep_nb": 10,
-      "load_kg": 90,
-      "action_sec": 40,
-      "rest_sec": 45,
-      "after_sec": 90
-    },
-    {
-      "name": "Tirage Haut",
-      "img": "tirage_haut",
+      "img": "leg_press",
       "set_nb": 6,
       "rep_nb": 10,
-      "load_kg": 45,
-      "action_sec": 40,
+      "load_kg": 90,
+      "action_sec": 30,
       "rest_sec": 60,
-      "after_sec": 90
+      "after_sec": 60
+    },
+    {
+      "name": "Neutral Pull Up",
+      "img": "neutral_pull_up",
+      "set_nb": 6,
+      "rep_nb": 8,
+      "load_kg": 0,
+      "action_sec": 16,
+      "rest_sec": 60,
+      "after_sec": 60
     },
     {
       "name": "Upper Back",
       "img": "upper_back",
       "set_nb": 6,
       "rep_nb": 10,
-      "load_kg": 40,
-      "action_sec": 40,
-      "rest_sec": 60,
-      "after_sec": 120
-    },
-    {
-      "name": "Close Pull Up",
-      "img": "close_pull_up",
-      "set_nb": 5,
-      "rep_nb": 6,
-      "load_kg": 0,
+      "load_kg": 30,
       "action_sec": 20,
       "rest_sec": 60,
-      "after_sec": 90
+      "after_sec": 60
     },
     {
       "name": "Triceps",
@@ -97,9 +77,9 @@
       "set_nb": 6,
       "rep_nb": 10,
       "load_kg": 0,
-      "action_sec": 40,
+      "action_sec": 26,
       "rest_sec": 30,
-      "after_sec": 120
+      "after_sec": 10
     }
   ]
 }
