@@ -74,7 +74,7 @@ public class Settings {
         StringBuilder buffer = new StringBuilder();
         buffer.append("{\n");
         buffer.append("  \"" + WITH_SOUND_KEY + "\": " + withSound + ",\n");
-        buffer.append("  \"" + BEEP_TIME_SECONDS_KEY + "\": " + beepTimeSeconds + "\n");
+        buffer.append("  \"" + BEEP_TIME_SECONDS_KEY + "\": " + beepTimeSeconds + ",\n");
         buffer.append("  \"" + MANUAL_EXERCISE_SELECTION + "\": " + manualSelection + "\n");
         buffer.append("}\n");
         try {
