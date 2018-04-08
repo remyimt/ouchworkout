@@ -1,8 +1,11 @@
 package ouch.ouchworkout;
 
+import android.os.Environment;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -12,6 +15,7 @@ public class Settings {
     private final String WITH_SOUND_KEY = "with_sound";
     private final String BEEP_TIME_SECONDS_KEY = "beep_time_seconds";
     private final String MANUAL_EXERCISE_SELECTION = "manual_exercise_selection";
+    private final String EXTERNAL_DIRECTORY = Environment.DIRECTORY_DOWNLOADS;
     private boolean withSound = false;
     private boolean manualSelection = false;
     private int beepTimeSeconds = 1;
@@ -34,6 +38,13 @@ public class Settings {
 
     public int getBeepTimeSeconds() {
         return beepTimeSeconds;
+    }
+
+    public File getExternalDirectory() {
+        File f = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOWNLOADS), "Workouts");
+        f.mkdirs();
+        return f;
     }
 
     public static Settings getSettings() {

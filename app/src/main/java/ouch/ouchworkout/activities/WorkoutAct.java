@@ -35,11 +35,9 @@ public class WorkoutAct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ouch_workout);
-
         // Load the settings from 'settings.json'
-        String[] myfiles = getFilesDir().list();
         boolean existSettings = false;
-        for (String s : myfiles) {
+        for (String s : getFilesDir().list()) {
             if (s.equals(SettingsAct.SETTINGS_FILE)) {
                 existSettings = true;
             }
@@ -70,28 +68,39 @@ public class WorkoutAct extends AppCompatActivity {
                 w.playPause();
             }
         }
-        // List of existing workouts
-        Field[] fields = R.raw.class.getFields();
-        for (Field f : fields) {
-            try {
-                if (f.getName().endsWith("_wo")) {
-                    InputStream is;
-                    File external = new File(getExternalFilesDir(null),
-                            f.getName() + ".json");
-                    if (external.exists()) {
-                        // Load the modified workout
-                        is = new FileInputStream(external);
-                    } else {
-                        // Load the original workout
-                        is = getResources().openRawResource(f.getInt(f));
-                    }
+        // List existing workouts from the external directory
+        InputStream is;
+        for (File w : Settings.getSettings().getExternalDirectory().listFiles()) {
+            if (w.getName().endsWith("_wo.json")) {
+                try {
+                    is = new FileInputStream(w);
                     byte[] buffer = new byte[is.available()];
                     is.read(buffer);
                     is.close();
                     JSONObject myWorkout = new JSONObject(new String(buffer));
                     name2Description.put(myWorkout.getString("name"),
                             myWorkout.getJSONArray("workout"));
-                    name2File.put(myWorkout.getString("name"), f.getName());
+                    name2File.put(myWorkout.getString("name"), w.getName().
+                            substring(0, w.getName().indexOf('.')));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        // List existing workouts from the internal directory
+        for (Field f : R.raw.class.getFields()) {
+            try {
+                if (f.getName().endsWith("_wo")) {
+                    if (!name2File.containsValue(f.getName())) {
+                        is = getResources().openRawResource(f.getInt(f));
+                        byte[] buffer = new byte[is.available()];
+                        is.read(buffer);
+                        is.close();
+                        JSONObject myWorkout = new JSONObject(new String(buffer));
+                        name2Description.put(myWorkout.getString("name"),
+                                myWorkout.getJSONArray("workout"));
+                        name2File.put(myWorkout.getString("name"), f.getName());
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();

@@ -85,9 +85,13 @@ public class ExerciseSelector {
     }
 
     public String dumpExercises() {
+        List<Exercise> exeList = completed;
+        if(exeList.isEmpty()){
+            exeList = exercises;
+        }
         StringBuilder json = new StringBuilder();
         json.append("  \"workout\": [\n");
-        for (Exercise exe : completed) {
+        for (Exercise exe : exeList) {
             json.append(exe.toJSON() + ",\n");
         }
         json.setLength(json.length() - 2);
