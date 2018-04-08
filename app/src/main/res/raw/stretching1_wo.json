@@ -73,6 +73,16 @@
       "after_sec": 20
     },
     {
+      "name": "Trapezius Stretch",
+      "img": "trapezius_stretch",
+      "set_nb": 2,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 40,
+      "rest_sec": 10,
+      "after_sec": 20
+    },
+    {
       "name": "Bound Angle",
       "img": "bound_angle",
       "set_nb": 1,
@@ -130,16 +140,6 @@
       "load_kg": 0,
       "action_sec": 60,
       "rest_sec": 5,
-      "after_sec": 20
-    },
-    {
-      "name": "Lord of Dance",
-      "img": "lord_of_dance",
-      "set_nb": 2,
-      "rep_nb": 1,
-      "load_kg": 0,
-      "action_sec": 40,
-      "rest_sec": 10,
       "after_sec": 20
     },
     {

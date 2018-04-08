@@ -47,7 +47,7 @@
       "set_nb": 6,
       "rep_nb": 10,
       "load_kg": 90,
-      "action_sec": 30,
+      "action_sec": 20,
       "rest_sec": 60,
       "after_sec": 60
     },
