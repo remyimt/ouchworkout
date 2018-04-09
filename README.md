@@ -1,5 +1,10 @@
 # OuchWorkout
-
+* [Introduction](#introduction)
+* [Device Compatibility](#device-compatibility)
+* [Quick Start](#quick-start)
+* [Settings](#settings)
+* [Workout Customizations](#workout-customizations)
+* [Install the Application](#install-the-application)
 ## Introduction
 OuchWorkout is an Android application to pratice sport workouts. 8 workouts are available :
 * Leg Workout: Squat exercises and other exercises to strengthen your legs.
@@ -44,8 +49,8 @@ are disabled and the manual exercise selection is disabled too:
 In the next example, the sound is on and the manual exercise selection is enabled:  
 ![Workout Configuration](/screenshots/workout_configuration2.jpg "With Sound and Manual Exercise Selection")
 
-## Advanced Configuration
-### Customize exercises
+## Workout Customizations
+### Customize Exercises
 After executing exercises, the after exercise panel proposes to 'review last exercise'.  
 ![After Exercise Panel](/screenshots/after_time.jpg "After Exercise Panel")  
 By clicking on this button, you can modify the last exercise to customize the workout for its future execution.  
@@ -56,14 +61,14 @@ At the end of the workout, you have to save the modifications of the workout by 
 NOTE: If you unselect some exercises from the exercise list at the beginning of the workout, these exercises
 will not appear in future executions of the workout after saving it.
 
-### Customize workouts
+### Customize Workouts
 When you start workouts, the workout configuration file is copied to the Download folder of the phone. The
 configuration file is a JSON file with the description of exercises. So, you can edit these files to customize
 the workout. You can also add new JSON files and put them to the Download/Workouts folder to create new
 workouts. The filename must end with '\_wo.json'.
 NOTE: Delete the Download/Workouts folder removes all your workout modifications.
 
-### Create workouts
+### Create Workouts
 Workouts are defined from JSON files in the application ([Workout Folder](app/src/main/res/raw)) or in the
 Download/Workouts folder. When the application starts, every JSON files ending with '\_wo.json' are parsed. A
 simple menu allows to select the workout to execute. One workout is described in one JSON file as follows:
@@ -115,7 +120,7 @@ The above workout included two exercises: push up and leg press. You have 20 sec
 then you rest for 30 seconds before executing 10 push ups again. Then you rest for 60 seconds and doing the
 leg press exercise with 60 kg.
 
-## Install the application
+## Install the Application
 
 ### From Android Studio
 NOTE: The application does not exist on the Playstore :'(
@@ -126,11 +131,10 @@ Android Studio and install it: https://developer.android.com/studio/index.html
 * Then, connect your Android device and 'Run the app' to install the application on the device:
 https://developer.android.com/training/basics/firstapp/running-app.html
 
-### From the .apk file
+### From the .apk File
 * Allow the installation of packages from unknown sources (Settings > Security > Unknwown sources). Read the
   code of the application to check it does not corrupt your system :P
 * Download the .apk package: [OuchWorkout package](app/release/app-release.apk)
 * Put the package on your android device
 * Click on the package and install it
 * Disable "Unknwon sources" installation
-
