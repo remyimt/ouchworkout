@@ -16,42 +16,42 @@ Although the application should run correcty with higher resolution, I do not te
 display must be pretty ugly.
 
 ## Quick Start
-- Start the application and select your workout
+- Start the application and select your workout.  
 ![Select your Workout](/screenshots/workout_menu.jpg "Select your Workout")
-- Select the exercises of the workout (untick to remove exercises) then click on the 'done' button.
+- Select the exercises of the workout (untick to remove exercises) then click on the 'done' button.  
 ![Select your Exercises](/screenshots/exercise_selection.jpg "Select your Exercises")
 - The number of exercises and an approximate time of the workout are displayed. Pictures describe options you
-  can configure in the [Settings](#settings) panel. Click on the 'start' button.
+  can configure in the [Settings](#settings) panel. Click on the 'start' button.  
 ![Workout Configuration](/screenshots/workout_configuration1.jpg "Information about the Workout")
 - Press the start button (the right arrow) on the top right corner then follow the sign of the top right
-  corner. Red sign (rest) means 'keep breathing and relax all of your muscles'.
+  corner. Red sign (rest) means 'keep breathing and relax all of your muscles'.  
 ![Rest Period](/screenshots/rest_time.jpg "Rest Period")
-- Green sign (action) means 'just do it'. Execute the exercise.
+- Green sign (action) means 'just do it'. Execute the exercise.  
 ![Action Period](/screenshots/action_time.jpg "Action Period")
 
 ## Settings
 The settings panel can be reached by clicking on the 9 small squares on the right top corner of the workout
-list:
+list:  
 ![Select your Workout](/screenshots/workout_menu.jpg "Select your Workout")
 Three options are available:
 * Enable Sounds: the application playing sounds before the end of every countdown
 * Beep At: The countdown remaining time of the beep sound.
-* Manual Exercise Selection: Choose the next exercise of the workout after every exercise
+* Manual Exercise Selection: Choose the next exercise of the workout after every exercise  
 ![Settings Panel](/screenshots/settings.jpg "Configure the Settings")
 Before starting the workout, settings reminders are displayed. For example, in the following workout, sounds
-are disabled and the manual exercise selection is disabled too:
+are disabled and the manual exercise selection is disabled too:  
 ![Workout Configuration](/screenshots/workout_configuration1.jpg "No Sound and Automatic Exercise Selection")
-In the next example, the sound is on and the manual exercise selection is enabled:
+In the next example, the sound is on and the manual exercise selection is enabled:  
 ![Workout Configuration](/screenshots/workout_configuration2.jpg "With Sound and Manual Exercise Selection")
 
 ## Advanced Configuration
 ### Customize exercises
-After executing exercises, the after exercise panel proposes to 'review last exercise'. 
+After executing exercises, the after exercise panel proposes to 'review last exercise'.  
 ![After Exercise Panel](/screenshots/after_time.jpg "After Exercise Panel")
-By clicking on this button, you can modify the last exercise to customize the workout for its future execution.
+By clicking on this button, you can modify the last exercise to customize the workout for its future execution.  
 ![Review the Last Exercise](/screenshots/review_exercise.jpg "Review the Last Exercise")
 At the end of the workout, you have to save the modifications of the workout by clicking on
-'save workout modification'.
+'save workout modification'.  
 ![Save the Workout Modifications](/screenshots/completed_workout.jpg "Save the Workout Modifications")
 NOTE: If you unselect some exercises from the exercise list at the beginning of the workout, these exercises
 will not appear in future executions of the workout after saving it.
