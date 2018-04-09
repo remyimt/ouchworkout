@@ -32,27 +32,27 @@ display must be pretty ugly.
 ## Settings
 The settings panel can be reached by clicking on the 9 small squares on the right top corner of the workout
 list:  
-![Select your Workout](/screenshots/workout_menu.jpg "Select your Workout")
+![Select your Workout](/screenshots/workout_menu.jpg "Select your Workout")  
 Three options are available:
 * Enable Sounds: the application playing sounds before the end of every countdown
 * Beep At: The countdown remaining time of the beep sound.
 * Manual Exercise Selection: Choose the next exercise of the workout after every exercise  
-![Settings Panel](/screenshots/settings.jpg "Configure the Settings")
+![Settings Panel](/screenshots/settings.jpg "Configure the Settings")  
 Before starting the workout, settings reminders are displayed. For example, in the following workout, sounds
 are disabled and the manual exercise selection is disabled too:  
-![Workout Configuration](/screenshots/workout_configuration1.jpg "No Sound and Automatic Exercise Selection")
+![Workout Configuration](/screenshots/workout_configuration1.jpg "No Sound and Automatic Exercise Selection")  
 In the next example, the sound is on and the manual exercise selection is enabled:  
 ![Workout Configuration](/screenshots/workout_configuration2.jpg "With Sound and Manual Exercise Selection")
 
 ## Advanced Configuration
 ### Customize exercises
 After executing exercises, the after exercise panel proposes to 'review last exercise'.  
-![After Exercise Panel](/screenshots/after_time.jpg "After Exercise Panel")
+![After Exercise Panel](/screenshots/after_time.jpg "After Exercise Panel")  
 By clicking on this button, you can modify the last exercise to customize the workout for its future execution.  
-![Review the Last Exercise](/screenshots/review_exercise.jpg "Review the Last Exercise")
+![Review the Last Exercise](/screenshots/review_exercise.jpg "Review the Last Exercise")  
 At the end of the workout, you have to save the modifications of the workout by clicking on
 'save workout modification'.  
-![Save the Workout Modifications](/screenshots/completed_workout.jpg "Save the Workout Modifications")
+![Save the Workout Modifications](/screenshots/completed_workout.jpg "Save the Workout Modifications")  
 NOTE: If you unselect some exercises from the exercise list at the beginning of the workout, these exercises
 will not appear in future executions of the workout after saving it.
 
@@ -106,7 +106,8 @@ Description of the exercise attributes:
 * set\_nb: the number of repetitions of both the action phase and the rest phase.
 * rep\_nb: the number of repetitions of the exercise during the action phase.
 * load\_kg: the load used for the exercise. The load is not displayed if the load is equals to 0.
-* action\_sec: the period (action phase) in seconds to execute the rep\_nb repetitions of the exercise .
+* action\_sec: the period (action phase) in seconds to execute the rep\_nb repetitions of the exercise. If the
+  action\_sec is equals to 0, the end of the action phase is done manually (click on the done button).
 * rest\_sec: the period (rest phase) in seconds to recover before starting another action phase.
 * after\_sec: the period (after phase) in seconds to recover before starting the next exercise.
 
