@@ -1,47 +1,118 @@
 # OuchWorkout
 
 ## Introduction
-OuchWorkout is an Android application to pratice sport workouts. One workout contains exercises like push ups, burpees, etc.
-One exercise contains multiple global periods and one global period is a sequence of one action period (for example, 
-for doing push ups) and one rest period (for recovering before the next global period). So, you do not have to touch your phone 
-or tablet after the start of the selected workout.
+OuchWorkout is an Android application to pratice sport workouts. 8 workouts are available :
+* Leg Workout: Squat exercises and other exercises to strengthen your legs.
+* Pull Up Workout: Based on three types of pull up. A fixed bar is required.
+* Push Up Workout: Push Up exercises and elastic exercises. Elastic bands are required.
+* Static Workout: Strengthen your core by holding multiple positions.
+* 3 Stretching Workouts: Improve your flexibility.
+* With Machines: Strengthen your back in a fitness room.
 
-## Screenshots
-![Select Your Workout](/screenshots/workout_menu.jpg "Select Your Workout")
-![Execute The Exercise](/screenshots/action_period.jpg "Execute The Exercise")
-![Get Rest](/screenshots/rest_period.jpg "Get Rest")
-![Keep Hydrated](/screenshots/completed_workout.jpg "Keep Hydrated")
+## Device Compatibility
+* Min API required: 16 (Android 4.1 Jelly Bean)
+* Min Resolution: 800 x 480 pixels
+Although the application should run correcty with higher resolution, I do not test it. Consequently, the
+display must be pretty ugly.
 
-## Workout Definition
-Workouts are defined from JSON files in the application ([Workout Directory](app/src/main/res/raw)). When the application starts,
-every JSON files ending with '_wo.json' are parsed. A simple menu allows to select the workout to execute and then,
-you follow the instructions. One workout is described in one JSON file as follows:
+## Quick Start
+- Start the application and select your workout
+![Select your Workout](/screenshots/workout_menu.jpg "Select your Workout")
+- Select the exercises of the workout (untick to remove exercises) then click on the 'done' button.
+![Select your Exercises](/screenshots/exercise_selection.jpg "Select your Exercises")
+- The number of exercises and an approximate time of the workout are displayed. Pictures describe options you
+  can configure in the [Settings](#settings) panel. Click on the 'start' button.
+![Workout Configuration](/screenshots/workout_configuration1.jpg "Information about the Workout")
+- Press the start button (the right arrow) on the top right corner then follow the sign of the top right
+  corner. Red sign (rest) means 'keep breathing and relax all of your muscles'.
+![Rest Period](/screenshots/rest_time.jpg "Rest Period")
+- Green sign (action) means 'just do it'. Execute the exercise.
+![Action Period](/screenshots/action_time.jpg "Action Period")
+
+## Settings
+The settings panel can be reached by clicking on the 9 small squares on the right top corner of the workout
+list:
+![Select your Workout](/screenshots/workout_menu.jpg "Select your Workout")
+Three options are available:
+* Enable Sounds: the application playing sounds before the end of every countdown
+* Beep At: The countdown remaining time of the beep sound.
+* Manual Exercise Selection: Choose the next exercise of the workout after every exercise
+![Settings Panel](/screenshots/settings.jpg "Configure the Settings")
+Before starting the workout, settings reminders are displayed. For example, in the following workout, sounds
+are disabled and the manual exercise selection is disabled too:
+![Workout Configuration](/screenshots/workout_configuration1.jpg "No Sound and Automatic Exercise Selection")
+In the next example, the sound is on and the manual exercise selection is enabled:
+![Workout Configuration](/screenshots/workout_configuration2.jpg "With Sound and Manual Exercise Selection")
+
+## Advanced Configuration
+### Customize exercises
+After executing exercises, the after exercise panel proposes to 'review last exercise'. 
+![After Exercise Panel](/screenshots/after_time.jpg "After Exercise Panel")
+By clicking on this button, you can modify the last exercise to customize the workout for its future execution.
+![Review the Last Exercise](/screenshots/review_exercise.jpg "Review the Last Exercise")
+At the end of the workout, you have to save the modifications of the workout by clicking on
+'save workout modification'.
+![Save the Workout Modifications](/screenshots/completed_workout.jpg "Save the Workout Modifications")
+NOTE: If you unselect some exercises from the exercise list at the beginning of the workout, these exercises
+will not appear in future executions of the workout after saving it.
+
+### Customize workouts
+When you start workouts, the workout configuration file is copied to the Download folder of the phone. The
+configuration file is a JSON file with the description of exercises. So, you can edit these files to customize
+the workout. You can also add new JSON files and put them to the Download/Workouts folder to create new
+workouts. The filename must end with '\_wo.json'.
+NOTE: Delete the Download/Workouts folder removes all your workout modifications.
+
+### Create workouts
+Workouts are defined from JSON files in the application ([Workout Folder](app/src/main/res/raw)) or in the
+Download/Workouts folder. When the application starts, every JSON files ending with '\_wo.json' are parsed. A
+simple menu allows to select the workout to execute. One workout is described in one JSON file as follows:
 ```json
 {
   "name": "Static Workout",
-  "workout": [{
-    "name": "Push Up",
-    "img": "push_up",
-    "nb_exercise": 2,
-    "nb_rep": 10,
-    "action": 20,
-    "rest": 30,
-    "after": 60
-  }, {
-    "name": "L-Sit",
-    "img": "l_sit",
-    "nb_exercise": 4,
-    "nb_rep": 1,
-    "action": 12,
-    "rest": 90,
-    "after": 60
-  }]
+  "workout": [
+    {
+      "name": "Push Up",
+      "img": "push_up",
+      "set_nb": 2,
+      "rep_nb": 10,
+      "load_kg": 0,
+      "action_sec": 20,
+      "rest_sec": 30,
+      "after_sec": 60
+    }, {
+      "name": "Leg Press",
+      "img": "leg_pres",
+      "set_nb": 4,
+      "rep_nb": 6,
+      "load_kg": 60,
+      "action_sec": 10,
+      "rest_sec": 30,
+      "after_sec": 60
+    }
+  ]
 }
 ```
-The name and the image are used to describe the exercise to execute. The number of global periods are defined by
-the 'nb_exercise' field. In the above example, you do 10 push ups during 20 seconds, and then, you get to rest for 30 seconds.
-After, you do 10 push ups again. You are executed the 2 exercises required to continue to the next exercise (L-sit).
-Before starting the L-sit exercise, you get to rest for 60 seconds (the 'after' field).
+Every attribute must be specified.
+
+Description of the workout attributes:
+* name: the name of the workout (e.g. 'Static Workout')
+* workout: the list of exercises of the workout. Do not forget brackets.
+
+Description of the exercise attributes:
+* name: the name of the exercise (e.g. 'Push Up')
+* img: the image of the exercise (e.g. 'push\_up'). The exercise images (with PNG extensions) are included in
+  the [Picture Folder](app/src/main/res/drawable).
+* set\_nb: the number of repetitions of both the action phase and the rest phase.
+* rep\_nb: the number of repetitions of the exercise during the action phase.
+* load\_kg: the load used for the exercise. The load is not displayed if the load is equals to 0.
+* action\_sec: the period (action phase) in seconds to execute the rep\_nb repetitions of the exercise .
+* rest\_sec: the period (rest phase) in seconds to recover before starting another action phase.
+* after\_sec: the period (after phase) in seconds to recover before starting the next exercise.
+
+The above workout included two exercises: push up and leg press. You have 20 seconds to execute 10 push ups
+then you rest for 30 seconds before executing 10 push ups again. Then you rest for 60 seconds and doing the
+leg press exercise with 60 kg.
 
 ## Install the application
 
@@ -61,15 +132,4 @@ https://developer.android.com/training/basics/firstapp/running-app.html
 * Put the package on your android device
 * Click on the package and install it
 * Disable "Unknwon sources" installation
-
-## Create your own workout
-NOTE: Existing JSON files to define workouts are in the [Workout Directory](app/src/main/res/raw)
-
-* Open the OuchWorkout project in Android Studio (or another editor)
-* Create images for every exercise (or use existing images)
-* Put your images in the directory [Image Directory](app/src/main/res/drawable)
-* Create a new JSON file to describe your workout. The path to your images is the filename without the extension
-(for example, ''l_sit.png'' can be used with the field ''"img": "l_sit"''). Do NOT use filenames with spaces!
-* Put the JSON files in the [Workout Directory](app/src/main/res/raw). The filename of the JSON file must be ended with '_wo.json'.
-* 'Run the App' (the green arrow) to install the application on your Android device
 
