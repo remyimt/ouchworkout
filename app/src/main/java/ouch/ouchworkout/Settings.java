@@ -15,7 +15,6 @@ public class Settings {
     private final String WITH_SOUND_KEY = "with_sound";
     private final String BEEP_TIME_SECONDS_KEY = "beep_time_seconds";
     private final String MANUAL_EXERCISE_SELECTION = "manual_exercise_selection";
-    private final String EXTERNAL_DIRECTORY = Environment.DIRECTORY_DOWNLOADS;
     private boolean withSound = false;
     private boolean manualSelection = false;
     private int beepTimeSeconds = 1;

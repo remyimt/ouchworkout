@@ -1,6 +1,5 @@
 package ouch.ouchworkout.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,20 +17,18 @@ import ouch.ouchworkout.Workout;
 
 public class ExerciseSelectionAct extends AppCompatActivity {
     private List<String> removeExercises = new LinkedList<>();
-    private Activity me;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        me = this;
         setContentView(R.layout.activity_exercise_selection);
         // Configure the button
-        Button doneButton = (Button) findViewById(R.id.select_exercise_button);
+        Button doneButton = findViewById(R.id.select_exercise_button);
         doneButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 // Remove unchecked exercises
                 Workout w = Workout.getWorkout();
-                LinearLayout exerciseList = (LinearLayout) findViewById(R.id.exercise_list);
+                LinearLayout exerciseList = findViewById(R.id.exercise_list);
                 int count;
                 if (removeExercises.isEmpty()) {
                     count = exerciseList.getChildCount();
@@ -63,7 +60,7 @@ public class ExerciseSelectionAct extends AppCompatActivity {
     protected void onResume() {
         // Display the list of exercises
         Workout w = Workout.getWorkout();
-        LinearLayout exerciseList = (LinearLayout) findViewById(R.id.exercise_list);
+        LinearLayout exerciseList = findViewById(R.id.exercise_list);
         exerciseList.removeAllViews();
         for (String ex : w.getExerciseNames()) {
             CheckBox box = new CheckBox(this);

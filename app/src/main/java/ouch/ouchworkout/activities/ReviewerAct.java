@@ -35,7 +35,7 @@ public class ReviewerAct extends AppCompatActivity {
         setButton(R.id.dec_time, R.id.review_time, -2);
         setButton(R.id.inc_time, R.id.review_time, 2);
         // Configure the done button
-        Button doneButton = (Button) findViewById(R.id.save_review);
+        Button doneButton = findViewById(R.id.save_review);
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,8 +65,8 @@ public class ReviewerAct extends AppCompatActivity {
     }
 
     private void setButton(int buttonId, int valueId, final int modifier) {
-        final Button b = (Button) findViewById(buttonId);
-        final TextView v = (TextView) findViewById(valueId);
+        final Button b = findViewById(buttonId);
+        final TextView v = findViewById(valueId);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -42,11 +42,10 @@ public class Workout {
         incomplete = false;
         for (int i = 0; i < pDesc.length(); i++) {
             JSONObject info = pDesc.getJSONObject(i);
-            Exercise exe = new Exercise(this, info.getString("name"),
-                    info.getString("img"), info.getInt("set_nb"),
-                    info.getInt("rep_nb"), info.getInt("load_kg"),
-                    info.getInt("action_sec"), info.getInt("rest_sec"),
-                    info.getInt("after_sec"));
+            Exercise exe = new Exercise(info.getString("name"), info.getString("img"),
+                    info.getInt("set_nb"), info.getInt("rep_nb"),
+                    info.getInt("load_kg"), info.getInt("action_sec"),
+                    info.getInt("rest_sec"), info.getInt("after_sec"));
             selector.addExercise(exe);
         }
     }
@@ -116,7 +115,7 @@ public class Workout {
         // Configure the exercise
         Exercise ex = selector.getCurrentExercise();
         // Configure the done button (used if actionTime == 0)
-        Button done = (Button) activity.findViewById(R.id.done_button);
+        Button done = activity.findViewById(R.id.done_button);
         if (ex.isDoneButtonRequired()) {
             done.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -149,7 +148,7 @@ public class Workout {
     public void startExercise() {
         actionPhase = true;
         if (getCurrentExercise().isDoneButtonRequired()) {
-            ImageView actionLight = (ImageView) activity.findViewById(R.id.action_light);
+            ImageView actionLight = activity.findViewById(R.id.action_light);
             actionLight.setImageResource(R.drawable.action);
             activity.findViewById(R.id.done_button).setVisibility(View.VISIBLE);
         } else {

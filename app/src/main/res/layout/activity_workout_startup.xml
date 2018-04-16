@@ -71,7 +71,6 @@
             tools:layout_editor_absoluteY="249dp">
 
             <TextView
-                android:id="@+id/textView20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sound Configuration"
@@ -97,7 +96,6 @@
             tools:layout_editor_absoluteY="60dp">
 
             <TextView
-                android:id="@+id/textView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Exercise Selection"

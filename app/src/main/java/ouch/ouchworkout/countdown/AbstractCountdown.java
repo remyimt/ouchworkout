@@ -19,10 +19,10 @@ public abstract class AbstractCountdown extends CountDownTimer {
 
     public AbstractCountdown(Activity pAct, long pTime, int pImageId, int pBeepId) {
         super(pTime * 1000, 500);
-        countdownField = (TextView) pAct.findViewById(R.id.countdown);
+        countdownField = pAct.findViewById(R.id.countdown);
         mp = MediaPlayer.create(pAct.getApplicationContext(), pBeepId);
         imageId = pImageId;
-        actionLight = (ImageView) pAct.findViewById(R.id.action_light);
+        actionLight = pAct.findViewById(R.id.action_light);
     }
 
     @Override

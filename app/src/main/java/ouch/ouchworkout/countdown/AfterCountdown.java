@@ -19,7 +19,7 @@ public class AfterCountdown extends CountDownTimer {
     public AfterCountdown(Activity pAct, long pTime) {
         super(pTime * 1000, 500);
         activity = pAct;
-        countdownField = (TextView) activity.findViewById(R.id.after_countdown);
+        countdownField = activity.findViewById(R.id.after_countdown);
         mp = MediaPlayer.create(activity.getApplicationContext(), R.raw.rest_beep);
     }
 

@@ -24,7 +24,7 @@ public class ExecutingExerciseAct extends AppCompatActivity {
                 R.id.exercise_img, R.id.load_container);
         workout.updateProgressBar((ProgressBar) findViewById(R.id.workout_bar));
         workout.loadExercise(this);
-        TextView countdownField = (TextView) findViewById(R.id.countdown);
+        TextView countdownField = findViewById(R.id.countdown);
         if (workout.isRunning()) {
             countdownField.setText(String.valueOf(exe.getActionTime()));
             workout.startExercise();

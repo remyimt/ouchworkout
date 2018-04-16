@@ -115,7 +115,7 @@ public class WorkoutAct extends AppCompatActivity {
         if (Workout.hasWorkout()) {
             workoutName = workout.getName();
         }
-        LinearLayout layout = (LinearLayout) findViewById(R.id.workout_list);
+        LinearLayout layout = findViewById(R.id.workout_list);
         layout.removeAllViews();
         for (final String s : name2Description.keySet()) {
             final Button b = new Button(this);

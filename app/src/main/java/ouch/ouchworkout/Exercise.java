@@ -12,7 +12,7 @@ public class Exercise {
     private final int restTime, afterTime, lengthSeconds;
     private int actionTime, setNb, repNb, loadKg, currentSetNb;
 
-    public Exercise(Workout pWorkout, String pExerciseName, String pImageName, int pSetNb,
+    public Exercise(String pExerciseName, String pImageName, int pSetNb,
                     int pRepNb, int pLoad, int pActionTime, int pRestTime, int pAfterTime) {
         name = pExerciseName;
         // If actionTime = 0 then add 'done' button to finish the set
@@ -78,20 +78,20 @@ public class Exercise {
     public void display(Activity pAct, int pNameId, int pSetNbId, int pRepNbId,
                         int pImageId, int pLoadContainerId) {
         // Display the name of the exercise
-        TextView nameField = (TextView) pAct.findViewById(pNameId);
+        TextView nameField = pAct.findViewById(pNameId);
         nameField.setText(name);
         // Display the image of the exercise
-        ImageView setImage = (ImageView) pAct.findViewById(pImageId);
+        ImageView setImage = pAct.findViewById(pImageId);
         setImage.setImageResource(pAct.getResources().getIdentifier(
                 pictureName, "drawable", pAct.getPackageName()));
         // Display the number of sets
-        TextView setNbField = (TextView) pAct.findViewById(pSetNbId);
+        TextView setNbField = pAct.findViewById(pSetNbId);
         setNbField.setText(String.valueOf(currentSetNb));
         // Display the number of reps
-        TextView repNbField = (TextView) pAct.findViewById(pRepNbId);
+        TextView repNbField = pAct.findViewById(pRepNbId);
         repNbField.setText(String.valueOf(repNb));
         // Display the load of the exercise
-        LinearLayout loadContainer = (LinearLayout) pAct.findViewById(pLoadContainerId);
+        LinearLayout loadContainer = pAct.findViewById(pLoadContainerId);
         if (loadKg > 0) {
             loadContainer.setVisibility(View.VISIBLE);
             ((TextView) loadContainer.getChildAt(1)).setText(String.valueOf(loadKg));
@@ -103,26 +103,26 @@ public class Exercise {
     public void shortDisplay(Activity pAct, int pNameId, int pSetNbId, int pRepNbId,
                              int pLoadId, int pActionTimeId) {
         // Display the name of the exercise
-        TextView nameField = (TextView) pAct.findViewById(pNameId);
+        TextView nameField = pAct.findViewById(pNameId);
         nameField.setText(name);
         // Display the number of sets
-        TextView setNbField = (TextView) pAct.findViewById(pSetNbId);
+        TextView setNbField = pAct.findViewById(pSetNbId);
         setNbField.setText(String.valueOf(setNb));
         // Display the number of reps
-        TextView repNbField = (TextView) pAct.findViewById(pRepNbId);
+        TextView repNbField = pAct.findViewById(pRepNbId);
         repNbField.setText(String.valueOf(repNb));
         // Display the load
-        TextView loadField = (TextView) pAct.findViewById(pLoadId);
+        TextView loadField = pAct.findViewById(pLoadId);
         loadField.setText(String.valueOf(loadKg));
         // Display the action time
-        TextView timeField = (TextView) pAct.findViewById(pActionTimeId);
+        TextView timeField = pAct.findViewById(pActionTimeId);
         timeField.setText(String.valueOf(actionTime));
     }
 
     public void decreaseSetNb(Activity pAct) {
         currentSetNb--;
         // Display the number of sets
-        TextView setNbField = (TextView) pAct.findViewById(R.id.set_nb);
+        TextView setNbField = pAct.findViewById(R.id.set_nb);
         setNbField.setText(String.valueOf(currentSetNb));
     }
 

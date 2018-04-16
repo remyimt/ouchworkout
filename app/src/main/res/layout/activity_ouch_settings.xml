@@ -73,7 +73,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/enable_sound_button" />
 
             <TextView
-                android:id="@+id/textView3"
                 android:layout_width="16dp"
                 android:layout_height="wrap_content"
                 android:text="s"
@@ -98,7 +97,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|end"
@@ -108,7 +106,6 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Selection"

@@ -40,10 +40,10 @@ public class ExerciseSelector {
         workoutExerciseNb++;
     }
 
-    public void setCurrentExerciseFromName(String pName){
+    public void setCurrentExerciseFromName(String pName) {
         current = null;
-        for(Exercise exe: exercises){
-            if(exe.getName().equals(pName)){
+        for (Exercise exe : exercises) {
+            if (exe.getName().equals(pName)) {
                 current = exe;
             }
         }
@@ -86,7 +86,7 @@ public class ExerciseSelector {
 
     public String dumpExercises() {
         List<Exercise> exeList = completed;
-        if(exeList.isEmpty()){
+        if (exeList.isEmpty()) {
             exeList = exercises;
         }
         StringBuilder json = new StringBuilder();

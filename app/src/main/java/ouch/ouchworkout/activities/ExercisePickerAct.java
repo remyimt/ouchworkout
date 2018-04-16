@@ -17,7 +17,7 @@ public class ExercisePickerAct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_picker);
 
-        LinearLayout exercises = (LinearLayout) findViewById(R.id.execise_picker_list);
+        LinearLayout exercises = findViewById(R.id.execise_picker_list);
         final Workout workout = Workout.getWorkout();
         for (final String name : workout.getExerciseNames()) {
             final Button b = new Button(this);

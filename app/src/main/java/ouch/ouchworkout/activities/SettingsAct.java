@@ -23,20 +23,20 @@ public class SettingsAct extends AppCompatActivity {
         // Get the settings
         settings = Settings.getSettings();
         // Set the current values for setting parameters
-        Switch enableSound = (Switch) findViewById(R.id.enable_sound_button);
+        Switch enableSound = findViewById(R.id.enable_sound_button);
         enableSound.setChecked(settings.isWithSound());
-        EditText beepAt = (EditText) findViewById(R.id.beep_at_seconds);
+        EditText beepAt = findViewById(R.id.beep_at_seconds);
         beepAt.setText(String.valueOf(settings.getBeepTimeSeconds()));
-        Switch enableManualSelection = (Switch) findViewById(R.id.enable_manual_selection);
+        Switch enableManualSelection = findViewById(R.id.enable_manual_selection);
         enableManualSelection.setChecked(settings.isManualSelection());
     }
 
     private void saveSettings() {
-        Switch enableSound = (Switch) findViewById(R.id.enable_sound_button);
+        Switch enableSound = findViewById(R.id.enable_sound_button);
         settings.setWithSound(enableSound.isChecked());
-        EditText beepAt = (EditText) findViewById(R.id.beep_at_seconds);
+        EditText beepAt = findViewById(R.id.beep_at_seconds);
         settings.setBeepTimeSeconds(Integer.valueOf(beepAt.getText().toString()));
-        Switch enableManualSelection = (Switch) findViewById(R.id.enable_manual_selection);
+        Switch enableManualSelection = findViewById(R.id.enable_manual_selection);
         settings.setManualSelection(enableManualSelection.isChecked());
         try {
             OutputStream file = openFileOutput(SETTINGS_FILE, MODE_PRIVATE);

@@ -27,11 +27,11 @@ public class CompletedWorkoutAct extends AppCompatActivity {
         setContentView(R.layout.activity_completed_workout);
         // Display workout information
         final Workout workout = Workout.getWorkout();
-        TextView nameField = (TextView) findViewById(R.id.completed_name);
+        TextView nameField = findViewById(R.id.completed_name);
         nameField.setText(workout.getName());
         workout.updateProgressBar((ProgressBar) findViewById(R.id.completed_bar));
         // Configure the review button
-        Button review = (Button) findViewById(R.id.completed_review);
+        Button review = findViewById(R.id.completed_review);
         review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,8 +40,8 @@ public class CompletedWorkoutAct extends AppCompatActivity {
             }
         });
         // Configure the save workout button
-        Button save = (Button) findViewById(R.id.save_workout);
-        TextView incomplete = (TextView) findViewById(R.id.incomplete_text);
+        Button save = findViewById(R.id.save_workout);
+        TextView incomplete = findViewById(R.id.incomplete_text);
         if (workout.isModified()) {
             if (!workout.isIncomplete()) {
                 incomplete.setVisibility(View.INVISIBLE);

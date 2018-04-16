@@ -28,7 +28,7 @@ public class AfterExerciseAct extends AppCompatActivity {
                 R.id.after_img, R.id.after_load_container);
         workout.updateProgressBar((ProgressBar) findViewById(R.id.after_workout_bar));
         // Configure the review button
-        Button reviewButton = (Button) findViewById(R.id.review_button);
+        Button reviewButton = findViewById(R.id.review_button);
         reviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
