@@ -1,5 +1,6 @@
 {
   "name": "Test Workout",
+  "difficulty": 2,
   "workout": [
     {
       "name": "First Exercise",

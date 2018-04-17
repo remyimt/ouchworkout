@@ -1,6 +1,6 @@
 {
-  "warning": "both action and rest values must be greater than 4 to play beeps coherently",
-  "name": "Stretching 1",
+  "name": "Stretching 2",
+  "difficulty": 2,
   "workout": [
     {
       "name": "Chest Stretch",
@@ -13,28 +13,18 @@
       "after_sec": 20
     },
     {
-      "name": "Shoulder Stretch",
-      "img": "shoulder_stretch",
-      "set_nb": 1,
-      "rep_nb": 1,
-      "load_kg": 0,
-      "action_sec": 60,
-      "rest_sec": 5,
-      "after_sec": 20
-    },
-    {
       "name": "Triceps Stretch",
       "img": "triceps_stretch",
-      "set_nb": 2,
+      "set_nb": 4,
       "rep_nb": 1,
       "load_kg": 0,
-      "action_sec": 40,
+      "action_sec": 30,
       "rest_sec": 10,
       "after_sec": 20
     },
     {
-      "name": "Forearm Stretch",
-      "img": "forearm_stretch",
+      "name": "Rabbit",
+      "img": "rabbit",
       "set_nb": 1,
       "rep_nb": 1,
       "load_kg": 0,
@@ -48,7 +38,7 @@
       "set_nb": 1,
       "rep_nb": 1,
       "load_kg": 0,
-      "action_sec": 45,
+      "action_sec": 60,
       "rest_sec": 5,
       "after_sec": 20
     },
@@ -63,23 +53,23 @@
       "after_sec": 20
     },
     {
-      "name": "Neck Stretch",
-      "img": "neck_stretch",
+      "name": "Camel",
+      "img": "camel",
       "set_nb": 1,
       "rep_nb": 1,
       "load_kg": 0,
-      "action_sec": 40,
+      "action_sec": 45,
       "rest_sec": 5,
       "after_sec": 20
     },
     {
-      "name": "Trapezius Stretch",
-      "img": "trapezius_stretch",
-      "set_nb": 2,
+      "name": "Child",
+      "img": "child",
+      "set_nb": 1,
       "rep_nb": 1,
       "load_kg": 0,
-      "action_sec": 40,
-      "rest_sec": 10,
+      "action_sec": 45,
+      "rest_sec": 5,
       "after_sec": 20
     },
     {
@@ -98,28 +88,28 @@
       "set_nb": 1,
       "rep_nb": 1,
       "load_kg": 0,
-      "action_sec": 45,
+      "action_sec": 60,
       "rest_sec": 5,
       "after_sec": 20
     },
     {
-      "name": "Seated Wide Angle One Leg",
-      "img": "seated_wide_angle_one_leg",
-      "set_nb": 2,
-      "rep_nb": 1,
-      "load_kg": 0,
-      "action_sec": 45,
-      "rest_sec": 10,
-      "after_sec": 20
-    },
-    {
-      "name": "One Leg Stretch 2",
-      "img": "one_leg_stretch_2",
-      "set_nb": 2,
+      "name": "Wide Legged",
+      "img": "wide_legged",
+      "set_nb": 1,
       "rep_nb": 1,
       "load_kg": 0,
       "action_sec": 60,
-      "rest_sec": 10,
+      "rest_sec": 5,
+      "after_sec": 20
+    },
+    {
+      "name": "Head To Knee",
+      "img": "head_to_knee",
+      "set_nb": 1,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 60,
+      "rest_sec": 5,
       "after_sec": 20
     },
     {
@@ -133,23 +123,23 @@
       "after_sec": 20
     },
     {
-      "name": "Reclining Hero",
-      "img": "reclining_hero",
-      "set_nb": 1,
+      "name": "Quadriceps Stretch",
+      "img": "quadriceps_stretch",
+      "set_nb": 2,
       "rep_nb": 1,
       "load_kg": 0,
       "action_sec": 60,
-      "rest_sec": 5,
+      "rest_sec": 10,
       "after_sec": 20
     },
     {
-      "name": "Plow",
-      "img": "plow",
-      "set_nb": 1,
+      "name": "One Legged King Pigeon",
+      "img": "one_legged_king_pigeon",
+      "set_nb": 2,
       "rep_nb": 1,
       "load_kg": 0,
       "action_sec": 60,
-      "rest_sec": 5,
+      "rest_sec": 10,
       "after_sec": 20
     }
   ]

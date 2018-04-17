@@ -28,13 +28,15 @@ public class Workout {
     private final String filename, name;
     private final ExerciseSelector selector;
     private final int resumeTime = 10;
+    private final int difficulty;
     private Activity activity;
     private boolean actionPhase, running, modified, incomplete;
     private AbstractCountdown resumeCd, restCd, actionCd;
 
-    private Workout(String pFile, String pName, JSONArray pDesc) throws JSONException {
+    private Workout(String pFile, String pName, int pDifficulty, JSONArray pDesc) throws JSONException {
         name = pName;
         filename = pFile;
+        difficulty = pDifficulty;
         selector = new ExerciseSelector();
         actionPhase = false;
         running = false;
@@ -50,8 +52,9 @@ public class Workout {
         }
     }
 
-    public static Workout createWorkout(String pFilename, String pName, JSONArray pDesc) throws JSONException {
-        workout = new Workout(pFilename, pName, pDesc);
+    public static Workout createWorkout(String pFilename, String pName, int pDifficulty,
+                                        JSONArray pDesc) throws JSONException {
+        workout = new Workout(pFilename, pName, pDifficulty, pDesc);
         return workout;
     }
 
@@ -99,6 +102,7 @@ public class Workout {
         StringBuilder json = new StringBuilder();
         json.append("{\n");
         json.append("  \"name\": \"" + name + "\",\n");
+        json.append("  \"difficulty\": " + difficulty+ ",\n");
         json.append(selector.dumpExercises() + "\n");
         json.append("}\n");
         return json.toString();

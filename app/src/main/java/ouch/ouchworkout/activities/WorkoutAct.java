@@ -1,15 +1,17 @@
 package ouch.ouchworkout.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,16 +22,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.Set;
 
 import ouch.ouchworkout.R;
 import ouch.ouchworkout.Settings;
 import ouch.ouchworkout.Workout;
 
 public class WorkoutAct extends AppCompatActivity {
-    private Map<String, JSONArray> name2Description = new TreeMap<>();
-    private Map<String, String> name2File = new TreeMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,88 +72,192 @@ public class WorkoutAct extends AppCompatActivity {
                 w.playPause();
             }
         }
-        // List existing workouts from the external directory
-        InputStream is;
-        for (File w : Settings.getSettings().getExternalDirectory().listFiles()) {
-            if (w.getName().endsWith("_wo.json")) {
-                try {
-                    is = new FileInputStream(w);
-                    byte[] buffer = new byte[is.available()];
-                    is.read(buffer);
-                    is.close();
-                    JSONObject myWorkout = new JSONObject(new String(buffer));
-                    name2Description.put(myWorkout.getString("name"),
-                            myWorkout.getJSONArray("workout"));
-                    name2File.put(myWorkout.getString("name"), w.getName().
-                            substring(0, w.getName().indexOf('.')));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        // List existing workouts from the internal directory
-        for (Field f : R.raw.class.getFields()) {
-            try {
-                if (f.getName().endsWith("_wo")) {
-                    if (!name2File.containsValue(f.getName())) {
-                        is = getResources().openRawResource(f.getInt(f));
-                        byte[] buffer = new byte[is.available()];
-                        is.read(buffer);
-                        is.close();
-                        JSONObject myWorkout = new JSONObject(new String(buffer));
-                        name2Description.put(myWorkout.getString("name"),
-                                myWorkout.getJSONArray("workout"));
-                        name2File.put(myWorkout.getString("name"), f.getName());
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        createCategoryButtons();
     }
 
-    @Override
-    protected void onResume() {
+    private void createCategoryButtons() {
+        LinearLayout layout = findViewById(R.id.workout_list);
+        layout.removeAllViews();
+        // Add the legs button
+        Button legs = new Button(this);
+        legs.setText("LEGS");
+        legs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listWorkouts("legs");
+            }
+        });
+        layout.addView(legs);
+        // Add the upper body button
+        Button upper = new Button(this);
+        upper.setText("UPPER BODY");
+        upper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listWorkouts("upper");
+            }
+        });
+        layout.addView(upper);
+        // Add the mixed button
+        Button mixed = new Button(this);
+        mixed.setText("MIXED");
+        mixed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listWorkouts("mixed");
+            }
+        });
+        layout.addView(mixed);
+        // Add the with machines button
+        Button wmachines = new Button(this);
+        wmachines.setText("WITH MACHINES");
+        wmachines.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listWorkouts("wmachines");
+            }
+        });
+        layout.addView(wmachines);
+        // Add the stretching button
+        Button stretching = new Button(this);
+        stretching.setText("STRETCHING");
+        stretching.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listWorkouts("stretching");
+            }
+        });
+        layout.addView(stretching);
+        // Add the cardio button
+        Button cardio = new Button(this);
+        cardio.setText("CARDIO");
+        cardio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listWorkouts("cardio");
+            }
+        });
+        layout.addView(cardio);
+    }
+
+    private Button createWorkoutButton(final String pFilename, InputStream pInput,
+                                       Map<Integer, Set<Button>> pExistingButtons)
+            throws IOException, JSONException {
+        // Get the name of the existing workout
         Workout workout = Workout.getWorkout();
         String workoutName = "";
         if (Workout.hasWorkout()) {
             workoutName = workout.getName();
         }
+        // Read the JSON file
+        byte[] buffer = new byte[pInput.available()];
+        pInput.read(buffer);
+        pInput.close();
+        final JSONObject myWorkout = new JSONObject(new String(buffer));
+        final Button b = new Button(this);
+        int difficulty = myWorkout.getInt("difficulty");
+        if (!pExistingButtons.containsKey(difficulty)) {
+            pExistingButtons.put(difficulty, new HashSet<Button>());
+        }
+        pExistingButtons.get(difficulty).add(b);
+        if (myWorkout.getString("name").equals(workoutName) && workout.isInProgress() &&
+                workout.isWorkoutStarted()) {
+            b.setText("** " + workoutName + " **");
+            b.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Display the workout
+                    Intent intent = new Intent(view.getContext(), ExecutingExerciseAct.class);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            b.setText(myWorkout.getString("name"));
+            b.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try {
+                        // Load the workout
+                        Workout.createWorkout(pFilename,
+                                myWorkout.getString("name"),
+                                myWorkout.getInt("difficulty"),
+                                myWorkout.getJSONArray("workout"));
+                        // Display the exercise selection
+                        Intent intent = new Intent(view.getContext(), ExerciseSelectionAct.class);
+                        startActivity(intent);
+                    } catch (JSONException e) {
+                        b.setText("FAILED!");
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+        return b;
+    }
+
+    private void listWorkouts(String pFilter) {
+        List<String> existingButtonNames = new LinkedList<>();
+        // Button by levels of difficulty
+        Map<Integer, Set<Button>> existingButtons = new LinkedHashMap<>();
+        existingButtons.put(1, new HashSet<Button>());
+        existingButtons.put(2, new HashSet<Button>());
+        existingButtons.put(3, new HashSet<Button>());
+        // Remove existing buttons
         LinearLayout layout = findViewById(R.id.workout_list);
         layout.removeAllViews();
-        for (final String s : name2Description.keySet()) {
-            final Button b = new Button(this);
-            if (s.equals(workoutName) && workout.isInProgress() && workout.isWorkoutStarted()) {
-                // This workout is already loaded
-                b.setText("** " + s + " **");
-                b.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // Display the workout
-                        Intent intent = new Intent(view.getContext(), ExecutingExerciseAct.class);
-                        startActivity(intent);
-                    }
-                });
-            } else {
-                b.setText(s);
-                b.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        try {
-                            // Load the workout
-                            Workout.createWorkout(name2File.get(s), s, name2Description.get(s));
-                            // Display the exercise selection
-                            Intent intent = new Intent(view.getContext(), ExerciseSelectionAct.class);
-                            startActivity(intent);
-                        } catch (JSONException e) {
-                            b.setText("FAILED!");
-                            e.printStackTrace();
-                        }
-                    }
-                });
+        // List existing workouts from the external directory
+        for (File w : Settings.getSettings().getExternalDirectory().listFiles()) {
+            if (w.getName().startsWith("wo_" + pFilter)) {
+                String filename = w.getName().substring(0, w.getName().indexOf('.'));
+                try {
+                    createWorkoutButton(filename, new FileInputStream(w), existingButtons);
+                    existingButtonNames.add(filename);
+                } catch (Exception e) {
+                    Log.e("listWorkout", "Reading error: " + filename);
+                    e.printStackTrace();
+                }
             }
-            layout.addView(b);
         }
+        // List existing workouts from the internal directory
+        for (final Field f : R.raw.class.getFields()) {
+            try {
+                if (f.getName().startsWith("wo_" + pFilter) &&
+                        !existingButtonNames.contains(f.getName())) {
+                    createWorkoutButton(f.getName(), getResources().openRawResource(f.getInt(f)),
+                            existingButtons);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        for (Map.Entry<Integer, Set<Button>> buttons : existingButtons.entrySet()) {
+            if (!buttons.getValue().isEmpty()) {
+                TextView difficulty = new TextView(this);
+                difficulty.setText("Difficulty - " + buttons.getKey());
+                difficulty.setLayoutParams(new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT));
+                difficulty.setTextColor(Color.BLACK);
+                layout.addView(difficulty);
+                for (Button b : buttons.getValue()) {
+                    layout.addView(b);
+                }
+            }
+        }
+        Button mainMenu = new Button(this);
+        mainMenu.setText("MAIN MENU");
+        mainMenu.setTextColor(Color.BLUE);
+        mainMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createCategoryButtons();
+            }
+        });
+        layout.addView(mainMenu);
+    }
+
+    @Override
+    protected void onResume() {
         super.onResume();
     }
 

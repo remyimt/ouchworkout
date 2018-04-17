@@ -1,6 +1,6 @@
 {
-  "warning": "both action and rest values must be greater than 4 to play beeps coherently",
   "name": "Static Workout",
+  "difficulty": 2,
   "workout": [
     {
       "name": "Mountain Climber",
