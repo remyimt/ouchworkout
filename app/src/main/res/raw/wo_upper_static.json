@@ -19,16 +19,6 @@
       "rep_nb": 1,
       "load_kg": 0,
       "action_sec": 12,
-      "rest_sec": 90,
-      "after_sec": 60
-    },
-    {
-      "name": "Handstand",
-      "img": "handstand",
-      "set_nb": 6,
-      "rep_nb": 1,
-      "load_kg": 0,
-      "action_sec": 30,
       "rest_sec": 60,
       "after_sec": 60
     },
@@ -39,8 +29,18 @@
       "rep_nb": 1,
       "load_kg": 0,
       "action_sec": 10,
-      "rest_sec": 90,
+      "rest_sec": 60,
       "after_sec": 90
+    },
+    {
+      "name": "Handstand",
+      "img": "handstand",
+      "set_nb": 4,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 30,
+      "rest_sec": 60,
+      "after_sec": 60
     },
     {
       "name": "One Arm Push Up",
@@ -61,16 +61,6 @@
       "action_sec": 45,
       "rest_sec": 60,
       "after_sec": 90
-    },
-    {
-      "name": "Wiper Push Up",
-      "img": "push_up",
-      "set_nb": 4,
-      "rep_nb": 20,
-      "load_kg": 0,
-      "action_sec": 30,
-      "rest_sec": 60,
-      "after_sec": 10
     }
   ]
 }

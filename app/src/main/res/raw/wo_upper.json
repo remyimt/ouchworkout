@@ -1,0 +1,76 @@
+{
+  "name": "Upper Body Workout",
+  "difficulty": 1,
+  "workout": [
+    {
+      "name": "Bench Dips",
+      "img": "bench_dips",
+      "set_nb": 6,
+      "rep_nb": 10,
+      "load_kg": 0,
+      "action_sec": 14,
+      "rest_sec": 30,
+      "after_sec": 60
+    },
+    {
+      "name": "Incline Push Up",
+      "img": "incline_push_up",
+      "set_nb": 6,
+      "rep_nb": 10,
+      "load_kg": 0,
+      "action_sec": 20,
+      "rest_sec": 30,
+      "after_sec": 60
+    },
+    {
+      "name": "Decline Push Up",
+      "img": "decline_push_up",
+      "set_nb": 4,
+      "rep_nb": 10,
+      "load_kg": 0,
+      "action_sec": 20,
+      "rest_sec": 30,
+      "after_sec": 60
+    },
+    {
+      "name": "Crunch",
+      "img": "crunch",
+      "set_nb": 6,
+      "rep_nb": 20,
+      "load_kg": 0,
+      "action_sec": 20,
+      "rest_sec": 30,
+      "after_sec": 60
+    },
+    {
+      "name": "Incline Push Up",
+      "img": "incline_push_up",
+      "set_nb": 6,
+      "rep_nb": 10,
+      "load_kg": 0,
+      "action_sec": 20,
+      "rest_sec": 30,
+      "after_sec": 60
+    },
+    {
+      "name": "Plank",
+      "img": "plank",
+      "set_nb": 3,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 60,
+      "rest_sec": 30,
+      "after_sec": 60
+    },
+    {
+      "name": "Inverted Pull Up",
+      "img": "inverted_pull_up",
+      "set_nb": 6,
+      "rep_nb": 6,
+      "load_kg": 0,
+      "action_sec": 12,
+      "rest_sec": 30,
+      "after_sec": 60
+    }
+  ]
+}

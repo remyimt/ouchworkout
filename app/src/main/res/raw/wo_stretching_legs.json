@@ -1,90 +1,10 @@
 {
-  "name": "Stretching 2",
-  "difficulty": 2,
+  "name": "Leg Stretching",
+  "difficulty": 1,
   "workout": [
-    {
-      "name": "Chest Stretch",
-      "img": "chest_stretch",
-      "set_nb": 1,
-      "rep_nb": 1,
-      "load_kg": 0,
-      "action_sec": 60,
-      "rest_sec": 5,
-      "after_sec": 20
-    },
-    {
-      "name": "Triceps Stretch",
-      "img": "triceps_stretch",
-      "set_nb": 4,
-      "rep_nb": 1,
-      "load_kg": 0,
-      "action_sec": 30,
-      "rest_sec": 10,
-      "after_sec": 20
-    },
-    {
-      "name": "Rabbit",
-      "img": "rabbit",
-      "set_nb": 1,
-      "rep_nb": 1,
-      "load_kg": 0,
-      "action_sec": 60,
-      "rest_sec": 5,
-      "after_sec": 20
-    },
-    {
-      "name": "Cobra",
-      "img": "cobra",
-      "set_nb": 1,
-      "rep_nb": 1,
-      "load_kg": 0,
-      "action_sec": 60,
-      "rest_sec": 5,
-      "after_sec": 20
-    },
-    {
-      "name": "Warrior",
-      "img": "warrior",
-      "set_nb": 2,
-      "rep_nb": 1,
-      "load_kg": 0,
-      "action_sec": 60,
-      "rest_sec": 10,
-      "after_sec": 20
-    },
-    {
-      "name": "Camel",
-      "img": "camel",
-      "set_nb": 1,
-      "rep_nb": 1,
-      "load_kg": 0,
-      "action_sec": 45,
-      "rest_sec": 5,
-      "after_sec": 20
-    },
-    {
-      "name": "Child",
-      "img": "child",
-      "set_nb": 1,
-      "rep_nb": 1,
-      "load_kg": 0,
-      "action_sec": 45,
-      "rest_sec": 5,
-      "after_sec": 20
-    },
     {
       "name": "Bound Angle",
       "img": "bound_angle",
-      "set_nb": 1,
-      "rep_nb": 1,
-      "load_kg": 0,
-      "action_sec": 60,
-      "rest_sec": 5,
-      "after_sec": 20
-    },
-    {
-      "name": "Seated Wide Angle",
-      "img": "seated_wide_angle",
       "set_nb": 1,
       "rep_nb": 1,
       "load_kg": 0,
@@ -103,13 +23,43 @@
       "after_sec": 20
     },
     {
-      "name": "Head To Knee",
-      "img": "head_to_knee",
-      "set_nb": 1,
+      "name": "One Leg Stretch 2",
+      "img": "one_leg_stretch_2",
+      "set_nb": 2,
       "rep_nb": 1,
       "load_kg": 0,
       "action_sec": 60,
+      "rest_sec": 10,
+      "after_sec": 20
+    },
+    {
+      "name": "Seated Wide Angle",
+      "img": "seated_wide_angle",
+      "set_nb": 1,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 45,
       "rest_sec": 5,
+      "after_sec": 20
+    },
+    {
+      "name": "Seated Wide Angle One Leg",
+      "img": "seated_wide_angle_one_leg",
+      "set_nb": 2,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 45,
+      "rest_sec": 10,
+      "after_sec": 20
+    },
+    {
+      "name": "Head to Knee",
+      "img": "head_to_knee",
+      "set_nb": 2,
+      "rep_nb": 1,
+      "load_kg": 0,
+      "action_sec": 60,
+      "rest_sec": 10,
       "after_sec": 20
     },
     {

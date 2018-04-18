@@ -128,20 +128,10 @@ public class WorkoutAct extends AppCompatActivity {
             }
         });
         layout.addView(stretching);
-        // Add the cardio button
-        Button cardio = new Button(this);
-        cardio.setText("CARDIO");
-        cardio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listWorkouts("cardio");
-            }
-        });
-        layout.addView(cardio);
     }
 
     private Button createWorkoutButton(final String pFilename, InputStream pInput,
-                                       Map<Integer, Set<Button>> pExistingButtons)
+                                       Map<Integer, List<Button>> pExistingButtons)
             throws IOException, JSONException {
         // Get the name of the existing workout
         Workout workout = Workout.getWorkout();
@@ -157,7 +147,7 @@ public class WorkoutAct extends AppCompatActivity {
         final Button b = new Button(this);
         int difficulty = myWorkout.getInt("difficulty");
         if (!pExistingButtons.containsKey(difficulty)) {
-            pExistingButtons.put(difficulty, new HashSet<Button>());
+            pExistingButtons.put(difficulty, new LinkedList<Button>());
         }
         pExistingButtons.get(difficulty).add(b);
         if (myWorkout.getString("name").equals(workoutName) && workout.isInProgress() &&
@@ -198,10 +188,10 @@ public class WorkoutAct extends AppCompatActivity {
     private void listWorkouts(String pFilter) {
         List<String> existingButtonNames = new LinkedList<>();
         // Button by levels of difficulty
-        Map<Integer, Set<Button>> existingButtons = new LinkedHashMap<>();
-        existingButtons.put(1, new HashSet<Button>());
-        existingButtons.put(2, new HashSet<Button>());
-        existingButtons.put(3, new HashSet<Button>());
+        Map<Integer, List<Button>> existingButtons = new LinkedHashMap<>();
+        existingButtons.put(1, new LinkedList<Button>());
+        existingButtons.put(2, new LinkedList<Button>());
+        existingButtons.put(3, new LinkedList<Button>());
         // Remove existing buttons
         LinearLayout layout = findViewById(R.id.workout_list);
         layout.removeAllViews();
@@ -230,7 +220,7 @@ public class WorkoutAct extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        for (Map.Entry<Integer, Set<Button>> buttons : existingButtons.entrySet()) {
+        for (Map.Entry<Integer, List<Button>> buttons : existingButtons.entrySet()) {
             if (!buttons.getValue().isEmpty()) {
                 TextView difficulty = new TextView(this);
                 difficulty.setText("Difficulty - " + buttons.getKey());

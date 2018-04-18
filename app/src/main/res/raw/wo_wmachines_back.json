@@ -1,6 +1,6 @@
 {
-  "name": "With Machines",
-  "difficulty": 2,
+  "name": "Back Workout",
+  "difficulty": 1,
   "workout": [
     {
       "name": "Shoulder Press",
@@ -71,16 +71,6 @@
       "action_sec": 20,
       "rest_sec": 60,
       "after_sec": 60
-    },
-    {
-      "name": "Triceps",
-      "img": "k_triceps",
-      "set_nb": 6,
-      "rep_nb": 10,
-      "load_kg": 0,
-      "action_sec": 26,
-      "rest_sec": 30,
-      "after_sec": 10
     }
   ]
 }
