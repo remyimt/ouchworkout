@@ -25,7 +25,7 @@ public class Settings {
     private Settings(JSONObject pConfig) throws JSONException {
         withSound = pConfig.getBoolean(WITH_SOUND_KEY);
         beepTimeSeconds = pConfig.getInt(BEEP_TIME_SECONDS_KEY);
-        //FIXME add the manual exercise selection
+        manualSelection = pConfig.getBoolean(MANUAL_EXERCISE_SELECTION);
     }
 
     public boolean isWithSound() {
