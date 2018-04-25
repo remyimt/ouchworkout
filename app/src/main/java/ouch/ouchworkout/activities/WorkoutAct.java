@@ -25,11 +25,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import ouch.ouchworkout.ButtonComparator;
 import ouch.ouchworkout.R;
 import ouch.ouchworkout.Settings;
 import ouch.ouchworkout.Workout;
@@ -252,6 +254,7 @@ public class WorkoutAct extends AppCompatActivity {
                         LinearLayout.LayoutParams.WRAP_CONTENT));
                 difficulty.setTextColor(Color.BLACK);
                 layout.addView(difficulty);
+                Collections.sort(buttons.getValue(), new ButtonComparator());
                 for (Button b : buttons.getValue()) {
                     layout.addView(b);
                 }
