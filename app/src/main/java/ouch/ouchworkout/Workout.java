@@ -3,6 +3,7 @@ package ouch.ouchworkout;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,6 +13,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.List;
 
 import ouch.ouchworkout.activities.AfterExerciseAct;
@@ -66,10 +70,6 @@ public class Workout {
         return workout != null;
     }
 
-    public String getFilename() {
-        return filename;
-    }
-
     public String getName() {
         return name;
     }
@@ -98,14 +98,31 @@ public class Workout {
         modified = true;
     }
 
-    public String toJSON() {
-        StringBuilder json = new StringBuilder();
-        json.append("{\n");
-        json.append("  \"name\": \"" + name + "\",\n");
-        json.append("  \"difficulty\": " + difficulty+ ",\n");
-        json.append(selector.dumpExercises() + "\n");
-        json.append("}\n");
-        return json.toString();
+    public void saveJSON(Activity pAct) {
+        try {
+            // Build the JSON data
+            StringBuilder json = new StringBuilder();
+            json.append("{\n");
+            json.append("  \"name\": \"" + name + "\",\n");
+            json.append("  \"difficulty\": " + difficulty + ",\n");
+            json.append(selector.dumpExercises() + "\n");
+            json.append("}\n");
+            // Write the JSON file
+            File external = new File(Settings.getSettings().getExternalDirectory(pAct),
+                    filename + ".json");
+            FileOutputStream output = new FileOutputStream(external);
+            PrintWriter writer = new PrintWriter(output);
+            writer.print(json);
+            writer.flush();
+            writer.close();
+            output.close();
+            // Try to add the file to the media scanner
+            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            intent.setData(Uri.fromFile(external));
+            pAct.sendBroadcast(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void updateProgressBar(ProgressBar pBar) {

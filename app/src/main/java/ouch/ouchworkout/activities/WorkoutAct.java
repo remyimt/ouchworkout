@@ -1,16 +1,19 @@
 package ouch.ouchworkout.activities;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,12 +25,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import ouch.ouchworkout.R;
 import ouch.ouchworkout.Settings;
@@ -39,6 +40,9 @@ public class WorkoutAct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ouch_workout);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermission();
+        }
         // Load the settings from 'settings.json'
         boolean existSettings = false;
         for (String s : getFilesDir().list()) {
@@ -130,6 +134,21 @@ public class WorkoutAct extends AppCompatActivity {
         layout.addView(stretching);
     }
 
+    protected void requestPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Toast.makeText(this,
+                    "Write External Storage permission allows us to store workout descriptions." +
+                            "Please allow this permission in App Settings.",
+                    Toast.LENGTH_LONG).show();
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
+            }
+        }
+    }
+
     private Button createWorkoutButton(final String pFilename, InputStream pInput,
                                        Map<Integer, List<Button>> pExistingButtons)
             throws IOException, JSONException {
@@ -196,17 +215,21 @@ public class WorkoutAct extends AppCompatActivity {
         LinearLayout layout = findViewById(R.id.workout_list);
         layout.removeAllViews();
         // List existing workouts from the external directory
-        for (File w : Settings.getSettings().getExternalDirectory().listFiles()) {
-            if (w.getName().startsWith("wo_" + pFilter)) {
-                String filename = w.getName().substring(0, w.getName().indexOf('.'));
-                try {
-                    createWorkoutButton(filename, new FileInputStream(w), existingButtons);
-                    existingButtonNames.add(filename);
-                } catch (Exception e) {
-                    Log.e("listWorkout", "Reading error: " + filename);
-                    e.printStackTrace();
+        try {
+            File externalDir = Settings.getSettings().getExternalDirectory(this);
+            for (File w : externalDir.listFiles()) {
+                if (w.getName().startsWith("wo_" + pFilter)) {
+                    String filename = w.getName().substring(0, w.getName().indexOf('.'));
+                    try {
+                        createWorkoutButton(filename, new FileInputStream(w), existingButtons);
+                        existingButtonNames.add(filename);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         // List existing workouts from the internal directory
         for (final Field f : R.raw.class.getFields()) {

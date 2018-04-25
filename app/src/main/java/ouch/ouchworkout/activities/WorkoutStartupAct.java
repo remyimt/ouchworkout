@@ -51,25 +51,6 @@ public class WorkoutStartupAct extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Copy the workout JSON file to the external directory
-                File external = new File(Settings.getSettings().getExternalDirectory(),
-                        workout.getFilename() + ".json");
-                try {
-                    if (!external.exists()) {
-                        FileOutputStream output = new FileOutputStream(external);
-                        PrintWriter writer = new PrintWriter(output);
-                        writer.print(workout.toJSON());
-                        writer.flush();
-                        writer.close();
-                        output.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                // Try to add the file to the media scanner
-                Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                intent.setData(Uri.fromFile(external));
-                sendBroadcast(intent);
                 // Start the workout
                 workout.selectNextExercise(me);
             }

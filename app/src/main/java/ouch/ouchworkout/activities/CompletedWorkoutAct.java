@@ -1,5 +1,6 @@
 package ouch.ouchworkout.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -46,27 +47,15 @@ public class CompletedWorkoutAct extends AppCompatActivity {
             if (!workout.isIncomplete()) {
                 incomplete.setVisibility(View.INVISIBLE);
             }
+            final Activity me = this;
             save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     try {
-                        File external = new File(Settings.getSettings().getExternalDirectory(),
-                                workout.getFilename() + ".json");
-                        FileOutputStream output = new FileOutputStream(external);
-                        PrintWriter writer = new PrintWriter(output);
-                        writer.print(workout.toJSON());
-                        writer.flush();
-                        writer.close();
-                        output.close();
-                        // Try to add the file to the media scanner
-                        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                        intent.setData(Uri.fromFile(external));
-                        sendBroadcast(intent);
-                        Intent intent2 = new Intent(view.getContext(), WorkoutAct.class);
-                        startActivity(intent2);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
+                        workout.saveJSON(me);
+                        Intent intent = new Intent(view.getContext(), WorkoutAct.class);
+                        startActivity(intent);
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }

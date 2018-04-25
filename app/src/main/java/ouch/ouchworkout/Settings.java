@@ -1,5 +1,6 @@
 package ouch.ouchworkout;
 
+import android.app.Activity;
 import android.os.Environment;
 
 import org.json.JSONException;
@@ -9,6 +10,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
+import ouch.ouchworkout.exception.NoExternalDirectoryException;
 
 public class Settings {
     private static Settings instance = null;
@@ -40,11 +43,33 @@ public class Settings {
         return beepTimeSeconds;
     }
 
-    public File getExternalDirectory() {
-        File f = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DOWNLOADS), "Workouts");
-        f.mkdirs();
-        return f;
+    public File getExternalDirectory(Activity pAct) throws NoExternalDirectoryException {
+        File f = new File(
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+                "Workouts");
+        if (f.exists()) {
+            // Create JSON files in the Downloads directory
+            return f;
+        } else {
+            if (f.mkdirs()) {
+                // Create JSON files in the Downloads directory
+                return f;
+            } else {
+                // Try to write in the application directory
+                f = new File(pAct.getApplicationContext().getFilesDir(), "Workouts");
+                if (f.exists()) {
+                    // Create JSON files in the application directory (internal storage)
+                    return f;
+                }
+                if (f.mkdirs()) {
+                    // Create JSON files in the application directory (internal storage)
+                    return f;
+                } else {
+                    // Do not save JSON files
+                    throw new NoExternalDirectoryException();
+                }
+            }
+        }
     }
 
     public static Settings getSettings() {
