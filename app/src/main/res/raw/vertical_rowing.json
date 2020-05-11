@@ -1,0 +1,12 @@
+{
+  "name": "Vertical Rowing",
+  "type": "machine",
+  "target": "upper",
+  "difficulty": 1,
+  "img": "vertical_rowing",
+  "set_nb": 3,
+  "rep_nb": 20,
+  "load_kg": 30,
+  "action_sec": 20,
+  "rest_sec": 60
+}

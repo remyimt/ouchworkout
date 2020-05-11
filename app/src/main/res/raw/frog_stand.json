@@ -1,0 +1,12 @@
+{
+  "name": "Frog Stand",
+  "type": "strength",
+  "target": "full",
+  "difficulty": 2,
+  "img": "frog_stand",
+  "set_nb": 6,
+  "rep_nb": 1,
+  "load_kg": 0,
+  "action_sec": 25,
+  "rest_sec": 60
+}

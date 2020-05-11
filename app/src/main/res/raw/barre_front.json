@@ -1,0 +1,12 @@
+{
+  "name": "Barre Front",
+  "type": "dumbbell",
+  "target": "upper",
+  "difficulty": 1,
+  "img": "barre_front",
+  "set_nb": 6,
+  "rep_nb": 10,
+  "load_kg": 10,
+  "action_sec": 16,
+  "rest_sec": 60
+}

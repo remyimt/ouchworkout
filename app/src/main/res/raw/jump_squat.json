@@ -1,0 +1,12 @@
+{
+  "name": "Jump Squat",
+  "type": "strength",
+  "target": "legs",
+  "difficulty": 1,
+  "img": "jump_squat",
+  "set_nb": 6,
+  "rep_nb": 12,
+  "load_kg": 0,
+  "action_sec": 20,
+  "rest_sec": 45
+}

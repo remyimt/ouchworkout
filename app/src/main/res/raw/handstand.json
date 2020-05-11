@@ -1,0 +1,12 @@
+{
+  "name": "Handstand",
+  "type": "strength",
+  "target": "full",
+  "difficulty": 3,
+  "img": "handstand",
+  "set_nb": 4,
+  "rep_nb": 1,
+  "load_kg": 0,
+  "action_sec": 30,
+  "rest_sec": 60
+}

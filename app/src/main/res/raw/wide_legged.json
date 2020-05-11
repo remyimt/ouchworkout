@@ -1,0 +1,12 @@
+{
+  "name": "Wide Legged",
+  "type": "stretch",
+  "target": "legs",
+  "difficulty": 1,
+  "img": "wide_legged",
+  "set_nb": 1,
+  "rep_nb": 1,
+  "load_kg": 0,
+  "action_sec": 60,
+  "rest_sec": 5
+}

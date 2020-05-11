@@ -12,68 +12,110 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.WorkoutAct">
+        <activity android:name=".activities.OuchWorkout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Delete Workouts-->
         <activity
-            android:name=".activities.ExecutingExerciseAct"
-            android:noHistory="true"
-            android:parentActivityName=".activities.WorkoutAct">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.WorkoutAct" />
-        </activity>
-        <activity
-            android:name=".activities.SettingsAct"
-            android:parentActivityName=".activities.WorkoutAct">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.WorkoutAct" />
-        </activity>
-        <activity
-            android:name=".activities.ExerciseSelectionAct"
+            android:name=".activities.EDeletingWorkouts"
             android:noHistory="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.WorkoutAct" />
+                android:value=".activities.OuchWorkout" />
         </activity>
+
+        <!-- Settings Configuration -->
+        <activity android:name=".activities.SettingsEditor">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.OuchWorkout" />
+        </activity>
+
+        <!-- Start Workouts -->
         <activity
-            android:name=".activities.ReviewerAct"
+            android:name=".activities.SChoosingWorkouts"
             android:noHistory="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.WorkoutAct" />
+                android:value=".activities.OuchWorkout" />
         </activity>
         <activity
-            android:name=".activities.AfterExerciseAct"
+            android:name=".activities.SExerciseSelection"
             android:noHistory="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.WorkoutAct" />
+                android:value=".activities.OuchWorkout" />
         </activity>
         <activity
-            android:name=".activities.CompletedWorkoutAct"
+            android:name=".activities.SWorkoutInformation"
             android:noHistory="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.WorkoutAct" />
+                android:value=".activities.OuchWorkout" />
         </activity>
         <activity
-            android:name=".activities.ExercisePickerAct"
+            android:name=".activities.SAfterExercise"
             android:noHistory="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.WorkoutAct" />
+                android:value=".activities.OuchWorkout" />
         </activity>
         <activity
-            android:name=".activities.WorkoutStartupAct"
+            android:name=".activities.SExerciseManualSelection"
             android:noHistory="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.WorkoutAct" />
+                android:value=".activities.OuchWorkout" />
         </activity>
+
+        <activity
+            android:name=".activities.SExecutingExercise"
+            android:noHistory="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.OuchWorkout" />
+        </activity>
+        <activity
+            android:name=".activities.SCompletedWorkout"
+            android:noHistory="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.OuchWorkout" />
+        </activity>
+
+        <!-- Edit/Create Workouts-->
+        <activity
+            android:name=".activities.EExistingWorkouts"
+            android:noHistory="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.OuchWorkout" />
+        </activity>
+        <activity
+            android:name=".activities.EWorkoutExerciseSelector"
+            android:noHistory="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.EExistingWorkouts" />
+        </activity>
+        <activity
+            android:name=".activities.EWorkoutOrganizer"
+            android:noHistory="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.EExistingWorkouts" />
+        </activity>
+        <activity
+            android:name=".activities.EWorkoutCustomizer"
+            android:noHistory="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.EWorkoutOrganizer" />
+        </activity>
+
     </application>
 </manifest>

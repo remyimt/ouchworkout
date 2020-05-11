@@ -1,0 +1,12 @@
+{
+  "name": "Squat",
+  "type": "strength",
+  "target": "legs",
+  "difficulty": 1,
+  "img": "squat",
+  "set_nb": 6,
+  "rep_nb": 20,
+  "load_kg": 0,
+  "action_sec": 30,
+  "rest_sec": 30
+}w

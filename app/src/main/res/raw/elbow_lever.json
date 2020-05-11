@@ -1,0 +1,12 @@
+{
+  "name": "Elbow Lever",
+  "type": "strength",
+  "target": "abs",
+  "difficulty": 2,
+  "img": "elbow_lever",
+  "set_nb": 6,
+  "rep_nb": 1,
+  "load_kg": 0,
+  "action_sec": 30,
+  "rest_sec": 60
+}

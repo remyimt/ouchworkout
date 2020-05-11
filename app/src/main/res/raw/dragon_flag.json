@@ -1,0 +1,12 @@
+{
+  "name": "Dragon Flag",
+  "type": "strength",
+  "target": "abs",
+  "difficulty": 2,
+  "img": "dragon_flag",
+  "set_nb": 6,
+  "rep_nb": 9,
+  "load_kg": 0,
+  "action_sec": 45,
+  "rest_sec": 60
+}

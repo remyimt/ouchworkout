@@ -1,0 +1,12 @@
+{
+  "name": "Neutral Pull Up",
+  "type": "strength",
+  "target": "upper",
+  "difficulty": 2,
+  "img": "neutral_pull_up",
+  "set_nb": 6,
+  "rep_nb": 8,
+  "load_kg": 0,
+  "action_sec": 16,
+  "rest_sec": 60
+}

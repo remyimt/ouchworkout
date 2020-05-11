@@ -1,0 +1,12 @@
+{
+  "name": "Barrier One Leg Stretch",
+  "type": "stretching",
+  "target": "legs",
+  "difficulty": 1,
+  "img": "barrier_one_leg_stretch",
+  "set_nb": 2,
+  "rep_nb": 1,
+  "load_kg": 0,
+  "action_sec": 60,
+  "rest_sec": 10
+}

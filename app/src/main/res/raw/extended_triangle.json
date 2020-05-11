@@ -1,0 +1,12 @@
+{
+  "name": "Extended Triangle",
+  "type": "stretch",
+  "target": "legs",
+  "difficulty": 1,
+  "img": "extended_triangle",
+  "set_nb": 4,
+  "rep_nb": 1,
+  "load_kg": 0,
+  "action_sec": 30,
+  "rest_sec": 10
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Reverse Fly",
+  "type": "dumbbell",
+  "target": "upper",
+  "difficulty": 1,
+  "img": "reverse_fly",
+  "set_nb": 6,
+  "rep_nb": 10,
+  "load_kg": 8,
+  "action_sec": 20,
+  "rest_sec": 60
+}

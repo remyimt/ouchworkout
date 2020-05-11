@@ -1,0 +1,12 @@
+{
+  "name": "Chest Press",
+  "type": "machine",
+  "target": "upper",
+  "difficulty": 1,
+  "img": "chest_press",
+  "set_nb": 6,
+  "rep_nb": 10,
+  "load_kg": 40,
+  "action_sec": 20,
+  "rest_sec": 60
+}

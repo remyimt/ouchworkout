@@ -1,0 +1,12 @@
+{
+  "name": "L-Sit",
+  "type": "strength",
+  "target": "abs",
+  "difficulty": 2,
+  "img": "l_sit",
+  "set_nb": 6,
+  "rep_nb": 1,
+  "load_kg": 0,
+  "action_sec": 12,
+  "rest_sec": 60
+}

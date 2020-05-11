@@ -6,19 +6,21 @@ import android.os.CountDownTimer;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import ouch.ouchworkout.Factory;
 import ouch.ouchworkout.R;
-import ouch.ouchworkout.Settings;
 
 public abstract class AbstractCountdown extends CountDownTimer {
     protected final TextView countdownField;
     private final MediaPlayer mp;
     private final ImageView actionLight;
     private final int imageId;
+    protected final Activity activity;
     private boolean beepDone = false;
 
 
     public AbstractCountdown(Activity pAct, long pTime, int pImageId, int pBeepId) {
         super(pTime * 1000, 500);
+        activity = pAct;
         countdownField = pAct.findViewById(R.id.countdown);
         mp = MediaPlayer.create(pAct.getApplicationContext(), pBeepId);
         imageId = pImageId;
@@ -36,8 +38,8 @@ public abstract class AbstractCountdown extends CountDownTimer {
         } else {
             countdownField.setText(String.valueOf(seconds));
         }
-        if (seconds == Settings.getSettings().getBeepTimeSeconds() && !beepDone
-                && Settings.getSettings().isWithSound()) {
+        if (seconds == Factory.getSettings().getBeepTimeSeconds() && !beepDone
+                && Factory.getSettings().isWithSound()) {
             beepDone = true;
             mp.start();
         }

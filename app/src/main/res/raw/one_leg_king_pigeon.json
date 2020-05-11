@@ -1,0 +1,12 @@
+{
+  "name": "One Legged King Pigeon",
+  "type": "stretch",
+  "target": "legs",
+  "difficulty": 1,
+  "img": "one_legged_king_pigeon",
+  "set_nb": 2,
+  "rep_nb": 1,
+  "load_kg": 0,
+  "action_sec": 45,
+  "rest_sec": 10
+}

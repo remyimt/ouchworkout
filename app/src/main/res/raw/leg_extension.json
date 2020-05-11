@@ -1,0 +1,12 @@
+{
+  "name": "Leg Extension",
+  "type": "machine",
+  "target": "legs",
+  "difficulty": 1,
+  "img": "leg_extension",
+  "set_nb": 6,
+  "rep_nb": 12,
+  "load_kg": 50,
+  "action_sec": 20,
+  "rest_sec": 60
+}

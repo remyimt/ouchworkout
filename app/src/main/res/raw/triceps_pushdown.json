@@ -1,0 +1,12 @@
+{
+  "name": "Triceps Pushdown",
+  "type": "machine",
+  "target": "upper",
+  "difficulty": 1,
+  "img": "triceps_pushdown",
+  "set_nb": 3,
+  "rep_nb": 10,
+  "load_kg": 40,
+  "action_sec": 20,
+  "rest_sec": 60
+}

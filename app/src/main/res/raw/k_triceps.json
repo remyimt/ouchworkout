@@ -1,0 +1,12 @@
+{
+  "name": "K Triceps",
+  "type": "strength",
+  "target": "upper",
+  "difficulty": 2,
+  "img": "k_triceps",
+  "set_nb": 6,
+  "rep_nb": 10,
+  "load_kg": 0,
+  "action_sec": 26,
+  "rest_sec": 30
+}

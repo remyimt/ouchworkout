@@ -5,9 +5,8 @@ import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.widget.TextView;
 
+import ouch.ouchworkout.Factory;
 import ouch.ouchworkout.R;
-import ouch.ouchworkout.Settings;
-import ouch.ouchworkout.Workout;
 
 public class AfterCountdown extends CountDownTimer {
     private final Activity activity;
@@ -20,7 +19,7 @@ public class AfterCountdown extends CountDownTimer {
         super(pTime * 1000, 500);
         activity = pAct;
         countdownField = activity.findViewById(R.id.after_countdown);
-        mp = MediaPlayer.create(activity.getApplicationContext(), R.raw.rest_beep);
+        mp = MediaPlayer.create(activity.getApplicationContext(), R.raw.sound_rest);
     }
 
     @Override
@@ -33,8 +32,8 @@ public class AfterCountdown extends CountDownTimer {
         } else {
             countdownField.setText(String.valueOf(seconds));
         }
-        if (seconds == Settings.getSettings().getBeepTimeSeconds() && !beepDone
-                && Settings.getSettings().isWithSound()) {
+        if (seconds == Factory.getSettings().getBeepTimeSeconds() && !beepDone
+                && Factory.getSettings().isWithSound()) {
             beepDone = true;
             mp.start();
         }
@@ -43,6 +42,6 @@ public class AfterCountdown extends CountDownTimer {
     @Override
     public void onFinish() {
         countdownField.setText("000");
-        Workout.getWorkout().startWorkout(activity);
+        Factory.getInstance().getCurrentWorkout().startWorkout(activity);
     }
 }

@@ -1,0 +1,12 @@
+{
+  "name": "Leg Press",
+  "type": "machine",
+  "target": "leg",
+  "difficulty": 1,
+  "img": "leg_press",
+  "set_nb": 6,
+  "rep_nb": 10,
+  "load_kg": 90,
+  "action_sec": 20,
+  "rest_sec": 60
+}

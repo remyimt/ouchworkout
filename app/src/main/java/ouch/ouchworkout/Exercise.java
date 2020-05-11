@@ -6,33 +6,41 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Exercise {
-    private final String name;
-    private final String pictureName;
-    private final int restTime, afterTime, lengthSeconds;
+    private final String name, pictureName, type, target;
+    private int restTime, recoverTime, lengthSeconds, difficulty;
     private int actionTime, setNb, repNb, loadKg, currentSetNb;
 
-    public Exercise(String pExerciseName, String pImageName, int pSetNb,
-                    int pRepNb, int pLoad, int pActionTime, int pRestTime, int pAfterTime) {
-        name = pExerciseName;
-        // If actionTime = 0 then add 'done' button to finish the set
-        actionTime = pActionTime;
-        restTime = pRestTime;
-        afterTime = pAfterTime;
-        currentSetNb = pSetNb;
-        setNb = pSetNb;
-        repNb = pRepNb;
-        loadKg = pLoad;
-        lengthSeconds = pSetNb * pActionTime + (pSetNb - 1) * pRestTime + pAfterTime;
-        if (pImageName == null || pImageName.length() == 0) {
-            pictureName = "";
-        } else {
-            pictureName = pImageName;
-        }
+    public Exercise(JSONObject pJson) throws JSONException {
+        name = pJson.getString("name");
+        type = pJson.getString("type");
+        target = pJson.getString("target");
+        difficulty = pJson.getInt("difficulty");
+        actionTime = pJson.getInt("action_sec");
+        restTime = pJson.getInt("rest_sec");
+        recoverTime = pJson.optInt("recover_sec", 30);
+        setNb = pJson.getInt("set_nb");
+        currentSetNb = setNb;
+        repNb = pJson.getInt("rep_nb");
+        loadKg = pJson.getInt("load_kg");
+        lengthSeconds = setNb * actionTime + (setNb - 1) * restTime + recoverTime;
+        pictureName = pJson.getString("img");
     }
 
+    // Getters
     public String getName() {
         return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getPictureName() {
+        return pictureName;
     }
 
     public int getSetNb() {
@@ -63,8 +71,8 @@ public class Exercise {
         return restTime;
     }
 
-    public int getAfterTime() {
-        return afterTime;
+    public int getRecoverTime() {
+        return recoverTime;
     }
 
     public boolean isDoneButtonRequired() {
@@ -75,6 +83,41 @@ public class Exercise {
         return setNb != currentSetNb;
     }
 
+    public boolean isCompleted() {
+        return currentSetNb == 0;
+    }
+
+    // Setters
+    public void setSetNb(int pNb) {
+        setNb = pNb;
+    }
+
+    public void setRepNb(int pNb) {
+        repNb = pNb;
+    }
+
+    public void setLoadKg(int pKg) {
+        loadKg = pKg;
+    }
+
+    public void setActionTime(int pTime) {
+        actionTime = pTime;
+    }
+
+    public void setRestTime(int pTime) {
+        restTime = pTime;
+    }
+
+    public void setRecoverTime(int pTime) {
+        recoverTime = pTime;
+    }
+
+    // Initialize the exercise
+    public void initialize() {
+        currentSetNb = setNb;
+    }
+
+    // Display the exercise during a running workout
     public void display(Activity pAct, int pNameId, int pSetNbId, int pRepNbId,
                         int pImageId, int pLoadContainerId) {
         // Display the name of the exercise
@@ -100,25 +143,7 @@ public class Exercise {
         }
     }
 
-    public void shortDisplay(Activity pAct, int pNameId, int pSetNbId, int pRepNbId,
-                             int pLoadId, int pActionTimeId) {
-        // Display the name of the exercise
-        TextView nameField = pAct.findViewById(pNameId);
-        nameField.setText(name);
-        // Display the number of sets
-        TextView setNbField = pAct.findViewById(pSetNbId);
-        setNbField.setText(String.valueOf(setNb));
-        // Display the number of reps
-        TextView repNbField = pAct.findViewById(pRepNbId);
-        repNbField.setText(String.valueOf(repNb));
-        // Display the load
-        TextView loadField = pAct.findViewById(pLoadId);
-        loadField.setText(String.valueOf(loadKg));
-        // Display the action time
-        TextView timeField = pAct.findViewById(pActionTimeId);
-        timeField.setText(String.valueOf(actionTime));
-    }
-
+    // Property modifiers
     public void decreaseSetNb(Activity pAct) {
         currentSetNb--;
         // Display the number of sets
@@ -126,27 +151,28 @@ public class Exercise {
         setNbField.setText(String.valueOf(currentSetNb));
     }
 
-    public void reviewModification(int pSetNb, int pRepNb, int pLoad, int pActionTime) {
-        setNb = pSetNb;
-        repNb = pRepNb;
-        loadKg = pLoad;
-        actionTime = pActionTime;
-        Workout.getWorkout().modified();
+    @Override
+    public boolean equals(Object obj) {
+        Exercise other = (Exercise) obj;
+        return other.getName().equals(name) && other.getPictureName().equals(pictureName);
     }
 
-    public String toJSON() {
+    public StringBuilder toJSON() {
         StringBuilder json = new StringBuilder();
         String spaces = "    ";
         json.append(spaces + "{\n");
         json.append(spaces + "  \"name\": \"" + name + "\",\n");
+        json.append(spaces + "  \"type\": \"" + type + "\",\n");
+        json.append(spaces + "  \"target\": \"" + target + "\",\n");
+        json.append(spaces + "  \"difficulty\": \"" + difficulty + "\",\n");
         json.append(spaces + "  \"img\": \"" + pictureName + "\",\n");
         json.append(spaces + "  \"set_nb\":" + setNb + ",\n");
         json.append(spaces + "  \"rep_nb\":" + repNb + ",\n");
         json.append(spaces + "  \"load_kg\":" + loadKg + ",\n");
         json.append(spaces + "  \"action_sec\":" + actionTime + ",\n");
         json.append(spaces + "  \"rest_sec\":" + restTime + ",\n");
-        json.append(spaces + "  \"after_sec\":" + afterTime + "\n");
+        json.append(spaces + "  \"recover_sec\":" + recoverTime + "\n");
         json.append(spaces + "}");
-        return json.toString();
+        return json;
     }
 }

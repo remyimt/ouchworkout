@@ -1,0 +1,12 @@
+{
+  "name": "Straight Leg Lunge",
+  "type": "stretch",
+  "target": "legs",
+  "difficulty": 1,
+  "img": "straight_leg_lunge",
+  "set_nb": 2,
+  "rep_nb": 1,
+  "load_kg": 0,
+  "action_sec": 60,
+  "rest_sec": 10
+}

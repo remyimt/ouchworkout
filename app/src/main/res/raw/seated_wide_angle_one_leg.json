@@ -1,0 +1,12 @@
+{
+  "name": "Seated Wide Angle One Leg",
+  "type": "stretch",
+  "target": "legs",
+  "difficulty": 1,
+  "img": "seated_wide_angle_one_leg",
+  "set_nb": 2,
+  "rep_nb": 1,
+  "load_kg": 0,
+  "action_sec": 45,
+  "rest_sec": 10
+}

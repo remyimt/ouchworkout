@@ -1,0 +1,12 @@
+{
+  "name": "Mountain Climber",
+  "type": "strength",
+  "target": "abs",
+  "difficulty": 1,
+  "img": "mountain_climber",
+  "set_nb": 3,
+  "rep_nb": 1,
+  "load_kg": 0,
+  "action_sec": 60,
+  "rest_sec": 30
+}

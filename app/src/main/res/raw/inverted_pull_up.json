@@ -1,0 +1,12 @@
+{
+  "name": "Inverted Pull Up",
+  "type": "strength",
+  "target": "upper",
+  "difficulty": 1,
+  "img": "inverted_pull_up",
+  "set_nb": 6,
+  "rep_nb": 6,
+  "load_kg": 0,
+  "action_sec": 12,
+  "rest_sec": 30
+}
