@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import ouch.ouchworkout.activities.SAfterExercise;
@@ -252,8 +253,9 @@ public class Workout {
         currentExerciseIdx = runningExercises.indexOf(ex);
     }
 
-    public boolean containsExercise(Exercise pEx) {
-        return exercises.contains(pEx);
+    public int countExercise(Exercise pEx) {
+        return Collections.frequency(exercises, pEx);
+
     }
 
     public boolean isLastExercise() {

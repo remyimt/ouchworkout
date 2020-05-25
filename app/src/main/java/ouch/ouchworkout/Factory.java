@@ -131,7 +131,7 @@ public class Factory {
     }
 
     public List<Workout> getWorkouts() {
-        return new ArrayList<Workout>(workouts);
+        return new ArrayList<>(workouts);
     }
 
     public Workout getCurrentWorkout() {

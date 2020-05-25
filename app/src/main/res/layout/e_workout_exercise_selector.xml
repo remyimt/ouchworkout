@@ -124,14 +124,29 @@
                         android:layout_height="150dp"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/archer_pull_up" />
+
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/button"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Add" />
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="remove" />
+
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Add" />
+                </LinearLayout>
 
             </LinearLayout>
 

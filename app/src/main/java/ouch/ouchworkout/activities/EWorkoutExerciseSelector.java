@@ -106,37 +106,51 @@ public class EWorkoutExerciseSelector extends AppCompatActivity {
             container.addView(img);
             // Add button
             Button add = new Button(getApplicationContext());
+            add.setText("add");
             add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Button me = (Button) view;
-                    if (me.getText().equals("add")) {
-                        ((LinearLayout) view.getParent()).setBackgroundColor(Color.parseColor("#cfecfc"));
-                        ((Button) view).setText("remove");
-                        Factory.getInstance().getCurrentWorkout().addExercise(ex);
-                        int nbEx = Integer.parseInt(
-                                exCounter.getText().subSequence(1, exCounter.getText().length()).toString());
-                        exCounter.setText("#" + (nbEx + 1));
-                    } else {
-                        ((LinearLayout) view.getParent()).setBackgroundResource(android.R.color.background_light);
-                        ((Button) view).setText("add");
+                    ((LinearLayout) view.getParent().getParent()).setBackgroundColor(Color.parseColor("#cfecfc"));
+                    Factory.getInstance().getCurrentWorkout().addExercise(ex);
+                    int nbEx = Integer.parseInt(
+                            exCounter.getText().subSequence(1, exCounter.getText().length()).toString());
+                    exCounter.setText("#" + (nbEx + 1));
+                }
+            });
+            // Remove button
+            Button remove = new Button(getApplicationContext());
+            remove.setText("remove");
+            remove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int nbEx = Integer.parseInt(
+                            exCounter.getText().subSequence(1, exCounter.getText().length()).toString());
+                    if (nbEx > 0) {
+                        nbEx--;
+                        exCounter.setText("#" + nbEx);
                         Factory.getInstance().getCurrentWorkout().removeExercise(ex);
-                        int nbEx = Integer.parseInt(
-                                exCounter.getText().subSequence(1, exCounter.getText().length()).toString());
-                        exCounter.setText("#" + (nbEx - 1));
+                        if (nbEx == 0) {
+                            ((LinearLayout) view.getParent().getParent()).setBackgroundResource(android.R.color.background_light);
+                        }
                     }
                 }
             });
-            add.setText("add");
-            container.addView(add);
+            // Container for the add and remove buttons
+            LinearLayout buttonContainer = new LinearLayout(getApplicationContext());
+            LinearLayout.LayoutParams bcp = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, 1);
+            add.setLayoutParams(bcp);
+            remove.setLayoutParams(bcp);
+            buttonContainer.setLayoutParams(bcp);
+            buttonContainer.addView(remove);
+            buttonContainer.addView(add);
+            container.addView(buttonContainer);
             pExerciseList.addView(container);
             // Check if the exercise is already in the workout
-            if (Factory.getInstance().getCurrentWorkout().containsExercise(ex)) {
-                ((LinearLayout) add.getParent()).setBackgroundColor(Color.parseColor("#cfecfc"));
-                add.setText("remove");
-                int nbEx = Integer.parseInt(
-                        exCounter.getText().subSequence(1, exCounter.getText().length()).toString());
-                exCounter.setText("#" + (nbEx + 1));
+            int countEx = Factory.getInstance().getCurrentWorkout().countExercise(ex);
+            if (countEx > 0) {
+                ((LinearLayout) add.getParent().getParent()).setBackgroundColor(Color.parseColor("#cfecfc"));
+                exCounter.setText("#" + countEx);
             }
         }
     }
