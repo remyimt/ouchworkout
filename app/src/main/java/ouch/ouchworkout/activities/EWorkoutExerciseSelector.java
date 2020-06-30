@@ -2,6 +2,7 @@ package ouch.ouchworkout.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -12,11 +13,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import ouch.ouchworkout.Exercise;
 import ouch.ouchworkout.Factory;
 import ouch.ouchworkout.R;
 
 public class EWorkoutExerciseSelector extends AppCompatActivity {
+    private final String darkColor = "#cfecfc";
+    private final String lightColor = "#dadae1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,33 +42,35 @@ public class EWorkoutExerciseSelector extends AppCompatActivity {
         });
         // Configure the filter buttons
         Button strength = findViewById(R.id.strength_filter);
-        strength.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                displayExercises(((Button) view).getText().toString(), exercise_list);
-            }
-        });
         Button stretch = findViewById(R.id.stretch_filter);
-        stretch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                displayExercises(((Button) view).getText().toString(), exercise_list);
-            }
-        });
         Button machine = findViewById(R.id.machine_filter);
-        machine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                displayExercises(((Button) view).getText().toString(), exercise_list);
-            }
-        });
         Button dumbbell = findViewById(R.id.dumbbell_filter);
-        dumbbell.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                displayExercises(((Button) view).getText().toString(), exercise_list);
-            }
-        });
+        final List<Button> filterButtons = new LinkedList<>();
+        filterButtons.add(strength);
+        filterButtons.add(stretch);
+        filterButtons.add(machine);
+        filterButtons.add(dumbbell);
+        for (Button filter : filterButtons) {
+            filter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    for (Button fb : filterButtons) {
+                        fb.getBackground().setColorFilter(Color.parseColor(lightColor),
+                                PorterDuff.Mode.MULTIPLY);
+                    }
+                    view.getBackground().setColorFilter(Color.parseColor(darkColor),
+                            PorterDuff.Mode.MULTIPLY);
+                    displayExercises(((Button) view).getText().toString(), exercise_list);
+                }
+            });
+        }
+        // Set button styles
+        for (Button fb : filterButtons) {
+            fb.getBackground().setColorFilter(Color.parseColor(lightColor),
+                    PorterDuff.Mode.MULTIPLY);
+        }
+        strength.getBackground().setColorFilter(Color.parseColor(darkColor),
+                PorterDuff.Mode.MULTIPLY);
         displayExercises("strength", exercise_list);
     }
 
@@ -110,7 +118,7 @@ public class EWorkoutExerciseSelector extends AppCompatActivity {
             add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((LinearLayout) view.getParent().getParent()).setBackgroundColor(Color.parseColor("#cfecfc"));
+                    ((LinearLayout) view.getParent().getParent()).setBackgroundColor(Color.parseColor(darkColor));
                     Factory.getInstance().getCurrentWorkout().addExercise(ex);
                     int nbEx = Integer.parseInt(
                             exCounter.getText().subSequence(1, exCounter.getText().length()).toString());
@@ -149,7 +157,7 @@ public class EWorkoutExerciseSelector extends AppCompatActivity {
             // Check if the exercise is already in the workout
             int countEx = Factory.getInstance().getCurrentWorkout().countExercise(ex);
             if (countEx > 0) {
-                ((LinearLayout) add.getParent().getParent()).setBackgroundColor(Color.parseColor("#cfecfc"));
+                ((LinearLayout) add.getParent().getParent()).setBackgroundColor(Color.parseColor(darkColor));
                 exCounter.setText("#" + countEx);
             }
         }
