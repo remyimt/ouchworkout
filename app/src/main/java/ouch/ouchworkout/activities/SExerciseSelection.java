@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,15 +15,24 @@ import ouch.ouchworkout.Exercise;
 import ouch.ouchworkout.Factory;
 import ouch.ouchworkout.R;
 import ouch.ouchworkout.Workout;
-import ouch.ouchworkout.exception.NoExerciseException;
 
 public class SExerciseSelection extends AppCompatActivity {
-    private List<Exercise> removeExercises = new LinkedList<>();
+    private List<Integer> removeExerciseIdx = new LinkedList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.s_exercise_selection);
+        // Display the list of exercises
+        Workout w = Factory.getInstance().getCurrentWorkout();
+        LinearLayout exerciseList = findViewById(R.id.exercise_list);
+        exerciseList.removeAllViews();
+        for (Exercise ex : w.getExercises()) {
+            CheckBox box = new CheckBox(this);
+            box.setText(ex.getName());
+            box.setChecked(true);
+            exerciseList.addView(box);
+        }
         // Configure the button
         Button doneButton = findViewById(R.id.select_exercise_button);
         doneButton.setOnClickListener(new Button.OnClickListener() {
@@ -33,7 +41,7 @@ public class SExerciseSelection extends AppCompatActivity {
                 Workout w = Factory.getInstance().getCurrentWorkout();
                 LinearLayout exerciseList = findViewById(R.id.exercise_list);
                 int count;
-                if (removeExercises.isEmpty()) {
+                if (removeExerciseIdx.isEmpty()) {
                     count = exerciseList.getChildCount();
                 } else {
                     // Do not get the last child (TextView with removed exercises)
@@ -42,14 +50,11 @@ public class SExerciseSelection extends AppCompatActivity {
                 for (int i = 0; i < count; i++) {
                     CheckBox c = (CheckBox) exerciseList.getChildAt(i);
                     if (!c.isChecked()) {
-                        try {
-                            removeExercises.add(w.getExerciseFromName(c.getText().toString()));
-                        } catch (NoExerciseException e) {
-                            e.printStackTrace();
-                        }
+                        // List of integers (indexes) in descending order
+                        removeExerciseIdx.add(0, i);
                     }
                 }
-                w.setRunningExercises(removeExercises);
+                w.setRunningExercises(removeExerciseIdx);
                 if (w.getRunningExercises().isEmpty()) {
                     // Back to the home page
                     Intent intent = new Intent(v.getContext(), OuchWorkout.class);
@@ -62,30 +67,5 @@ public class SExerciseSelection extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        // Display the list of exercises
-        Workout w = Factory.getInstance().getCurrentWorkout();
-        LinearLayout exerciseList = findViewById(R.id.exercise_list);
-        exerciseList.removeAllViews();
-        for (Exercise ex : w.getExercises()) {
-            CheckBox box = new CheckBox(this);
-            box.setText(ex.getName());
-            box.setChecked(true);
-            exerciseList.addView(box);
-        }
-        if (!removeExercises.isEmpty()) {
-            TextView notAvailable = new TextView(this);
-            StringBuilder toDisplay = new StringBuilder();
-            for (Exercise ex : removeExercises) {
-                toDisplay.append(ex.getName() + ", ");
-            }
-            toDisplay.setLength(toDisplay.length() - 2);
-            notAvailable.setText("Previously removed:\n" + toDisplay);
-            exerciseList.addView(notAvailable);
-        }
-        super.onResume();
     }
 }

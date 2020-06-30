@@ -66,7 +66,7 @@ public class EWorkoutOrganizer extends AppCompatActivity {
                 LinearLayout main = (LinearLayout) container.getParent();
                 int index = main.indexOfChild(container);
                 if (index > 0) {
-                    if (workout.moveUpExercise(pEx)) {
+                    if (workout.moveUpExercise(index)) {
                         main.removeView(container);
                         main.addView(container, index - 1);
                     }
@@ -109,7 +109,7 @@ public class EWorkoutOrganizer extends AppCompatActivity {
                 int max = main.getChildCount();
                 int index = main.indexOfChild(container);
                 if (index < max - 1) {
-                    if (workout.moveDownExercise(pEx)) {
+                    if (workout.moveDownExercise(index)) {
                         main.removeView(container);
                         main.addView(container, index + 1);
                     }
@@ -124,7 +124,8 @@ public class EWorkoutOrganizer extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 LinearLayout main = (LinearLayout) container.getParent();
-                if (workout.removeExercise(pEx)) {
+                int idx = main.indexOfChild(container);
+                if (workout.removeExercise(idx)) {
                     main.removeView(container);
                 }
             }

@@ -207,31 +207,41 @@ public class Workout {
         return exercises.remove(pEx);
     }
 
-    public boolean moveUpExercise(Exercise pEx) {
-        int index = exercises.indexOf(pEx);
-        if (index > 0) {
-            exercises.remove(pEx);
-            exercises.add(index - 1, pEx);
+    public boolean removeExercise(int pExIdx) {
+        try {
+            exercises.remove(pExIdx);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+
+    public boolean moveUpExercise(int pExIdx) {
+        if (pExIdx > 0) {
+            Exercise ex = exercises.remove(pExIdx);
+            exercises.add(pExIdx - 1, ex);
             return true;
         } else {
             return false;
         }
     }
 
-    public boolean moveDownExercise(Exercise pEx) {
-        int index = exercises.indexOf(pEx);
-        if (index < exercises.size() - 1) {
-            exercises.remove(pEx);
-            exercises.add(index + 1, pEx);
+    public boolean moveDownExercise(int pExIdx) {
+        if (pExIdx < exercises.size() - 1) {
+            Exercise ex = exercises.remove(pExIdx);
+            exercises.add(pExIdx + 1, ex);
             return true;
         } else {
             return false;
         }
     }
 
-    public void setRunningExercises(List<Exercise> pToRemove) {
+    public void setRunningExercises(List<Integer> pToRemove) {
         runningExercises = new ArrayList<>(exercises);
-        runningExercises.removeAll(pToRemove);
+        for (int i : pToRemove) {
+            runningExercises.remove(i);
+        }
         // Compute the length of the workout
         workoutLengthSeconds = 0;
         for (Exercise ex : runningExercises) {
@@ -272,6 +282,7 @@ public class Workout {
     public void loadExercise(final Activity pAct) {
         // Configure the exercise
         Exercise ex = getCurrentRunningExercise();
+        ex.initialize();
         // Configure the done button (used if actionTime == 0)
         Button done = pAct.findViewById(R.id.done_button);
         if (ex.isDoneButtonRequired()) {
