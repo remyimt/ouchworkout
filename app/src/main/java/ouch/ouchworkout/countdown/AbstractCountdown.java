@@ -11,9 +11,8 @@ import ouch.ouchworkout.R;
 
 public abstract class AbstractCountdown extends CountDownTimer {
     protected final TextView countdownField;
-    private final MediaPlayer mp;
     private final ImageView actionLight;
-    private final int imageId;
+    private final int imageId, beepId;
     protected final Activity activity;
     private boolean beepDone = false;
 
@@ -22,7 +21,7 @@ public abstract class AbstractCountdown extends CountDownTimer {
         super(pTime * 1000, 500);
         activity = pAct;
         countdownField = pAct.findViewById(R.id.countdown);
-        mp = MediaPlayer.create(pAct.getApplicationContext(), pBeepId);
+        beepId = pBeepId;
         imageId = pImageId;
         actionLight = pAct.findViewById(R.id.action_light);
     }
@@ -41,6 +40,7 @@ public abstract class AbstractCountdown extends CountDownTimer {
         if (seconds == Factory.getSettings().getBeepTimeSeconds() && !beepDone
                 && Factory.getSettings().isWithSound()) {
             beepDone = true;
+            MediaPlayer mp = MediaPlayer.create(activity.getApplicationContext(), beepId);
             mp.start();
         }
     }
