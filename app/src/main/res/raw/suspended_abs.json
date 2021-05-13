@@ -1,0 +1,12 @@
+{
+  "name": "Suspended Abs",
+  "type": "strength",
+  "target": "abs",
+  "difficulty": 2,
+  "img": "suspended_abs",
+  "set_nb": 6,
+  "rep_nb": 10,
+  "load_kg": 0,
+  "action_sec": 0,
+  "rest_sec": 30
+}
