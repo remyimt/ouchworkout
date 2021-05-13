@@ -28,7 +28,6 @@ import ouch.ouchworkout.countdown.AbstractCountdown;
 import ouch.ouchworkout.countdown.ActionCountdown;
 import ouch.ouchworkout.countdown.RestCountdown;
 import ouch.ouchworkout.countdown.ResumeCountdown;
-import ouch.ouchworkout.exception.NoExerciseException;
 
 public class Workout {
     private String name;
@@ -84,15 +83,6 @@ public class Workout {
     // Do not edit the running exercise list from this method
     public List<Exercise> getRunningExercises() {
         return new ArrayList<>(runningExercises);
-    }
-
-    public Exercise getExerciseFromName(String pName) throws NoExerciseException {
-        for (Exercise ex : exercises) {
-            if (ex.getName().equals(pName)) {
-                return ex;
-            }
-        }
-        throw new NoExerciseException();
     }
 
     public boolean isWorkoutStarted() {
@@ -247,6 +237,8 @@ public class Workout {
         for (Exercise ex : runningExercises) {
             workoutLengthSeconds += ex.getLengthSeconds();
         }
+        // Remove the recover time of the last exercise
+        workoutLengthSeconds -= runningExercises.get(runningExercises.size() - 1).getRecoverTime();
     }
 
     // Running workouts
