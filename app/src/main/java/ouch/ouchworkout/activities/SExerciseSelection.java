@@ -44,7 +44,7 @@ public class SExerciseSelection extends AppCompatActivity {
                 if (removeExerciseIdx.isEmpty()) {
                     count = exerciseList.getChildCount();
                 } else {
-                    // Do not get the last child (TextView with removed exercises)
+                    // Do not get the last stretch_child (TextView with removed exercises)
                     count = exerciseList.getChildCount() - 1;
                 }
                 for (int i = 0; i < count; i++) {

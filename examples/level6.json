@@ -1,0 +1,122 @@
+{
+  "name": "level6",
+  "exercises": [
+    {
+      "name": "Dips",
+      "type": "strength",
+      "target": "upper",
+      "difficulty": "2",
+      "img": "dips",
+      "set_nb":6,
+      "rep_nb":10,
+      "load_kg":0,
+      "action_sec":0,
+      "rest_sec":30,
+      "recover_sec":30
+    },
+    {
+      "name": "Diamond Push Up",
+      "type": "strength",
+      "target": "upper",
+      "difficulty": "2",
+      "img": "push_up_diamond",
+      "set_nb":6,
+      "rep_nb":10,
+      "load_kg":0,
+      "action_sec":0,
+      "rest_sec":30,
+      "recover_sec":30
+    },
+    {
+      "name": "Declined Push Up",
+      "type": "strength",
+      "target": "upper",
+      "difficulty": "2",
+      "img": "push_up_declined",
+      "set_nb":6,
+      "rep_nb":10,
+      "load_kg":0,
+      "action_sec":0,
+      "rest_sec":30,
+      "recover_sec":60
+    },
+    {
+      "name": "Upward Bow",
+      "type": "strength",
+      "target": "full",
+      "difficulty": "2",
+      "img": "isometric_upward_bow",
+      "set_nb":1,
+      "rep_nb":1,
+      "load_kg":0,
+      "action_sec":0,
+      "rest_sec":5,
+      "recover_sec":45
+    },
+    {
+      "name": "Wide Pull Up",
+      "type": "strength",
+      "target": "upper",
+      "difficulty": "2",
+      "img": "pull_up_wide",
+      "set_nb":6,
+      "rep_nb":9,
+      "load_kg":0,
+      "action_sec":0,
+      "rest_sec":30,
+      "recover_sec":30
+    },
+    {
+      "name": "Chin Up",
+      "type": "strength",
+      "target": "upper",
+      "difficulty": "2",
+      "img": "pull_up_chin_up",
+      "set_nb":6,
+      "rep_nb":9,
+      "load_kg":0,
+      "action_sec":0,
+      "rest_sec":30,
+      "recover_sec":60
+    },
+    {
+      "name": "Upward Bow",
+      "type": "strength",
+      "target": "full",
+      "difficulty": "2",
+      "img": "isometric_upward_bow",
+      "set_nb":1,
+      "rep_nb":1,
+      "load_kg":0,
+      "action_sec":0,
+      "rest_sec":5,
+      "recover_sec":45
+    },
+    {
+      "name": "K Triceps",
+      "type": "strength",
+      "target": "upper",
+      "difficulty": "2",
+      "img": "k_triceps",
+      "set_nb":3,
+      "rep_nb":10,
+      "load_kg":0,
+      "action_sec":0,
+      "rest_sec":30,
+      "recover_sec":30
+    },
+    {
+      "name": "Crunch",
+      "type": "strength",
+      "target": "abs",
+      "difficulty": "1",
+      "img": "abs_crunch",
+      "set_nb":6,
+      "rep_nb":20,
+      "load_kg":0,
+      "action_sec":0,
+      "rest_sec":30,
+      "recover_sec":30
+    }
+  ]
+}

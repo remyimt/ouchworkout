@@ -123,7 +123,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="150dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/archer_pull_up" />
+                        app:srcCompat="@drawable/pull_up_archer" />
 
                 </LinearLayout>
 
